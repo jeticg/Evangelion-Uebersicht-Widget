@@ -196,15 +196,8 @@ render: -> """
 # <div class="example"></div>
 # <div class="example-meaning"></div>
 # </div>
-command: "cd"
-command2: "du -ch ~/.Trash | grep total | cut -c 1-5"
-update: (output2, domEl) ->
-    if (output2.indexOf(" 0B") > -1)
-        $(domEl).find('.TrashSize').text("Empty")
-    else
-        $(domEl).find('.TrashSize').text("#{output2}")
 
-command: "pmset -g batt | grep \"%\" | awk 'BEGINN { FS = \";\" };{ print $1,$2,$3 }' | sed -e 's/-I/I/' -e 's/-0//' -e 's/;//' -e 's/;//'"
+command: "pmset -g batt | grep \"%\" | awk 'BEGINN { FS = \";\" };{ print $1,$2,$3 }' | sed -e 's/-I/I/' -e 's/-0//' -e 's/;//' -e 's/;//' && du -ch ~/.Trash | grep total | cut -c 1-5"
 update: (output, domEl) ->
 
     #Time Segmends for the day
@@ -221,13 +214,13 @@ update: (output, domEl) ->
     minutes = date.getMinutes()
     days = date.getDay()
     daylist = [
-        'Sunday'
-        'Monday'
-        'Tuesday'
-        'Wednesday '
-        'Thursday'
-        'Friday'
-        'Saturday'
+        'Sonntag'
+        'Montag'
+        'Dienstag'
+        'Mittwoch'
+        'Donnerstag'
+        'Freitag'
+        'Samstag'
     ]
     #Quick and dirty fix for single digit minutes
     minutes = "0"+ minutes if minutes < 10
@@ -248,14 +241,16 @@ update: (output, domEl) ->
     values = output.split(' ')
     for value, i in values
         if i == 0
-            label = 'Batterie'
             $(domEl).find('.Bat').text("#{value}")
         else if i == 1
-            label = 'Ladung[%]'
             $(domEl).find('.BatPer').text("#{value}")
         else if i == 2
-            label = 'Ladung[Status]'
             $(domEl).find('.BatStatus').text("#{value}")
+        else if i == 4
+            if (value.indexOf("0B") > -1)
+                $(domEl).find('.TrashSize').text("Leer")
+            else
+                $(domEl).find('.TrashSize').text("#{value}")
     $(domEl).find('.sal').text("#{timeSegment}")
     $(domEl).find('.time').text("#{hour}:#{minutes}")
     $(domEl).find('.day').text("#{daylist[days]}")
