@@ -1,7 +1,4 @@
-command: "pmset -g batt | grep \"%\" | awk 'BEGINN { FS = \";\" };{ print $1,$2,$3 }' | sed -e 's/-I/I/' -e 's/-0//' -e 's/;//' -e 's/;//'"
-
 refreshFrequency: 1000
-
 style: """
     top: -30px
     right: -60px
@@ -16,7 +13,7 @@ style: """
         transform:rotate(90deg)
         width:100px
         height:58px
-        background:rgba(179,0,0,1)
+        background:rgba(10,10,10,1)
         display:inline-block
         position:relative
         line-height:58px
@@ -37,7 +34,7 @@ style: """
         position:absolute
         border-right:50px dotted transparent
         border-left:50px dotted transparent
-        border-bottom:30px solid rgba(179,0,0,1)
+        border-bottom:30px solid rgba(10,10,10,1)
         right:0px
         top:-30px
     .nav b
@@ -48,7 +45,7 @@ style: """
         position:absolute
         border-right:50px dotted transparent
         border-left:50px dotted transparent
-        border-top:30px solid rgba(179,0,0,1)
+        border-top:30px solid rgba(10,10,10,1)
         bottom:-30px
         right:0px
     .nav b1
@@ -59,7 +56,7 @@ style: """
         position:absolute
         border-right:0px dotted transparent
         border-left:100px dotted transparent
-        border-top:60px solid rgba(179,0,0,1)
+        border-top:60px solid rgba(10,10,10,1)
         bottom:-60px
         right:0px
     .nav b2
@@ -70,7 +67,7 @@ style: """
         position:absolute
         border-right:100px dotted transparent
         border-left:0px dotted transparent
-        border-top:60px solid rgba(179,0,0,1)
+        border-top:60px solid rgba(10,10,10,1)
         bottom:-60px
         right:0px
     .nav s2
@@ -79,31 +76,22 @@ style: """
         height:0
         display:block
         position:absolute
-        background-color: gba(179,0,0,1)
-        border-bottom:95px solid rgba(179,0,0,1)
+        background-color: rgba(10,10,10,1)
+        border-bottom:95px solid rgba(10,10,10,1)
         right:0px
         top:-95px
-    .a0
-        margin-right:105px
     .a1
         margin-right:140px
-    .ai
+    .ai, .nav:hover ai
         background:rgba(0,0,0,0)
     .ax
         height:200px;
     .nav:hover
-        background:rgba(256,0,0,0.7)
-        color:#333333
-    .nav:hover s
-        border-bottom-color:rgba(256,0,0,0.7)
-    .nav:hover b
-        border-top-color:rgba(256,0,0,0.7)
-    .nav:hover s2
-        border-bottom-color:rgba(256,0,0,0.7)
-    .nav:hover b1
-        border-top-color:rgba(256,0,0,0.7)
-    .nav:hover b2
-        border-top-color:rgba(256,0,0,0.7)
+        background:rgba(256,0,0,1)
+    .nav:hover s, .nav:hover s2
+        border-bottom-color:rgba(256,0,0,1)
+    .nav:hover b, .nav:hover b1, .nav:hover b2
+        border-top-color:rgba(256,0,0,1)
     .output
         padding: 5px 10px
         font-size: 30px
@@ -145,8 +133,8 @@ style: """
 render: -> """
     <div class="wrap">
         <a class="nav a5" target="_blank" href="#"><s></s>0<b></b></a>
-        <a class="nav a4" target="_blank" href="#"><s></s>1<b></b></a>
-        <a class="nav a3" target="_blank" href="#"><s></s>2<b></b></a>
+        <a class="nav a2" target="_blank" href="#"><s></s>1<b></b></a>
+        <a class="nav a2" target="_blank" href="#"><s></s>2<b></b></a>
         <a class="nav a2" target="_blank" href="#"><s></s>3<b></b></a><p></p>
 
         <a class="nav a1" target="_blank" href="#"><s></s>4<b></b></a>
@@ -155,9 +143,9 @@ render: -> """
         </a><p></p>
         <a class="nav a5" target="_blank" href="#"><s></s>6<b></b></a>
 
-        <a class="nav a4" target="_blank" href="#"><s></s>7<b></b></a>
-        <a class="nav a3" target="_blank" href="#"><s></s>8<b></b></a>
-        <a class="nav a3" target="_blank" href="#"><s></s>
+        <a class="nav a2" target="_blank" href="#"><s></s>7<b></b></a>
+        <a class="nav a2" target="_blank" href="#"><s></s>8<b></b></a>
+        <a class="nav a2" target="_blank" href="#"><s></s>
             <div class="content clock"><span class="time"></span></div>
         <b></b></a><p></p>
         <a class="nav a1" target="_blank" href="#"><s></s>10<b></b></a>
@@ -166,34 +154,37 @@ render: -> """
             <div class="content clock"><span class="sal"></span></div>
         <b></b></a><p></p>
         <a class="nav ai" target="_blank" href="#"></a>
-        <a class="nav a4" target="_blank" href="#"><s></s>13<b></b></a>
+        <a class="nav a2" target="_blank" href="#"><s></s>13<b></b></a>
 
         <a class="nav a3" target="_blank" href="#"><s></s><b1></b1></a>
         <a class="nav ai" target="_blank" href="#"></a><p></p>
         <a class="nav a1" target="_blank" href="#"><s></s>16<b></b></a>
-        <a class="nav a2" target="_blank" href="#" style="z-index:9999"><s2></s2><b></b>
+        <a class="nav a3" target="_blank" href="#" style="z-index:9999"><s2></s2><b></b>
             <div style="margin-top:-70px;margin-left:-60px;width:200px;transform:rotate(-90deg);text-align:left"><span class="Bat"></span></div>
             <div style="margin-top:-60px;margin-left:-35px;width:200px;transform:rotate(-90deg);text-align:left"><span class="BatStatus"></span></div>
         </a><p></p>
         <a class="nav ai" target="_blank" href="#"></a>
-        <a class="nav a4" target="_blank" href="#"><s></s>19<b></b></a>
+        <a class="nav a2" target="_blank" href="#"><s></s>19<b></b></a>
         <a class="nav a3" target="_blank" href="#"><s></s>
             <div style="margin-top:0px;margin-left:-45px;width:200px;transform:rotate(-90deg);text-align:center"><span class="BatPer">100%</span></div>
         <b2></b2></a>
-        <a class="nav a3" target="_blank" href="#"><s></s><b></b>
+        <a class="nav a2" target="_blank" href="#"><s></s><b></b>
             <div class="contentS">EMERGENCY</div>
         </a><p></p>
         <a class="nav a1" target="_blank" href="#"><s></s>22<b></b></a>
-        <a class="nav a2" target="_blank" href="#"><s></s>23<b></b></a><p></p>
+        <a class="nav a2" target="_blank" href="#"><s></s><b></b>
+            <div class="contentS" style="margin-left:-35px">Trash</div>
+            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px"><span class="TrashSize">70B</span></div>
+        </a><p></p>
         <a class="nav ai" target="_blank" href="#"></a>
-        <a class="nav a4" target="_blank" href="#"><s></s>25<b></b></a>
-        <a class="nav a3" target="_blank" href="#"><s></s>26<b></b></a>
+        <a class="nav a2" target="_blank" href="#"><s></s>25<b></b></a>
+        <a class="nav a2" target="_blank" href="#"><s></s>26<b></b></a>
         <a class="nav ai" target="_blank" href="#"></a><p></p>
         <a class="nav a1" target="_blank" href="#"><s></s>28<b></b></a>
         <a class="nav a2" target="_blank" href="#"><s></s>29<b></b></a><p></p>
         <a class="nav ai" target="_blank" href="#"></a>
-        <a class="nav a4" target="_blank" href="#"><s></s>31<b></b></a>
-        <a class="nav a3" target="_blank" href="#"><s></s>32<b></b></a>
+        <a class="nav a2" target="_blank" href="#"><s></s>31<b></b></a>
+        <a class="nav a2" target="_blank" href="#"><s></s>32<b></b></a>
         <a class="nav ai" target="_blank" href="#"></a><p></p>
     </div>
 """
@@ -205,6 +196,15 @@ render: -> """
 # <div class="example"></div>
 # <div class="example-meaning"></div>
 # </div>
+command: "cd"
+command2: "du -ch ~/.Trash | grep total | cut -c 1-5"
+update: (output2, domEl) ->
+    if (output2.indexOf(" 0B") > -1)
+        $(domEl).find('.TrashSize').text("Empty")
+    else
+        $(domEl).find('.TrashSize').text("#{output2}")
+
+command: "pmset -g batt | grep \"%\" | awk 'BEGINN { FS = \";\" };{ print $1,$2,$3 }' | sed -e 's/-I/I/' -e 's/-0//' -e 's/;//' -e 's/;//'"
 update: (output, domEl) ->
 
     #Time Segmends for the day
@@ -229,7 +229,6 @@ update: (output, domEl) ->
         'Friday'
         'Saturday'
     ]
-
     #Quick and dirty fix for single digit minutes
     minutes = "0"+ minutes if minutes < 10
     #timeSegment logic
@@ -260,3 +259,20 @@ update: (output, domEl) ->
     $(domEl).find('.sal').text("#{timeSegment}")
     $(domEl).find('.time').text("#{hour}:#{minutes}")
     $(domEl).find('.day').text("#{daylist[days]}")
+    $('.a3').hover (
+        ->
+            $(domEl).find(".a3 s").css("border-bottom-color",   "rgba(256,0,0,1)")
+            $(domEl).find(".a3 b").css("border-top-color",      "rgba(256,0,0,1)")
+            $(domEl).find(".a3 s2").css("border-bottom-color",  "rgba(256,0,0,1)")
+            $(domEl).find(".a3 b1").css("border-top-color",     "rgba(256,0,0,1)")
+            $(domEl).find(".a3 b2").css("border-top-color",     "rgba(256,0,0,1)")
+            $(domEl).find(".a3").css("background",              "rgba(256,0,0,1)")
+    ), (
+        ->
+            $(domEl).find(".a3 s").css("border-bottom-color",   "rgba(10,10,10,1)")
+            $(domEl).find(".a3 b").css("border-top-color",      "rgba(10,10,10,1)")
+            $(domEl).find(".a3 s2").css("border-bottom-color",  "rgba(10,10,10,1)")
+            $(domEl).find(".a3 b1").css("border-top-color",     "rgba(10,10,10,1)")
+            $(domEl).find(".a3 b2").css("border-top-color",     "rgba(10,10,10,1)")
+            $(domEl).find(".a3").css("background",              "rgba(10,10,10,1)")
+    )
