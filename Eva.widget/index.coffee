@@ -90,6 +90,10 @@ style: """
         border-bottom:95px solid rgba(10,10,10,1)
         right:0px
         top:-95px
+    .a0, .a0 s, .a0 b
+        @keyframes meow_BG { from { background-color:rgba(256,0,0,1); } to { background-color:rgba(128,0,0,1); }  }
+        @keyframes meow_BS { from { border-bottom-color:rgba(256,0,0,1); } to { border-bottom-color:rgba(128,0,0,1); }  }
+        @keyframes meow_BB { from { border-top-color:rgba(256,0,0,1); } to { border-top-color:rgba(128,0,0,1); }  }
     .a1
         margin-right:140px
     .ai, .nav:hover ai, .a4
@@ -157,45 +161,46 @@ style: """
         font-weight: bold
         font-size: 20px
         text-transform: uppercase;
+
 """
 
 render: -> """
     <div class="wrap">
         <a class="nav a0" target="_blank" href="#" id="0"><s></s><b></b>
-            <p class="id">0</p>
+            <div class="id">0</div>
             <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
         </a>
         <a class="nav a0" target="_blank" href="#" id="1"><s></s><b></b>
-            <p class="id">1</p>
+            <div class="id">1</div>
             <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
         </a>
         <a class="nav a0" target="_blank" href="#" id="2"><s></s><b></b>
-            <p class="id">2</p>
+            <div class="id">2</div>
             <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
         </a>
         <a class="nav a0" target="_blank" href="#" id="3"><s></s><b></b>
-            <p class="id">3</p>
+            <div class="id">3</div>
             <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
         </a><p></p>
 
         <a class="nav a1 a0" target="_blank" href="#" id="4"><s></s><b></b>
-            <p class="id">4</p>
+            <div class="id">4</div>
             <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
         </a>
         <a class="nav a2" target="_blank" href="#" id="5"><s></s><b></b>
             <div class="contentS"><span class="day"></span></div>
         </a><p></p>
         <a class="nav a0" target="_blank" href="#" id="6"><s></s><b></b>
-            <p class="id">6</p>
+            <div class="id">6</div>
             <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
         </a>
 
         <a class="nav a0" target="_blank" href="#" id="7"><s></s><b></b>
-            <p class="id">7</p>
+            <div class="id">7</div>
             <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
         </a>
         <a class="nav a0" target="_blank" href="#" id="8"><s></s><b></b>
-            <p class="id">8</p>
+            <div class="id">8</div>
             <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
         </a>
         <a class="nav a2" target="_blank" href="#" id="9"><s></s>
@@ -210,7 +215,10 @@ render: -> """
             <div class="content clock"><span class="sal"></span></div>
         <b></b></a><p></p>
         <a class="nav ai" target="_blank" href="#" id="12"></a>
-        <a class="nav a2" target="_blank" href="#" id="13"><s></s>13<b></b></a>
+        <a class="nav a0" target="_blank" href="#" id="13"><s></s><b></b>
+            <div class="id">13</div>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
+        </a>
 
         <a class="nav a3" target="_blank" href="#" id="14"><s></s><b1></b1></a>
         <a class="nav ai" target="_blank" href="#" id="15"></a><p></p>
@@ -223,29 +231,47 @@ render: -> """
             <div style="margin-top:-60px;margin-left:-35px;width:200px;transform:rotate(-90deg);text-align:left"><span class="BatStatus"></span></div>
         </a><p></p>
         <a class="nav ai" target="_blank" href="#" id="18"></a>
-        <a class="nav a2" target="_blank" href="#" id="19"><s></s>19<b></b></a>
+        <a class="nav a0" target="_blank" href="#" id="19"><s></s><b></b>
+            <div class="id">19</div>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
+        </a>
         <a class="nav a3" target="_blank" href="#" id="BatCell"><s></s>
             <div style="margin-top:0px;margin-left:-45px;width:200px;transform:rotate(-90deg);text-align:center"><span class="BatPer">Fehler</span></div>
         <b2></b2></a>
         <a class="nav a0" target="_blank" href="#" id="21"><s></s><b></b>
             <div class="contentS" style="text-decoration:underline overline">WARNUNG</div>
         </a><p></p>
-        <a class="nav a1" target="_blank" href="#" id="22"><s></s>22<b></b></a>
+        <a class="nav a1 a0" target="_blank" href="#" id="22"><s></s><b></b>
+            <div class="id">22</div>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
+        </a>
         <a class="nav a2" target="_blank" href="#" id="23"><s></s><b></b>
             <div class="contentS" style="margin-left:-35px">Papierkorb</div>
             <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px"><span class="TrashSize">Fehler</span></div>
         </a><p></p>
         <a class="nav ai" target="_blank" href="#" id="24"></a>
-        <a class="nav a2" target="_blank" href="#" id="25"><s></s>25<b></b></a>
-        <a class="nav a2" target="_blank" href="#" id="26"><s></s>26<b></b></a>
+        <a class="nav a0" target="_blank" href="#" id="25"><s></s><b></b>
+            <div class="id">25</div>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
+        </a>
+        <a class="nav a0" target="_blank" href="#" id="26"><s></s><b></b>
+            <div class="id">26</div>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
+        </a>
         <a class="nav ai" target="_blank" href="#" id="27"></a><p></p>
-        <a class="nav a1" target="_blank" href="#" id="28"><s></s>28<b></b></a>
-        <a class="nav a2" target="_blank" href="#" id="IPCell"><s></s><b></b>
+        <a class="nav a1" target="_blank" href="#" id="IPCell"><s></s><b></b>
             <div class="contentS" style="margin-left:-35px">PublikIP</div>
-            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px"><span class="PubIP">Fehler</span></div>
+            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:14px"><span class="PubIP">Fehler</span></div>
+        </a>
+        <a class="nav a0" target="_blank" href="#" id="29"><s></s><b></b>
+            <div class="id">29</div>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
         </a><p></p>
         <a class="nav ai" target="_blank" href="#" id="30"></a>
-        <a class="nav a2" target="_blank" href="#" id="31"><s></s>31<b></b></a>
+        <a class="nav a0" target="_blank" href="#" id="31"><s></s><b></b>
+            <div class="id">31</div>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
+        </a>
         <a class="nav a2" target="_blank" href="#" id="32"><s></s>32<b></b></a>
         <a class="nav ai" target="_blank" href="#" id="33"></a><p></p>
         <a class="nav ai" target="_blank" href="#" id="34"></a><p></p>
@@ -279,7 +305,7 @@ update: (output, domEl) ->
     warning=0;
     Bwarning=0;
     Cwarning=0;
-
+    Nwarning=0;
 #   Define constants
     segments = ["子时", "丑时", "寅时", "卯时", "辰时", "巳时", "午时", "未时", "申时", "酉时", "戌时", "亥时"]
     daylist = [
@@ -293,6 +319,14 @@ update: (output, domEl) ->
     ]
 
 #   functions
+    animation_on = (cell) ->
+        $(domEl).find("#{cell} s").css("animation", "meow_BS 1s linear 0s infinite alternate")
+        $(domEl).find("#{cell} b").css("animation", "meow_BB 1s linear 0s infinite alternate")
+        $(domEl).find("#{cell}"  ).css("animation", "meow_BG 1s linear 0s infinite alternate")
+    animation_off = (cell) ->
+        $(domEl).find("#{cell} s").css("animation", "")
+        $(domEl).find("#{cell} b").css("animation", "")
+        $(domEl).find("#{cell}"  ).css("animation", "")
     colorChange = (cell, colour) ->
         $(domEl).find("#{cell} s").css("border-bottom-color",   colour)
         $(domEl).find("#{cell} b").css("border-top-color",      colour)
@@ -338,6 +372,8 @@ update: (output, domEl) ->
     Trashvalues     = AllOutputs[4].split(' ')
     Trashvalues="#{Trashvalues}".replace /,/g, ''
     Trashvalues="#{Trashvalues}".replace /\s+/g, ''
+    IPJSON = null
+    IPJSON = $.getJSON 'https://api.ipify.org?format=json'
 
 #   Deliver output
     $(domEl).find('.OP').text("#{output}")
@@ -349,20 +385,31 @@ update: (output, domEl) ->
     $(domEl).find('.sal').text("#{timeSegment}")
     $(domEl).find('.time').text("#{hour}:#{minutes}")
     $(domEl).find('.day').text("#{daylist[days]}")
+    if IPJSON == null
+        $(domEl).find('.PubIP').text("#{Fehler}")
+        Nwarning=1;
+    else
+        IPJSON.success (data) -> $(domEl).find('.PubIP').text("#{data.ip}")
+        Nwarning=0;
     if (Trashvalues.indexOf("0B") > -1)
         $(domEl).find('.TrashSize').text("Leer")
     else
         $(domEl).find('.TrashSize').text("#{Trashvalues}")
 
 #   Dealing with warnings
-    if parseInt(Batterievalues[1]) < 100
+    if (parseInt(Batterievalues[1]) < 20 & Batterievalues[2].indexOf("discharging") > -1)
         Bwarning = 1
         colorChange(".a3", "rgba(256,0,0,1)")
     else
         Bwarning = 0
         colorChange(".a3", "rgba(10,10,10,1)")
 
-    if CPUUsage/CPUAmount > 0
+#    if Nwarning == 1
+#        colorChange("#IPCell", "rgba(256,10,10,1)")
+#    else
+#        colorChange("#IPCell", "rgba(10,10,10,1)")
+
+    if CPUUsage/CPUAmount > 90
         Cwarning = 1
         colorChange("#CPUCell", "rgba(256,0,0,1)")
     else
@@ -373,14 +420,11 @@ update: (output, domEl) ->
         warning = 1
     else warning = 0
 
-    ok = date.getSeconds()%2
     if warning == 1
         warning_on()
-        if ok == 1
-            colorChange(".a0", "rgba(256,0,0,1)")
-        else
-            colorChange(".a0", "rgba(128,0,0,1)")
+        animation_on(".a0")
     else
+        animation_off(".a0")
         warning_off()
 
 #   hover effects
@@ -415,5 +459,3 @@ update: (output, domEl) ->
             alert colorChange(".a4", "rgba(10,10,10,0)")
             $(domEl).find(".a4x").css("visibility",               "hidden")
     )
-    $.getJSON "http://smart-ip.net/geoip-json?callback=?", (data) ->
-        $(domEl).find('.PubIP').text("#{data.host}")
