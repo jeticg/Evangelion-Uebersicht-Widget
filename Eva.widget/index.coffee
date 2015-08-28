@@ -70,6 +70,16 @@ style: """
         border-top:60px solid rgba(10,10,10,1)
         bottom:-60px
         right:0px
+    .nav b3
+        margin-left:10px
+        width:100px
+        height:0
+        display:block
+        position:absolute
+        background-color: rgba(10,10,10,1)
+        border-top:95px solid rgba(10,10,10,1)
+        right:0px
+        bottom:-95px
     .nav s2
         margin-left:10px
         width:100px
@@ -82,12 +92,18 @@ style: """
         top:-95px
     .a1
         margin-right:140px
-    .ai, .nav:hover ai
+    .ai, .nav:hover ai, .a4
         background:rgba(0,0,0,0)
+    .a4 s, .a4 s2, .a4 b, .a4 b1, .a4 b2, .a4 b3
+        border-bottom-color:rgba(10,10,10,0)
+        border-top-color:rgba(10,10,10,0)
+        border-left-color:rgba(10,10,10,0)
+        border-right-color:rgba(10,10,10,0)
+        background-color:rgba(10,10,10,0)
     .ax
         height:200px;
-    .nav:hover
-        background:rgba(256,0,0,1)
+    .a1:hover, .a2:hover, .a3:hover
+        background-color:rgba(256,10,10,1)
     .nav:hover s, .nav:hover s2
         border-bottom-color:rgba(256,0,0,1)
     .nav:hover b, .nav:hover b1, .nav:hover b2
@@ -132,7 +148,7 @@ style: """
 
 render: -> """
     <div class="wrap">
-        <a class="nav a5" target="_blank" href="#"><s></s>0<b></b></a>
+        <a class="nav a2" target="_blank" href="#"><s></s>0<b></b></a>
         <a class="nav a2" target="_blank" href="#"><s></s>1<b></b></a>
         <a class="nav a2" target="_blank" href="#"><s></s>2<b></b></a>
         <a class="nav a2" target="_blank" href="#"><s></s>3<b></b></a><p></p>
@@ -141,7 +157,7 @@ render: -> """
         <a class="nav a2" target="_blank" href="#"><s></s><b></b>
             <div class="contentS"><span class="day"></span></div>
         </a><p></p>
-        <a class="nav a5" target="_blank" href="#"><s></s>6<b></b></a>
+        <a class="nav a2" target="_blank" href="#"><s></s>6<b></b></a>
 
         <a class="nav a2" target="_blank" href="#"><s></s>7<b></b></a>
         <a class="nav a2" target="_blank" href="#"><s></s>8<b></b></a>
@@ -169,12 +185,12 @@ render: -> """
             <div style="margin-top:0px;margin-left:-45px;width:200px;transform:rotate(-90deg);text-align:center"><span class="BatPer">100%</span></div>
         <b2></b2></a>
         <a class="nav a2" target="_blank" href="#"><s></s><b></b>
-            <div class="contentS">EMERGENCY</div>
+            <div class="contentS" style="text-decoration:underline overline">WARNUNG</div>
         </a><p></p>
         <a class="nav a1" target="_blank" href="#"><s></s>22<b></b></a>
         <a class="nav a2" target="_blank" href="#"><s></s><b></b>
             <div class="contentS" style="margin-left:-35px">Trash</div>
-            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px"><span class="TrashSize">70B</span></div>
+            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px"><span class="TrashSize">ERROR</span></div>
         </a><p></p>
         <a class="nav ai" target="_blank" href="#"></a>
         <a class="nav a2" target="_blank" href="#"><s></s>25<b></b></a>
@@ -184,8 +200,22 @@ render: -> """
         <a class="nav a2" target="_blank" href="#"><s></s>29<b></b></a><p></p>
         <a class="nav ai" target="_blank" href="#"></a>
         <a class="nav a2" target="_blank" href="#"><s></s>31<b></b></a>
-        <a class="nav a2" target="_blank" href="#"><s></s>32<b></b></a>
-        <a class="nav ai" target="_blank" href="#"></a><p></p>
+        <a class="nav a2" target="_blank" href="#" id="32"><s></s>32<b></b></a>
+        <a class="nav ai" target="_blank" href="#" id="33"></a><p></p>
+        <a class="nav ai" target="_blank" href="#" id="34"></a><p></p>
+        <a class="nav a4" target="_blank" href="#" id="35" style="margin-right:140px"><s></s><b1></b1></a>
+        <a class="nav a4" target="_blank" href="#" id="36"><s></s><b1></b1>
+            <div class='a4x' style="transform:rotate(-90deg);margin-left:-10px;visibility:hidden">OUTPUT</div>
+        </a><p></p>
+        <a class="nav ai" target="_blank" href="#" id="37"></a>
+        <a class="nav a4" target="_blank" href="#" id="38"><s></s><b3></b3></a>
+        <a class="nav a4" target="_blank" href="#" id="39"><s2></s2><b3></b3></a>
+        <a class="nav a4" target="_blank" href="#" id="40" style="z-index:9999"><s2></s2><b></b>
+            <div class="a4x" style="margin-top:-200px;margin-left:-150px;width:400px;transform:rotate(-90deg);text-align:left;visibility:hidden"><span class="OP"></span></div>
+        </a><p></p>
+        <a class="nav a4" target="_blank" href="#" id="41" style="margin-right:140px"><s></s><b2></b2></a>
+        <a class="nav a4" target="_blank" href="#" id="42"><s></s><b2></b2></a><p></p>
+        <a class="nav ai" target="_blank" href="#" id="43"></a>
     </div>
 """
 # </div>
@@ -238,19 +268,23 @@ update: (output, domEl) ->
     timeSegment = segments[10] if 19 <= hour < 21
     timeSegment = segments[11] if 21 <= hour < 23
     #DOM manipulation
-    values = output.split(' ')
-    for value, i in values
+    AllOutputs = output.split('\n')
+    Batterievalues = AllOutputs[0].split(' ')
+    Trashvalues    = AllOutputs[1].split(' ')
+    $(domEl).find('.OP').text("#{output}")
+    for value, i in Batterievalues
         if i == 0
             $(domEl).find('.Bat').text("#{value}")
         else if i == 1
             $(domEl).find('.BatPer').text("#{value}")
         else if i == 2
             $(domEl).find('.BatStatus').text("#{value}")
-        else if i == 4
-            if (value.indexOf("0B") > -1)
-                $(domEl).find('.TrashSize').text("Leer")
-            else
-                $(domEl).find('.TrashSize').text("#{value}")
+    Trashvalues="#{Trashvalues}".replace /,/g, ''
+    Trashvalues="#{Trashvalues}".replace /\s+/g, ''
+    if (Trashvalues.indexOf("0B") > -1)
+        $(domEl).find('.TrashSize').text("Leer")
+    else
+        $(domEl).find('.TrashSize').text("#{Trashvalues}")
     $(domEl).find('.sal').text("#{timeSegment}")
     $(domEl).find('.time').text("#{hour}:#{minutes}")
     $(domEl).find('.day').text("#{daylist[days]}")
@@ -270,4 +304,25 @@ update: (output, domEl) ->
             $(domEl).find(".a3 b1").css("border-top-color",     "rgba(10,10,10,1)")
             $(domEl).find(".a3 b2").css("border-top-color",     "rgba(10,10,10,1)")
             $(domEl).find(".a3").css("background",              "rgba(10,10,10,1)")
+    )
+    $('#32').hover (
+        ->
+            $(domEl).find(".a4 s").css("border-bottom-color",   "rgba(10,10,10,1)")
+            $(domEl).find(".a4 b").css("border-top-color",      "rgba(10,10,10,1)")
+            $(domEl).find(".a4 s2").css("border-bottom-color",  "rgba(10,10,10,1)")
+            $(domEl).find(".a4 b1").css("border-top-color",     "rgba(10,10,10,1)")
+            $(domEl).find(".a4 b2").css("border-top-color",     "rgba(10,10,10,1)")
+            $(domEl).find(".a4 b3").css("border-top-color",     "rgba(10,10,10,1)")
+            $(domEl).find(".a4").css("background",              "rgba(10,10,10,1)")
+            $(domEl).find(".a4x").css("visibility",               "visible")
+    ), (
+        ->
+            $(domEl).find(".a4 s").css("border-bottom-color",   "rgba(10,10,10,0)")
+            $(domEl).find(".a4 b").css("border-top-color",      "rgba(10,10,10,0)")
+            $(domEl).find(".a4 s2").css("border-bottom-color",  "rgba(10,10,10,0)")
+            $(domEl).find(".a4 b1").css("border-top-color",     "rgba(10,10,10,0)")
+            $(domEl).find(".a4 b2").css("border-top-color",     "rgba(10,10,10,0)")
+            $(domEl).find(".a4 b3").css("border-top-color",     "rgba(10,10,10,0)")
+            $(domEl).find(".a4").css("background",              "rgba(10,10,10,0)")
+            $(domEl).find(".a4x").css("visibility",               "hidden")
     )
