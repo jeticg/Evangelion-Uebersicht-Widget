@@ -94,6 +94,10 @@ style: """
         margin-right:140px
     .ai, .nav:hover ai, .a4
         background:rgba(0,0,0,0)
+    .nav:hover a0 s
+        border-top-color:rgba(128,128,128,1)
+    .nav:hover a0 b
+        border-top-color:rgba(128,128,128,1)
     .a4 s, .a4 s2, .a4 b, .a4 b1, .a4 b2, .a4 b3
         border-bottom-color:rgba(10,10,10,0)
         border-top-color:rgba(10,10,10,0)
@@ -104,9 +108,9 @@ style: """
         height:200px;
     .a1:hover, .a2:hover, .a3:hover
         background-color:rgba(128,128,128,1)
-    .nav:hover s, .nav:hover s2
+    .nav:hover s
         border-bottom-color:rgba(128,128,128,1)
-    .nav:hover b, .nav:hover b1, .nav:hover b2
+    .nav:hover b
         border-top-color:rgba(128,128,128,1)
     .output
         padding: 5px 10px
@@ -128,6 +132,13 @@ style: """
         font-family: Songti SC
         font-style: Black
         font-size: 40px
+    .Wcontent
+        transform:rotate(-90deg);
+        font-family: Futura
+        font-style: Black
+        font-size: 15px
+        z-index:99999
+        visibility:hidden
     .contentS
         transform:rotate(-90deg);
         font-family: Futura
@@ -139,6 +150,8 @@ style: """
         font-weight: bold
         font-size: 15px
         text-transform: uppercase;
+    .id
+        font-size:20px
     .BatStatus
         font-family: Futura
         font-weight: bold
@@ -148,19 +161,43 @@ style: """
 
 render: -> """
     <div class="wrap">
-        <a class="nav a2" target="_blank" href="#" id="0"><s></s>0<b></b></a>
-        <a class="nav a2" target="_blank" href="#" id="1"><s></s>1<b></b></a>
-        <a class="nav a2" target="_blank" href="#" id="2"><s></s>2<b></b></a>
-        <a class="nav a2" target="_blank" href="#" id="3"><s></s>3<b></b></a><p></p>
+        <a class="nav a0" target="_blank" href="#" id="0"><s></s><b></b>
+            <p class="id">0</p>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
+        </a>
+        <a class="nav a0" target="_blank" href="#" id="1"><s></s><b></b>
+            <p class="id">1</p>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
+        </a>
+        <a class="nav a0" target="_blank" href="#" id="2"><s></s><b></b>
+            <p class="id">2</p>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
+        </a>
+        <a class="nav a0" target="_blank" href="#" id="3"><s></s><b></b>
+            <p class="id">3</p>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
+        </a><p></p>
 
-        <a class="nav a1" target="_blank" href="#" id="4"><s></s>4<b></b></a>
+        <a class="nav a1 a0" target="_blank" href="#" id="4"><s></s><b></b>
+            <p class="id">4</p>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
+        </a>
         <a class="nav a2" target="_blank" href="#" id="5"><s></s><b></b>
             <div class="contentS"><span class="day"></span></div>
         </a><p></p>
-        <a class="nav a2" target="_blank" href="#" id="6"><s></s>6<b></b></a>
+        <a class="nav a0" target="_blank" href="#" id="6"><s></s><b></b>
+            <p class="id">6</p>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
+        </a>
 
-        <a class="nav a2" target="_blank" href="#" id="7"><s></s>7<b></b></a>
-        <a class="nav a2" target="_blank" href="#" id="8"><s></s>8<b></b></a>
+        <a class="nav a0" target="_blank" href="#" id="7"><s></s><b></b>
+            <p class="id">7</p>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
+        </a>
+        <a class="nav a0" target="_blank" href="#" id="8"><s></s><b></b>
+            <p class="id">8</p>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
+        </a>
         <a class="nav a2" target="_blank" href="#" id="9"><s></s>
             <div class="content clock"><span class="time"></span></div>
         <b></b></a><p></p>
@@ -190,7 +227,7 @@ render: -> """
         <a class="nav a3" target="_blank" href="#" id="BatCell"><s></s>
             <div style="margin-top:0px;margin-left:-45px;width:200px;transform:rotate(-90deg);text-align:center"><span class="BatPer">Fehler</span></div>
         <b2></b2></a>
-        <a class="nav a2" target="_blank" href="#" id="21"><s></s><b></b>
+        <a class="nav a0" target="_blank" href="#" id="21"><s></s><b></b>
             <div class="contentS" style="text-decoration:underline overline">WARNUNG</div>
         </a><p></p>
         <a class="nav a1" target="_blank" href="#" id="22"><s></s>22<b></b></a>
@@ -203,7 +240,10 @@ render: -> """
         <a class="nav a2" target="_blank" href="#" id="26"><s></s>26<b></b></a>
         <a class="nav ai" target="_blank" href="#" id="27"></a><p></p>
         <a class="nav a1" target="_blank" href="#" id="28"><s></s>28<b></b></a>
-        <a class="nav a2" target="_blank" href="#" id="29"><s></s>29<b></b></a><p></p>
+        <a class="nav a2" target="_blank" href="#" id="IPCell"><s></s><b></b>
+            <div class="contentS" style="margin-left:-35px">PublikIP</div>
+            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px"><span class="PubIP">Fehler</span></div>
+        </a><p></p>
         <a class="nav ai" target="_blank" href="#" id="30"></a>
         <a class="nav a2" target="_blank" href="#" id="31"><s></s>31<b></b></a>
         <a class="nav a2" target="_blank" href="#" id="32"><s></s>32<b></b></a>
@@ -235,20 +275,13 @@ render: -> """
 
 command: "pmset -g batt | grep \"%\" | awk 'BEGINN { FS = \";\" };{ print $1,$2,$3 }' | sed -e 's/-I/I/' -e 's/-0//' -e 's/;//' -e 's/;//' && ps aux  | awk 'BEGIN { sum = 0 }  { sum += $3 }; END { print sum }' && sysctl hw.ncpu | awk '{print $2}' && ps aux  | awk 'BEGIN { sum = 0 }  { sum += $4 }; END { print sum }' && du -ch ~/.Trash | grep total | cut -c 1-5"
 update: (output, domEl) ->
+#   Initialise warnings
+    warning=0;
+    Bwarning=0;
+    Cwarning=0;
 
-    #Time Segmends for the day
+#   Define constants
     segments = ["子时", "丑时", "寅时", "卯时", "辰时", "巳时", "午时", "未时", "申时", "酉时", "戌时", "亥时"]
-
-    #Grab the name of the current user.
-    #If you would like to edit this, replace "output.split(' ')" with your name
-    name = output.split(' ')
-
-
-    #Creating a new Date object
-    date = new Date()
-    hour = date.getHours()
-    minutes = date.getMinutes()
-    days = date.getDay()
     daylist = [
         'Sonntag'
         'Montag'
@@ -258,9 +291,31 @@ update: (output, domEl) ->
         'Freitag'
         'Samstag'
     ]
-    #Quick and dirty fix for single digit minutes
+
+#   functions
+    colorChange = (cell, colour) ->
+        $(domEl).find("#{cell} s").css("border-bottom-color",   colour)
+        $(domEl).find("#{cell} b").css("border-top-color",      colour)
+        $(domEl).find("#{cell} s2").css("border-bottom-color",  colour)
+        $(domEl).find("#{cell} b1").css("border-top-color",     colour)
+        $(domEl).find("#{cell} b2").css("border-top-color",     colour)
+        $(domEl).find("#{cell} b3").css("border-top-color",     colour)
+        $(domEl).find("#{cell}").css("background",              colour)
+    warning_on = () ->
+        alert colorChange(".a0", "rgba(256,0,0,1)")
+        $(domEl).find(".Wcontent").css("visibility","visible")
+        $(domEl).find(".id").css("display","none")
+    warning_off = () ->
+        alert colorChange(".a0", "rgba(10,10,10,1)")
+        $(domEl).find(".Wcontent").css("visibility","hidden")
+        $(domEl).find(".id").css("display","inline-block")
+
+#   Processing time
+    date = new Date()
+    hour = date.getHours()
+    minutes = date.getMinutes()
+    days = date.getDay()
     minutes = "0"+ minutes if minutes < 10
-    #timeSegment logic
     timeSegment = segments[0]
     timeSegment = segments[1] if 1 <= hour < 3
     timeSegment = segments[2] if 3 <= hour < 5
@@ -273,67 +328,87 @@ update: (output, domEl) ->
     timeSegment = segments[9] if 17 <= hour < 19
     timeSegment = segments[10] if 19 <= hour < 21
     timeSegment = segments[11] if 21 <= hour < 23
-    #DOM manipulation
+
+#   Processing output
     AllOutputs = output.split('\n')
     Batterievalues  = AllOutputs[0].split(' ')
     CPUUsage        = AllOutputs[1].split(' ')
     CPUAmount       = AllOutputs[2].split(' ')
     MemUsage        = AllOutputs[3].split(' ')
     Trashvalues     = AllOutputs[4].split(' ')
-    $(domEl).find('.OP').text("#{output}")
-    for value, i in Batterievalues
-        if i == 0
-            $(domEl).find('.Bat').text("#{value}")
-        else if i == 1
-            $(domEl).find('.BatPer').text("#{value}")
-        else if i == 2
-            $(domEl).find('.BatStatus').text("#{value}")
-    $(domEl).find('.CPUU').text("#{Math.floor(CPUUsage/CPUAmount)}")
-    $(domEl).find('.MEMU').text("#{Math.floor(MemUsage)}")
     Trashvalues="#{Trashvalues}".replace /,/g, ''
     Trashvalues="#{Trashvalues}".replace /\s+/g, ''
+
+#   Deliver output
+    $(domEl).find('.OP').text("#{output}")
+    $(domEl).find('.Bat').text("#{Batterievalues[0]}")
+    $(domEl).find('.BatPer').text("#{Batterievalues[1]}")
+    $(domEl).find('.BatStatus').text("#{Batterievalues[2]}")
+    $(domEl).find('.CPUU').text("#{Math.floor(CPUUsage/CPUAmount)}")
+    $(domEl).find('.MEMU').text("#{Math.floor(MemUsage)}")
+    $(domEl).find('.sal').text("#{timeSegment}")
+    $(domEl).find('.time').text("#{hour}:#{minutes}")
+    $(domEl).find('.day').text("#{daylist[days]}")
     if (Trashvalues.indexOf("0B") > -1)
         $(domEl).find('.TrashSize').text("Leer")
     else
         $(domEl).find('.TrashSize').text("#{Trashvalues}")
-    $(domEl).find('.sal').text("#{timeSegment}")
-    $(domEl).find('.time').text("#{hour}:#{minutes}")
-    $(domEl).find('.day').text("#{daylist[days]}")
-    $('.a3').hover (
-        ->
-            $(domEl).find(".a3 s").css("border-bottom-color",   "rgba(128,128,128,1)")
-            $(domEl).find(".a3 b").css("border-top-color",      "rgba(128,128,128,1)")
-            $(domEl).find(".a3 s2").css("border-bottom-color",  "rgba(128,128,128,1)")
-            $(domEl).find(".a3 b1").css("border-top-color",     "rgba(128,128,128,1)")
-            $(domEl).find(".a3 b2").css("border-top-color",     "rgba(128,128,128,1)")
-            $(domEl).find(".a3").css("background",              "rgba(128,128,128,1)")
-    ), (
-        ->
-            $(domEl).find(".a3 s").css("border-bottom-color",   "rgba(10,10,10,1)")
-            $(domEl).find(".a3 b").css("border-top-color",      "rgba(10,10,10,1)")
-            $(domEl).find(".a3 s2").css("border-bottom-color",  "rgba(10,10,10,1)")
-            $(domEl).find(".a3 b1").css("border-top-color",     "rgba(10,10,10,1)")
-            $(domEl).find(".a3 b2").css("border-top-color",     "rgba(10,10,10,1)")
-            $(domEl).find(".a3").css("background",              "rgba(10,10,10,1)")
+
+#   Dealing with warnings
+    if parseInt(Batterievalues[1]) < 20
+        Bwarning = 1
+        colorChange(".a3", "rgba(256,0,0,1)")
+    else
+        Bwarning = 0
+        colorChange(".a3", "rgba(10,10,10,1)")
+
+    if CPUUsage/CPUAmount>90
+        Cwarning = 1
+        colorChange("#CPUCell", "rgba(256,0,0,1)")
+    else
+        Cwarning = 0
+        colorChange("#CPUCell", "rgba(10,10,10,1)")
+
+    if Bwarning+Cwarning != 0
+        warning = 1
+    else warning = 0
+
+    if warning == 1
+        warning_on()
+    else
+        warning_off()
+
+#   hover effects
+    $('#CPUCell').hover (->
+            if Cwarning == 1
+                colorChange("#CPUCell", "rgba(128,0,0,1)")
+            else
+                colorChange("#CPUCell", "rgba(128,128,128,1)")
+    ), (->
+            if Cwarning == 1
+                colorChange("#CPUCell", "rgba(256,0,0,1)")
+            else
+                colorChange("#CPUCell", "rgba(10,10,10,1)")
+    )
+    $('.a3').hover (->
+            if Bwarning == 1
+                colorChange(".a3", "rgba(128,0,0,1)")
+            else
+                colorChange(".a3", "rgba(128,128,128,1)")
+    ), (->
+            if Bwarning == 1
+                colorChange(".a3", "rgba(256,0,0,1)")
+            else
+                colorChange(".a3", "rgba(10,10,10,1)")
     )
     $('#32').hover (
         ->
-            $(domEl).find(".a4 s").css("border-bottom-color",   "rgba(128,128,128,1)")
-            $(domEl).find(".a4 b").css("border-top-color",      "rgba(128,128,128,1)")
-            $(domEl).find(".a4 s2").css("border-bottom-color",  "rgba(128,128,128,1)")
-            $(domEl).find(".a4 b1").css("border-top-color",     "rgba(128,128,128,1)")
-            $(domEl).find(".a4 b2").css("border-top-color",     "rgba(128,128,128,1)")
-            $(domEl).find(".a4 b3").css("border-top-color",     "rgba(128,128,128,1)")
-            $(domEl).find(".a4").css("background",              "rgba(128,128,128,1)")
+            alert colorChange(".a4", "rgba(128,128,128,1)")
             $(domEl).find(".a4x").css("visibility",               "visible")
     ), (
         ->
-            $(domEl).find(".a4 s").css("border-bottom-color",   "rgba(10,10,10,0)")
-            $(domEl).find(".a4 b").css("border-top-color",      "rgba(10,10,10,0)")
-            $(domEl).find(".a4 s2").css("border-bottom-color",  "rgba(10,10,10,0)")
-            $(domEl).find(".a4 b1").css("border-top-color",     "rgba(10,10,10,0)")
-            $(domEl).find(".a4 b2").css("border-top-color",     "rgba(10,10,10,0)")
-            $(domEl).find(".a4 b3").css("border-top-color",     "rgba(10,10,10,0)")
-            $(domEl).find(".a4").css("background",              "rgba(10,10,10,0)")
+            alert colorChange(".a4", "rgba(10,10,10,0)")
             $(domEl).find(".a4x").css("visibility",               "hidden")
     )
+    $.getJSON "http://smart-ip.net/geoip-json?callback=?", (data) ->
+        $(domEl).find('.PubIP').text("#{data.host}")
