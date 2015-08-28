@@ -103,11 +103,11 @@ style: """
     .ax
         height:200px;
     .a1:hover, .a2:hover, .a3:hover
-        background-color:rgba(256,10,10,1)
+        background-color:rgba(128,128,128,1)
     .nav:hover s, .nav:hover s2
-        border-bottom-color:rgba(256,0,0,1)
+        border-bottom-color:rgba(128,128,128,1)
     .nav:hover b, .nav:hover b1, .nav:hover b2
-        border-top-color:rgba(256,0,0,1)
+        border-top-color:rgba(128,128,128,1)
     .output
         padding: 5px 10px
         font-size: 30px
@@ -148,58 +148,64 @@ style: """
 
 render: -> """
     <div class="wrap">
-        <a class="nav a2" target="_blank" href="#"><s></s>0<b></b></a>
-        <a class="nav a2" target="_blank" href="#"><s></s>1<b></b></a>
-        <a class="nav a2" target="_blank" href="#"><s></s>2<b></b></a>
-        <a class="nav a2" target="_blank" href="#"><s></s>3<b></b></a><p></p>
+        <a class="nav a2" target="_blank" href="#" id="0"><s></s>0<b></b></a>
+        <a class="nav a2" target="_blank" href="#" id="1"><s></s>1<b></b></a>
+        <a class="nav a2" target="_blank" href="#" id="2"><s></s>2<b></b></a>
+        <a class="nav a2" target="_blank" href="#" id="3"><s></s>3<b></b></a><p></p>
 
-        <a class="nav a1" target="_blank" href="#"><s></s>4<b></b></a>
-        <a class="nav a2" target="_blank" href="#"><s></s><b></b>
+        <a class="nav a1" target="_blank" href="#" id="4"><s></s>4<b></b></a>
+        <a class="nav a2" target="_blank" href="#" id="5"><s></s><b></b>
             <div class="contentS"><span class="day"></span></div>
         </a><p></p>
-        <a class="nav a2" target="_blank" href="#"><s></s>6<b></b></a>
+        <a class="nav a2" target="_blank" href="#" id="6"><s></s>6<b></b></a>
 
-        <a class="nav a2" target="_blank" href="#"><s></s>7<b></b></a>
-        <a class="nav a2" target="_blank" href="#"><s></s>8<b></b></a>
-        <a class="nav a2" target="_blank" href="#"><s></s>
+        <a class="nav a2" target="_blank" href="#" id="7"><s></s>7<b></b></a>
+        <a class="nav a2" target="_blank" href="#" id="8"><s></s>8<b></b></a>
+        <a class="nav a2" target="_blank" href="#" id="9"><s></s>
             <div class="content clock"><span class="time"></span></div>
         <b></b></a><p></p>
-        <a class="nav a1" target="_blank" href="#"><s></s>10<b></b></a>
+        <a class="nav a1" target="_blank" href="#" id="CPUCell"><s></s><b></b>
+            <div class="contentS" style="margin-left:-35px">CPU</div>
+            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px"><span class="CPUU">Fehler</span>%</div>
+        </a>
 
-        <a class="nav a2" target="_blank" href="#"><s></s>
+        <a class="nav a2" target="_blank" href="#" id="11"><s></s>
             <div class="content clock"><span class="sal"></span></div>
         <b></b></a><p></p>
-        <a class="nav ai" target="_blank" href="#"></a>
-        <a class="nav a2" target="_blank" href="#"><s></s>13<b></b></a>
+        <a class="nav ai" target="_blank" href="#" id="12"></a>
+        <a class="nav a2" target="_blank" href="#" id="13"><s></s>13<b></b></a>
 
-        <a class="nav a3" target="_blank" href="#"><s></s><b1></b1></a>
-        <a class="nav ai" target="_blank" href="#"></a><p></p>
-        <a class="nav a1" target="_blank" href="#"><s></s>16<b></b></a>
-        <a class="nav a3" target="_blank" href="#" style="z-index:9999"><s2></s2><b></b>
+        <a class="nav a3" target="_blank" href="#" id="14"><s></s><b1></b1></a>
+        <a class="nav ai" target="_blank" href="#" id="15"></a><p></p>
+        <a class="nav a1" target="_blank" href="#" id="MemCell"><s></s><b></b>
+            <div class="contentS" style="margin-left:-35px">Speicher</div>
+            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px"><span class="MEMU">Fehler</span>%</div>
+        </a>
+        <a class="nav a3" target="_blank" href="#" id="17" style="z-index:9999"><s2></s2><b></b>
             <div style="margin-top:-70px;margin-left:-60px;width:200px;transform:rotate(-90deg);text-align:left"><span class="Bat"></span></div>
             <div style="margin-top:-60px;margin-left:-35px;width:200px;transform:rotate(-90deg);text-align:left"><span class="BatStatus"></span></div>
         </a><p></p>
-        <a class="nav ai" target="_blank" href="#"></a>
-        <a class="nav a2" target="_blank" href="#"><s></s>19<b></b></a>
-        <a class="nav a3" target="_blank" href="#"><s></s>
-            <div style="margin-top:0px;margin-left:-45px;width:200px;transform:rotate(-90deg);text-align:center"><span class="BatPer">100%</span></div>
+        <a class="nav ai" target="_blank" href="#" id="18"></a>
+        <a class="nav a2" target="_blank" href="#" id="19"><s></s>19<b></b></a>
+        <a class="nav a3" target="_blank" href="#" id="BatCell"><s></s>
+            <div style="margin-top:0px;margin-left:-45px;width:200px;transform:rotate(-90deg);text-align:center"><span class="BatPer">Fehler</span></div>
         <b2></b2></a>
-        <a class="nav a2" target="_blank" href="#"><s></s><b></b>
+        <a class="nav a2" target="_blank" href="#" id="21"><s></s><b></b>
             <div class="contentS" style="text-decoration:underline overline">WARNUNG</div>
         </a><p></p>
-        <a class="nav a1" target="_blank" href="#"><s></s>22<b></b></a>
-        <a class="nav a2" target="_blank" href="#"><s></s><b></b>
-            <div class="contentS" style="margin-left:-35px">Trash</div>
-            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px"><span class="TrashSize">ERROR</span></div>
+        <a class="nav a1" target="_blank" href="#" id="22"><s></s>22<b></b></a>
+        <a class="nav a2" target="_blank" href="#" id="23"><s></s><b></b>
+            <div class="contentS" style="margin-left:-35px">Papierkorb</div>
+            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px"><span class="TrashSize">Fehler</span></div>
         </a><p></p>
-        <a class="nav ai" target="_blank" href="#"></a>
-        <a class="nav a2" target="_blank" href="#"><s></s>25<b></b></a>
-        <a class="nav a2" target="_blank" href="#"><s></s>26<b></b></a>
-        <a class="nav ai" target="_blank" href="#"></a><p></p>
-        <a class="nav a1" target="_blank" href="#"><s></s>28<b></b></a>
-        <a class="nav a2" target="_blank" href="#"><s></s>29<b></b></a><p></p>
-        <a class="nav ai" target="_blank" href="#"></a>
-        <a class="nav a2" target="_blank" href="#"><s></s>31<b></b></a>
+        <a class="nav ai" target="_blank" href="#" id="24"></a>
+        <a class="nav a2" target="_blank" href="#" id="25"><s></s>25<b></b></a>
+        <a class="nav a2" target="_blank" href="#" id="26"><s></s>26<b></b></a>
+        <a class="nav ai" target="_blank" href="#" id="27"></a><p></p>
+        <a class="nav a1" target="_blank" href="#" id="28"><s></s>28<b></b></a>
+        <a class="nav a2" target="_blank" href="#" id="29"><s></s>29<b></b></a><p></p>
+        <a class="nav ai" target="_blank" href="#" id="30"></a>
+        <a class="nav a2" target="_blank" href="#" id="31"><s></s>31<b></b></a>
         <a class="nav a2" target="_blank" href="#" id="32"><s></s>32<b></b></a>
         <a class="nav ai" target="_blank" href="#" id="33"></a><p></p>
         <a class="nav ai" target="_blank" href="#" id="34"></a><p></p>
@@ -227,7 +233,7 @@ render: -> """
 # <div class="example-meaning"></div>
 # </div>
 
-command: "pmset -g batt | grep \"%\" | awk 'BEGINN { FS = \";\" };{ print $1,$2,$3 }' | sed -e 's/-I/I/' -e 's/-0//' -e 's/;//' -e 's/;//' && du -ch ~/.Trash | grep total | cut -c 1-5"
+command: "pmset -g batt | grep \"%\" | awk 'BEGINN { FS = \";\" };{ print $1,$2,$3 }' | sed -e 's/-I/I/' -e 's/-0//' -e 's/;//' -e 's/;//' && ps aux  | awk 'BEGIN { sum = 0 }  { sum += $3 }; END { print sum }' && sysctl hw.ncpu | awk '{print $2}' && ps aux  | awk 'BEGIN { sum = 0 }  { sum += $4 }; END { print sum }' && du -ch ~/.Trash | grep total | cut -c 1-5"
 update: (output, domEl) ->
 
     #Time Segmends for the day
@@ -269,8 +275,11 @@ update: (output, domEl) ->
     timeSegment = segments[11] if 21 <= hour < 23
     #DOM manipulation
     AllOutputs = output.split('\n')
-    Batterievalues = AllOutputs[0].split(' ')
-    Trashvalues    = AllOutputs[1].split(' ')
+    Batterievalues  = AllOutputs[0].split(' ')
+    CPUUsage        = AllOutputs[1].split(' ')
+    CPUAmount       = AllOutputs[2].split(' ')
+    MemUsage        = AllOutputs[3].split(' ')
+    Trashvalues     = AllOutputs[4].split(' ')
     $(domEl).find('.OP').text("#{output}")
     for value, i in Batterievalues
         if i == 0
@@ -279,6 +288,8 @@ update: (output, domEl) ->
             $(domEl).find('.BatPer').text("#{value}")
         else if i == 2
             $(domEl).find('.BatStatus').text("#{value}")
+    $(domEl).find('.CPUU').text("#{Math.floor(CPUUsage/CPUAmount)}")
+    $(domEl).find('.MEMU').text("#{Math.floor(MemUsage)}")
     Trashvalues="#{Trashvalues}".replace /,/g, ''
     Trashvalues="#{Trashvalues}".replace /\s+/g, ''
     if (Trashvalues.indexOf("0B") > -1)
@@ -290,12 +301,12 @@ update: (output, domEl) ->
     $(domEl).find('.day').text("#{daylist[days]}")
     $('.a3').hover (
         ->
-            $(domEl).find(".a3 s").css("border-bottom-color",   "rgba(256,0,0,1)")
-            $(domEl).find(".a3 b").css("border-top-color",      "rgba(256,0,0,1)")
-            $(domEl).find(".a3 s2").css("border-bottom-color",  "rgba(256,0,0,1)")
-            $(domEl).find(".a3 b1").css("border-top-color",     "rgba(256,0,0,1)")
-            $(domEl).find(".a3 b2").css("border-top-color",     "rgba(256,0,0,1)")
-            $(domEl).find(".a3").css("background",              "rgba(256,0,0,1)")
+            $(domEl).find(".a3 s").css("border-bottom-color",   "rgba(128,128,128,1)")
+            $(domEl).find(".a3 b").css("border-top-color",      "rgba(128,128,128,1)")
+            $(domEl).find(".a3 s2").css("border-bottom-color",  "rgba(128,128,128,1)")
+            $(domEl).find(".a3 b1").css("border-top-color",     "rgba(128,128,128,1)")
+            $(domEl).find(".a3 b2").css("border-top-color",     "rgba(128,128,128,1)")
+            $(domEl).find(".a3").css("background",              "rgba(128,128,128,1)")
     ), (
         ->
             $(domEl).find(".a3 s").css("border-bottom-color",   "rgba(10,10,10,1)")
@@ -307,13 +318,13 @@ update: (output, domEl) ->
     )
     $('#32').hover (
         ->
-            $(domEl).find(".a4 s").css("border-bottom-color",   "rgba(10,10,10,1)")
-            $(domEl).find(".a4 b").css("border-top-color",      "rgba(10,10,10,1)")
-            $(domEl).find(".a4 s2").css("border-bottom-color",  "rgba(10,10,10,1)")
-            $(domEl).find(".a4 b1").css("border-top-color",     "rgba(10,10,10,1)")
-            $(domEl).find(".a4 b2").css("border-top-color",     "rgba(10,10,10,1)")
-            $(domEl).find(".a4 b3").css("border-top-color",     "rgba(10,10,10,1)")
-            $(domEl).find(".a4").css("background",              "rgba(10,10,10,1)")
+            $(domEl).find(".a4 s").css("border-bottom-color",   "rgba(128,128,128,1)")
+            $(domEl).find(".a4 b").css("border-top-color",      "rgba(128,128,128,1)")
+            $(domEl).find(".a4 s2").css("border-bottom-color",  "rgba(128,128,128,1)")
+            $(domEl).find(".a4 b1").css("border-top-color",     "rgba(128,128,128,1)")
+            $(domEl).find(".a4 b2").css("border-top-color",     "rgba(128,128,128,1)")
+            $(domEl).find(".a4 b3").css("border-top-color",     "rgba(128,128,128,1)")
+            $(domEl).find(".a4").css("background",              "rgba(128,128,128,1)")
             $(domEl).find(".a4x").css("visibility",               "visible")
     ), (
         ->
