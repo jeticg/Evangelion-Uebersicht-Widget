@@ -355,14 +355,14 @@ update: (output, domEl) ->
         $(domEl).find('.TrashSize').text("#{Trashvalues}")
 
 #   Dealing with warnings
-    if parseInt(Batterievalues[1]) < 20
+    if parseInt(Batterievalues[1]) < 100
         Bwarning = 1
         colorChange(".a3", "rgba(256,0,0,1)")
     else
         Bwarning = 0
         colorChange(".a3", "rgba(10,10,10,1)")
 
-    if CPUUsage/CPUAmount>90
+    if CPUUsage/CPUAmount > 0
         Cwarning = 1
         colorChange("#CPUCell", "rgba(256,0,0,1)")
     else
@@ -373,8 +373,13 @@ update: (output, domEl) ->
         warning = 1
     else warning = 0
 
+    ok = date.getSeconds()%2
     if warning == 1
         warning_on()
+        if ok == 1
+            colorChange(".a0", "rgba(256,0,0,1)")
+        else
+            colorChange(".a0", "rgba(128,0,0,1)")
     else
         warning_off()
 
