@@ -1,6 +1,6 @@
 refreshFrequency: 1000
 style: """
-    top: -30px
+    top: -45px
     right: -60px
     color: #fff
     padding: 5px
@@ -109,7 +109,7 @@ style: """
         border-right-color:rgba(10,10,10,0)
         background-color:rgba(10,10,10,0)
     .ax
-        height:200px;
+        height:200px
     .a1:hover, .a2:hover, .a3:hover
         background-color:rgba(128,128,128,1)
     .nav:hover s
@@ -120,11 +120,11 @@ style: """
         padding: 5px 10px
         font-size: 30px
         font-weight: 100
-        text-shadow: 0 0px 5px #000000;
+        text-shadow: 0 0px 5px #000000
         background-color: rgba(0,0,0,0.2)
         border: 1px solid #fff
     .content
-        transform:rotate(-90deg);
+        transform:rotate(-90deg)
         font-family: Futura
         font-style: Black
         font-size: 40px
@@ -137,14 +137,14 @@ style: """
         font-style: Black
         font-size: 40px
     .Wcontent
-        transform:rotate(-90deg);
+        transform:rotate(-90deg)
         font-family: Futura
         font-style: Black
         font-size: 15px
         z-index:99999
         visibility:hidden
     .contentS
-        transform:rotate(-90deg);
+        transform:rotate(-90deg)
         font-family: Futura
         font-style: Black
         font-size: 15px
@@ -153,15 +153,17 @@ style: """
         font-family: Futura
         font-weight: bold
         font-size: 15px
-        text-transform: uppercase;
+        text-transform: uppercase
     .id
         font-size:20px
     .BatStatus
         font-family: Futura
         font-weight: bold
         font-size: 20px
-        text-transform: uppercase;
-
+        text-transform: uppercase
+    .Rotate
+        transform:rotate(-90deg)
+        width:200px
 """
 
 render: -> """
@@ -227,8 +229,8 @@ render: -> """
             <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px"><span class="MEMU">Fehler</span>%</div>
         </a>
         <a class="nav a3" target="_blank" href="#" id="17" style="z-index:9999"><s2></s2><b></b>
-            <div style="margin-top:-70px;margin-left:-60px;width:200px;transform:rotate(-90deg);text-align:left"><span class="Bat"></span></div>
-            <div style="margin-top:-60px;margin-left:-35px;width:200px;transform:rotate(-90deg);text-align:left"><span class="BatStatus"></span></div>
+            <div class="Rotate" style="margin-top:-70px;margin-left:-60px;text-align:left"><span class="Bat"></span></div>
+            <div class="Rotate" style="margin-top:-60px;margin-left:-35px;text-align:left"><span class="BatStatus"></span></div>
         </a><p></p>
         <a class="nav ai" target="_blank" href="#" id="18"></a>
         <a class="nav a0" target="_blank" href="#" id="19"><s></s><b></b>
@@ -236,7 +238,7 @@ render: -> """
             <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
         </a>
         <a class="nav a3" target="_blank" href="#" id="BatCell"><s></s>
-            <div style="margin-top:0px;margin-left:-45px;width:200px;transform:rotate(-90deg);text-align:center"><span class="BatPer">Fehler</span></div>
+            <div class="Rotate" style="margin-top:0px;margin-left:-45px;width:200px;text-align:center"><span class="BatPer">Fehler</span></div>
         <b2></b2></a>
         <a class="nav a0" target="_blank" href="#" id="21"><s></s><b></b>
             <div class="contentS" style="text-decoration:underline overline">WARNUNG</div>
@@ -397,7 +399,7 @@ update: (output, domEl) ->
         $(domEl).find('.TrashSize').text("#{Trashvalues}")
 
 #   Dealing with warnings
-    if (parseInt(Batterievalues[1]) < 20 & Batterievalues[2].indexOf("discharging") > -1)
+    if (parseInt(Batterievalues[1]) <= 20 & Batterievalues[2].indexOf("discharging") > -1)
         Bwarning = 1
         colorChange(".a3", "rgba(256,0,0,1)")
     else
