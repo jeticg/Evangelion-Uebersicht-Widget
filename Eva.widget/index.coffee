@@ -309,7 +309,7 @@ update: (output, domEl) ->
     Cwarning=0;
     Nwarning=0;
 #   Define constants
-    segments = ["子时", "丑时", "寅时", "卯时", "辰时", "巳时", "午时", "未时", "申时", "酉时", "戌时", "亥时"]
+    segments = ["子時", "丑時", "寅時", "卯時", "辰時", "巳時", "午時", "未時", "申時", "酉時", "戌時", "亥時"]
     daylist = [
         'Sonntag'
         'Montag'
@@ -432,6 +432,17 @@ update: (output, domEl) ->
         warning_off()
 
 #   hover effects
+    $('#IPCell').hover (->
+            if Cwarning == 1
+                colorChange("#IPCell", "rgba(128,0,0,1)")
+            else
+                colorChange("#IPCell", "rgba(128,128,128,1)")
+    ), (->
+            if Cwarning == 1
+                colorChange("#IPCell", "rgba(256,0,0,1)")
+            else
+                colorChange("#IPCell", "rgba(10,10,10,1)")
+    )
     $('#CPUCell').hover (->
             if Cwarning == 1
                 colorChange("#CPUCell", "rgba(128,0,0,1)")
