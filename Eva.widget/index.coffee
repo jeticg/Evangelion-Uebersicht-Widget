@@ -374,9 +374,17 @@ update: (output, domEl) ->
     Trashvalues     = AllOutputs[4].split(' ')
     Trashvalues="#{Trashvalues}".replace /,/g, ''
     Trashvalues="#{Trashvalues}".replace /\s+/g, ''
-    IPJSON = null
-    IPJSON = $.getJSON 'https://api.ipify.org?format=json'
-
+    Nwarning=0
+    $.ajax 'https://api.ipify.org?format=json',
+        dataType: 'json'
+        success: (data, textStatus, jqXHR) ->
+            $(domEl).find('.PubIP').text("#{data.ip}")
+        error: (jqXHR, textStatus, errorThrown) ->
+            $(domEl).find('.PubIP').text("Fehler")
+    if $(domEl).find('.PubIP').text().indexOf("Fehler") > -1
+        Nwarning=1
+    else
+        Nwarning=0
 #   Deliver output
     $(domEl).find('.OP').text("#{output}")
     $(domEl).find('.Bat').text("#{Batterievalues[0]}")
@@ -387,12 +395,6 @@ update: (output, domEl) ->
     $(domEl).find('.sal').text("#{timeSegment}")
     $(domEl).find('.time').text("#{hour}:#{minutes}")
     $(domEl).find('.day').text("#{daylist[days]}")
-    if IPJSON == null
-        $(domEl).find('.PubIP').text("#{Fehler}")
-        Nwarning=1;
-    else
-        IPJSON.success (data) -> $(domEl).find('.PubIP').text("#{data.ip}")
-        Nwarning=0;
     if (Trashvalues.indexOf("0B") > -1)
         $(domEl).find('.TrashSize').text("Leer")
     else
@@ -406,10 +408,10 @@ update: (output, domEl) ->
         Bwarning = 0
         colorChange(".a3", "rgba(10,10,10,1)")
 
-#    if Nwarning == 1
-#        colorChange("#IPCell", "rgba(256,10,10,1)")
-#    else
-#        colorChange("#IPCell", "rgba(10,10,10,1)")
+    if Nwarning == 1
+        colorChange("#IPCell", "rgba(256,10,10,1)")
+    else
+        colorChange("#IPCell", "rgba(10,10,10,1)")
 
     if CPUUsage/CPUAmount > 90
         Cwarning = 1
