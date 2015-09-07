@@ -1,34 +1,40 @@
 refreshFrequency: 1000
 style: """
-    top: -45px
-    right: -60px
-    color: #fff
-    padding: 5px
-    opacity:0.5
+    top: -25px
     font-family: Futura
     text-transform: uppercase
-    .wrap
-        margin:0px
+    position:relative
+    opacity: 0.5
+    margin:0px
+    text-align:center
+    text-decoration:none
+    .left
+        position: fixed
+        bottom: -25px
+        left:-100px
+        width: 800px
+        float:left
+        vertical-align : bottom
+    .right
+        float:right
+        margin-right:-60px
     .nav
+        text-decoration: none
+        font-size: 20px
         transform:rotate(90deg)
-        width:100px
-        height:58px
+        width:100px;height:58px
         background:rgba(10,10,10,1)
         display:inline-block
         position:relative
         line-height:58px
-        text-align:center
         color:#ffffff
-        font-size:20px
-        text-decoration:none
         float:right
         margin-top:-5px
         margin-left:45px
         margin-right:45px
     .nav s
         margin-left:10px
-        width:0
-        height:0
+        width:0;height:0
         display:block
         overflow:hidden
         position:absolute
@@ -80,6 +86,17 @@ style: """
         border-top:95px solid rgba(10,10,10,1)
         right:0px
         bottom:-95px
+    .nav s1
+        margin-left:10px
+        width:0;height:0
+        display:block
+        overflow:hidden
+        position:absolute
+        border-right:0px dotted transparent
+        border-left:100px dotted transparent
+        border-bottom:60px solid rgba(10,10,10,1)
+        right:0px
+        top:-60px
     .nav s2
         margin-left:10px
         width:100px
@@ -96,7 +113,9 @@ style: """
         @keyframes meow_BB { from { border-top-color:rgba(256,0,0,1); } to { border-top-color:rgba(128,0,0,1); }  }
     .a1
         margin-right:140px
-    .ai, .nav:hover ai, .a4
+    .ai
+        visibility: hidden
+    .a4
         background:rgba(0,0,0,0)
     .nav:hover a0 s
         border-top-color:rgba(128,128,128,1)
@@ -112,9 +131,9 @@ style: """
         height:200px
     .a1:hover, .a2:hover, .a3:hover
         background-color:rgba(128,128,128,1)
-    .nav:hover s
+    .a1:hover s, .a2:hover s, .a3:hover s
         border-bottom-color:rgba(128,128,128,1)
-    .nav:hover b
+    .a1:hover b, .a2:hover b, .a3:hover b
         border-top-color:rgba(128,128,128,1)
     .output
         padding: 5px 10px
@@ -164,144 +183,267 @@ style: """
     .Rotate
         transform:rotate(-90deg)
         width:200px
+    .iTunesPre
+        width:0;height:0
+        position:relative
+        border-right:11px dotted transparent
+        border-left:11px dotted transparent
+        border-top:20px solid rgba(256,256,256,1)
+        right:-40px
+        top:-10px
+    .iTunesNext
+        width:0;height:0
+        position:relative
+        border-right:11px dotted transparent
+        border-left:11px dotted transparent
+        border-bottom:20px solid rgba(256,256,256,1)
+        right:-40px
+        top:-260px
+    .iTunesPause
+        width:30px;height:8px
+        position:relative
+        border-top:8px solid rgba(256,256,256,1)
+        border-bottom:8px solid rgba(256,256,256,1)
+        right:-37px
+        top:-100px
+    .iTunesPlay
+        width:0;height:0
+        position:relative
+        border-right:17px dotted transparent
+        border-left:17px dotted transparent
+        border-bottom:30px solid rgba(256,256,256,1)
+        right:-35px
+        top:-170px
+    .iTunesPlay:active
+        border-bottom-color: rgba(128,128,128,1)
+    .iTunesPause:active
+        border-top-color: rgba(128,128,128,1)
+        border-bottom-color: rgba(128,128,128,1)
+    .iTunesNext:active
+        border-bottom-color: rgba(128,128,128,1)
+    .iTunesPre:active
+        border-top-color: rgba(128,128,128,1)
 """
 
 render: -> """
-    <div class="wrap">
+    <div class="left" style="float:left">
+        <a class="nav ai" target="_blank" href="#" id="44"></a>
+        <a class="nav ai" target="_blank" href="#" id="45"></a>
+        <a class="nav a0" target="_blank" href="#" id="46"><s></s><b></b>
+            <div class="id">46</div>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
+        <a class="nav a0" target="_blank" href="#" id="47"><s></s><b></b>
+            <div class="id">47</div>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
+        <p></p>
+
+        <a class="nav a1 ai" target="_blank" href="#" id="48"></a>
+        <a class="nav a0" target="_blank" href="#" id="49"><s></s><b></b>
+            <div class="id">49</div>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
+        <a class="nav a0" target="_blank" href="#" id="50"><s></s><b></b>
+            <div class="id">50</div>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
+
+        <a class="nav ai" target="_blank" href="#" id="51"></a>
+        <a class="nav ai" target="_blank" href="#" id="52"></a>
+        <a class="nav a5" target="_blank" href="#" id="53"><s1></s1><b1></b1></a>
+        <a class="nav a0" target="_blank" href="#" id="54"><s></s><b></b>
+            <div class="id">54</div>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
+        <p></p>
+
+        <a class="nav a1 ai" target="_blank" href="#" id="55"></a>
+        <a class="nav a5" target="_blank" href="#" id="56"><s></s><b3></b3></a>
+        <a class="nav a5" target="_blank" href="#" id="57" style="z-index:99999"><s2></s2><b></b>
+            <div class="iTunesPre"></div><div class="iTunesPre"></div>
+            <div class="iTunesPause"></div><div class="iTunesPlay"></div>
+            <div class="iTunesNext"></div><div class="iTunesNext"></div>
+        <a class="nav ai" target="_blank" href="#" id="58"></a>
+        <a class="nav a0" target="_blank" href="#" id="59"><s></s><b></b>
+            <div class="id">59</div>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
+        <a class="nav a5" target="_blank" href="#" id="60"><s></s><b2></b2></a>
+        <a class="nav a0" target="_blank" href="#" id="61"><s></s><b></b>
+            <div class="id">61</div>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
+        <p></p>
+
+        <a class="nav a1 ai" target="_blank" href="#" id="62"></a>
+        <a class="nav a0" target="_blank" href="#" id="63"><s></s><b></b>
+            <div class="id">63</div>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
+        <a class="nav a0" target="_blank" href="#" id="64"><s></s><b></b>
+            <div class="id">64</div>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
+
+        <a class="nav ai" target="_blank" href="#" id="65"></a>
+        <a class="nav ai" target="_blank" href="#" id="66"></a>
+        <a class="nav a0" target="_blank" href="#" id="67"><s></s><b></b>
+            <div class="id">67</div>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
+        <a class="nav a0" target="_blank" href="#" id="68"><s></s><b></b>
+            <div class="id">68</div>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
+        <p></p>
+
+        <a class="nav a1 ai" target="_blank" href="#" id="69"></a>
+        <a class="nav a0" target="_blank" href="#" id="70"><s></s><b></b>
+            <div class="id">70</div>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
+        <a class="nav a0" target="_blank" href="#" id="71"><s></s><b></b>
+            <div class="id">71</div>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
+
+        <a class="nav ai" target="_blank" href="#" id="72"></a>
+        <a class="nav a0" target="_blank" href="#" id="73"><s></s><b></b>
+            <div class="id">73</div>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
+        <a class="nav a0" target="_blank" href="#" id="74"><s></s><b></b>
+            <div class="id">74</div>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
+        <a class="nav a0" target="_blank" href="#" id="75"><s></s><b></b>
+            <div class="id">75</div>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
+        <p></p>
+
+        <a class="nav a1 a0" target="_blank" href="#" id="76"><s></s><b></b>
+            <div class="id">76</div>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
+        <a class="nav a0" target="_blank" href="#" id="77"><s></s><b></b>
+            <div class="id">77</div>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
+        <a class="nav a0" target="_blank" href="#" id="78"><s></s><b></b>
+            <div class="id">78</div>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
+
+        <a class="nav a0" target="_blank" href="#" id="79"><s></s><b></b>
+            <div class="id">79</div>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
+        <a class="nav a0" target="_blank" href="#" id="80"><s></s><b></b>
+            <div class="id">80</div>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
+        <a class="nav a0" target="_blank" href="#" id="81"><s></s><b></b>
+            <div class="id">81</div>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
+        <a class="nav a0" target="_blank" href="#" id="82"><s></s><b></b>
+            <div class="id">82</div>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
+    </div>
+    <div class="right">
         <a class="nav a0" target="_blank" href="#" id="0"><s></s><b></b>
             <div class="id">0</div>
-            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
-        </a>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
         <a class="nav a0" target="_blank" href="#" id="1"><s></s><b></b>
             <div class="id">1</div>
-            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
-        </a>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
         <a class="nav a0" target="_blank" href="#" id="2"><s></s><b></b>
             <div class="id">2</div>
-            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
-        </a>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
         <a class="nav a0" target="_blank" href="#" id="3"><s></s><b></b>
             <div class="id">3</div>
-            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
-        </a><p></p>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
+        <p></p>
 
         <a class="nav a1 a0" target="_blank" href="#" id="4"><s></s><b></b>
             <div class="id">4</div>
-            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
-        </a>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
         <a class="nav a2" target="_blank" href="#" id="5"><s></s><b></b>
-            <div class="contentS"><span class="day"></span></div>
-        </a><p></p>
+            <div class="contentS"><span class="day"></span></div></a><p></p>
         <a class="nav a0" target="_blank" href="#" id="6"><s></s><b></b>
             <div class="id">6</div>
-            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
-        </a>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
 
         <a class="nav a0" target="_blank" href="#" id="7"><s></s><b></b>
             <div class="id">7</div>
-            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
-        </a>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
         <a class="nav a0" target="_blank" href="#" id="8"><s></s><b></b>
             <div class="id">8</div>
-            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
-        </a>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
         <a class="nav a2" target="_blank" href="#" id="9"><s></s>
-            <div class="content clock"><span class="time"></span></div>
-        <b></b></a><p></p>
+            <div class="content clock"><span class="time"></span></div><b></b></a><p></p>
         <a class="nav a1" target="_blank" href="#" id="CPUCell"><s></s><b></b>
             <div class="contentS" style="margin-left:-35px">CPU</div>
-            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px"><span class="CPUU">Fehler</span>%</div>
-        </a>
+            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px"><span class="CPUU">Fehler</span>%</div></a>
 
-        <a class="nav a2" target="_blank" href="#" id="11"><s></s>
-            <div class="content clock"><span class="sal"></span></div>
-        <b></b></a><p></p>
+        <a class="nav a2" target="_blank" href="#" id="11"><s></s><b></b>
+            <div class="content clock"><span class="sal"></span></div></a><p></p>
         <a class="nav ai" target="_blank" href="#" id="12"></a>
+
         <a class="nav a0" target="_blank" href="#" id="13"><s></s><b></b>
             <div class="id">13</div>
-            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
-        </a>
-
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
         <a class="nav a3" target="_blank" href="#" id="14"><s></s><b1></b1></a>
-        <a class="nav ai" target="_blank" href="#" id="15"></a><p></p>
+        <a class="nav ai" target="_blank" href="#" id="15"><s></s><b></b>
+            <div class="contentS" style="margin-left:-35px">verbleibend</div>
+            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px"><span class="BatRe">Fehler</span></div></a><p></p>
+
         <a class="nav a1" target="_blank" href="#" id="MemCell"><s></s><b></b>
             <div class="contentS" style="margin-left:-35px">Speicher</div>
-            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px"><span class="MEMU">Fehler</span>%</div>
-        </a>
+            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px"><span class="MEMU">Fehler</span>%</div></a>
         <a class="nav a3" target="_blank" href="#" id="17" style="z-index:9999"><s2></s2><b></b>
             <div class="Rotate" style="margin-top:-70px;margin-left:-60px;text-align:left"><span class="Bat"></span></div>
-            <div class="Rotate" style="margin-top:-60px;margin-left:-35px;text-align:left"><span class="BatStatus"></span></div>
-        </a><p></p>
+            <div class="Rotate" style="margin-top:-60px;margin-left:-35px;text-align:left"><span class="BatStatus"></span></div></a><p></p>
         <a class="nav ai" target="_blank" href="#" id="18"></a>
+
         <a class="nav a0" target="_blank" href="#" id="19"><s></s><b></b>
             <div class="id">19</div>
-            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
-        </a>
-        <a class="nav a3" target="_blank" href="#" id="BatCell"><s></s>
-            <div class="Rotate" style="margin-top:0px;margin-left:-45px;width:200px;text-align:center"><span class="BatPer">Fehler</span></div>
-        <b2></b2></a>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
+        <a class="nav a3" target="_blank" href="#" id="BatCell"><s></s><b2></b2>
+            <div class="Rotate" style="margin-top:0px;margin-left:-45px;width:200px;text-align:center"><span class="BatPer">Fehler</span></div></a>
         <a class="nav a0" target="_blank" href="#" id="21"><s></s><b></b>
-            <div class="contentS" style="text-decoration:underline overline">WARNUNG</div>
-        </a><p></p>
+            <div class="contentS" style="text-decoration:underline overline">WARNUNG</div></a>
+        <p></p>
+
         <a class="nav a1 a0" target="_blank" href="#" id="22"><s></s><b></b>
             <div class="id">22</div>
-            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
-        </a>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
         <a class="nav a2" target="_blank" href="#" id="23"><s></s><b></b>
             <div class="contentS" style="margin-left:-35px">Papierkorb</div>
-            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px"><span class="TrashSize">Fehler</span></div>
-        </a><p></p>
+            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px"><span class="TrashSize">Fehler</span></div></a><p></p>
         <a class="nav ai" target="_blank" href="#" id="24"></a>
+
         <a class="nav a0" target="_blank" href="#" id="25"><s></s><b></b>
             <div class="id">25</div>
-            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
-        </a>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
         <a class="nav a0" target="_blank" href="#" id="26"><s></s><b></b>
             <div class="id">26</div>
-            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
-        </a>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
         <a class="nav ai" target="_blank" href="#" id="27"></a><p></p>
+
         <a class="nav a1" target="_blank" href="#" id="IPCell"><s></s><b></b>
             <div class="contentS" style="margin-left:-35px">PublikIP</div>
-            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:14px"><span class="PubIP">Fehler</span></div>
-        </a>
+            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:14px"><span class="PubIP">Fehler</span></div></a>
         <a class="nav a0" target="_blank" href="#" id="29"><s></s><b></b>
             <div class="id">29</div>
-            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
-        </a><p></p>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a><p></p>
         <a class="nav ai" target="_blank" href="#" id="30"></a>
+
         <a class="nav a0" target="_blank" href="#" id="31"><s></s><b></b>
             <div class="id">31</div>
-            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div>
-        </a>
+            <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
         <a class="nav a2" target="_blank" href="#" id="32"><s></s>32<b></b></a>
         <a class="nav ai" target="_blank" href="#" id="33"></a><p></p>
         <a class="nav ai" target="_blank" href="#" id="34"></a><p></p>
+
         <a class="nav a4" target="_blank" href="#" id="35" style="margin-right:140px"><s></s><b1></b1></a>
         <a class="nav a4" target="_blank" href="#" id="36"><s></s><b1></b1>
-            <div class='a4x' style="transform:rotate(-90deg);margin-left:-10px;visibility:hidden">OUTPUT</div>
-        </a><p></p>
+            <div class='a4x' style="transform:rotate(-90deg);margin-left:-10px;visibility:hidden">OUTPUT</div></a><p></p>
         <a class="nav ai" target="_blank" href="#" id="37"></a>
+
         <a class="nav a4" target="_blank" href="#" id="38"><s></s><b3></b3></a>
         <a class="nav a4" target="_blank" href="#" id="39"><s2></s2><b3></b3></a>
         <a class="nav a4" target="_blank" href="#" id="40" style="z-index:9999"><s2></s2><b></b>
-            <div class="a4x" style="margin-top:-200px;margin-left:-150px;width:400px;transform:rotate(-90deg);text-align:left;visibility:hidden"><span class="OP"></span></div>
-        </a><p></p>
+            <div class="a4x" style="margin-top:-200px;margin-left:-150px;width:400px;transform:rotate(-90deg);text-align:left;visibility:hidden"><span class="OP"></span></div></a>
+        <p></p>
+
         <a class="nav a4" target="_blank" href="#" id="41" style="margin-right:140px"><s></s><b2></b2></a>
         <a class="nav a4" target="_blank" href="#" id="42"><s></s><b2></b2></a><p></p>
         <a class="nav ai" target="_blank" href="#" id="43"></a>
     </div>
 """
-# </div>
-# <div class="output">
-# <div class="title">Wort des Tages</div>
-# <div class="word"></div>
-# <div class="part"></div>
-# <div class="example"></div>
-# <div class="example-meaning"></div>
-# </div>
 
-command: "pmset -g batt | grep \"%\" | awk 'BEGINN { FS = \";\" };{ print $1,$2,$3 }' | sed -e 's/-I/I/' -e 's/-0//' -e 's/;//' -e 's/;//' && ps aux  | awk 'BEGIN { sum = 0 }  { sum += $3 }; END { print sum }' && sysctl hw.ncpu | awk '{print $2}' && ps aux  | awk 'BEGIN { sum = 0 }  { sum += $4 }; END { print sum }' && du -ch ~/.Trash | grep total | cut -c 1-5"
+command: "pmset -g batt | grep \"%\" | awk 'BEGINN { FS = \";\" };{ print $1,$2,$3,$4 }' | sed -e 's/-I/I/' -e 's/-0//' -e 's/;//' -e 's/;//' && ps aux  | awk 'BEGIN { sum = 0 }  { sum += $3 }; END { print sum }' && sysctl hw.ncpu | awk '{print $2}' && ps aux  | awk 'BEGIN { sum = 0 }  { sum += $4 }; END { print sum }' && du -ch ~/.Trash | grep total | cut -c 1-5"
 update: (output, domEl) ->
 #   Initialise warnings
     warning=0;
@@ -332,20 +474,24 @@ update: (output, domEl) ->
     colorChange = (cell, colour) ->
         $(domEl).find("#{cell} s").css("border-bottom-color",   colour)
         $(domEl).find("#{cell} b").css("border-top-color",      colour)
+        $(domEl).find("#{cell} s1").css("border-bottom-color",  colour)
         $(domEl).find("#{cell} s2").css("border-bottom-color",  colour)
         $(domEl).find("#{cell} b1").css("border-top-color",     colour)
         $(domEl).find("#{cell} b2").css("border-top-color",     colour)
         $(domEl).find("#{cell} b3").css("border-top-color",     colour)
         $(domEl).find("#{cell}").css("background",              colour)
     warning_on = () ->
-        alert colorChange(".a0", "rgba(256,0,0,1)")
+        colorChange(".a0", "rgba(256,0,0,1)")
         $(domEl).find(".Wcontent").css("visibility","visible")
         $(domEl).find(".id").css("display","none")
+        colorChange("#15", "rgba(128,0,0,1)")
+        $(domEl).find("#15").css("visibility","visible")
     warning_off = () ->
-        alert colorChange(".a0", "rgba(10,10,10,1)")
+        colorChange(".a0", "rgba(10,10,10,1)")
         $(domEl).find(".Wcontent").css("visibility","hidden")
         $(domEl).find(".id").css("display","inline-block")
-
+        colorChange("#15", "rgba(128,0,0,0)")
+        $(domEl).find("#15").css("visibility","hidden")
 #   Processing time
     date = new Date()
     hour = date.getHours()
@@ -387,9 +533,20 @@ update: (output, domEl) ->
         Nwarning=0
 #   Deliver output
     $(domEl).find('.OP').text("#{output}")
-    $(domEl).find('.Bat').text("#{Batterievalues[0]}")
+    if (Batterievalues[0].indexOf("InternalBattery") > -1)
+        $(domEl).find('.Bat').text("innenbatterie")
+    else
+        $(domEl).find('.Bat').text("#{Batterievalues[0]}")
     $(domEl).find('.BatPer').text("#{Batterievalues[1]}")
-    $(domEl).find('.BatStatus').text("#{Batterievalues[2]}")
+    if (Batterievalues[2].indexOf("charged") > -1)
+        $(domEl).find('.BatStatus').text("geladen")
+    else if (Batterievalues[2].indexOf("discharging") > -1)
+        $(domEl).find('.BatStatus').text("entladen")
+    else if (Batterievalues[2].indexOf("finishing") > -1)
+        $(domEl).find('.BatStatus').text("beenden")
+    else
+        $(domEl).find('.BatStatus').text("#{Batterievalues[2]}")
+    $(domEl).find('.BatRe').text("#{Batterievalues[3]}")
     $(domEl).find('.CPUU').text("#{Math.floor(CPUUsage/CPUAmount)}")
     $(domEl).find('.MEMU').text("#{Math.floor(MemUsage)}")
     $(domEl).find('.sal').text("#{timeSegment}")
@@ -430,7 +587,8 @@ update: (output, domEl) ->
     else
         animation_off(".a0")
         warning_off()
-
+    if Bwarning == 1
+        15
 #   hover effects
     $('#IPCell').hover (->
             if Cwarning == 1
@@ -474,3 +632,9 @@ update: (output, domEl) ->
             alert colorChange(".a4", "rgba(10,10,10,0)")
             $(domEl).find(".a4x").css("visibility",               "hidden")
     )
+
+afterRender: (domEl) ->
+    $(domEl).on 'click', '.iTunesPre', => @run "osascript -e 'tell application \"iTunes\" to previous track'"
+    $(domEl).on 'click', '.iTunesNext', => @run "osascript -e 'tell application \"iTunes\" to next track'"
+    $(domEl).on 'click', '.iTunesPause', => @run "osascript -e 'tell application \"iTunes\" to pause'"
+    $(domEl).on 'click', '.iTunesPlay', => @run "osascript -e 'tell application \"iTunes\" to play'"
