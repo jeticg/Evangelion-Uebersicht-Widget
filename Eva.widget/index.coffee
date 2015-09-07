@@ -1,3 +1,4 @@
+# Version: 0.52a
 refreshFrequency: 1000
 style: """
     top: -25px
@@ -398,7 +399,7 @@ render: -> """
         <a class="nav a1 a0" target="_blank" href="#" id="22"><s></s><b></b>
             <div class="id">22</div>
             <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
-        <a class="nav a2" target="_blank" href="#" id="23"><s></s><b></b>
+        <a class="nav a2" target="_blank" href="#" id="TrashCell"><s></s><b></b>
             <div class="contentS" style="margin-left:-35px">Papierkorb</div>
             <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px"><span class="TrashSize">Fehler</span></div></a><p></p>
         <a class="nav ai" target="_blank" href="#" id="24"></a>
@@ -639,3 +640,4 @@ afterRender: (domEl) ->
     $(domEl).on 'click', '.iTunesNext', => @run "osascript -e 'tell application \"iTunes\" to next track'"
     $(domEl).on 'click', '.iTunesPause', => @run "osascript -e 'tell application \"iTunes\" to pause'"
     $(domEl).on 'click', '.iTunesPlay', => @run "osascript -e 'tell application \"iTunes\" to play'"
+    $(domEl).on 'click', '#TrashCell', => @run "rm -rf ~/.Trash/* && rm -rf ~/.Trash/.*"

@@ -1,6 +1,9 @@
 # Evangelion-Übersicht-Widget
 ## Updates
 
+0.52a
+* Added function: empty trash on clicking the trash cell
+
 0.51a
 * Fixed a bug, where it used to show countdown when not supposed to
 
