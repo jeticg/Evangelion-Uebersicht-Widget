@@ -484,14 +484,10 @@ update: (output, domEl) ->
         colorChange(".a0", "rgba(256,0,0,1)")
         $(domEl).find(".Wcontent").css("visibility","visible")
         $(domEl).find(".id").css("display","none")
-        colorChange("#15", "rgba(128,0,0,1)")
-        $(domEl).find("#15").css("visibility","visible")
     warning_off = () ->
         colorChange(".a0", "rgba(10,10,10,1)")
         $(domEl).find(".Wcontent").css("visibility","hidden")
         $(domEl).find(".id").css("display","inline-block")
-        colorChange("#15", "rgba(128,0,0,0)")
-        $(domEl).find("#15").css("visibility","hidden")
 #   Processing time
     date = new Date()
     hour = date.getHours()
@@ -588,7 +584,12 @@ update: (output, domEl) ->
         animation_off(".a0")
         warning_off()
     if Bwarning == 1
-        15
+        colorChange("#15", "rgba(128,0,0,1)")
+        $(domEl).find("#15").css("visibility","visible")
+    else
+        colorChange("#15", "rgba(128,0,0,0)")
+        $(domEl).find("#15").css("visibility","hidden")
+
 #   hover effects
     $('#IPCell').hover (->
             if Cwarning == 1
