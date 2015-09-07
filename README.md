@@ -1,6 +1,10 @@
 # Evangelion-Übersicht-Widget
 ## Updates
 
+0.6a
+* Added mounted volumes display, currently displaying the first 5 volumes in /Volumes/
+* Changed Output cell to display original outputs without uppercasing transformation
+
 0.52a
 * Added function: empty trash on clicking the trash cell
 

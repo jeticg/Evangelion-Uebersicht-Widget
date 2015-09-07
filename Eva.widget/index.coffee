@@ -1,4 +1,4 @@
-# Version: 0.52a
+# Version: 0.6a
 refreshFrequency: 1000
 style: """
     top: -25px
@@ -224,6 +224,24 @@ style: """
         border-bottom-color: rgba(128,128,128,1)
     .iTunesPre:active
         border-top-color: rgba(128,128,128,1)
+    .Disk
+        background-color: rgba(226,161,54,1)
+        position: relative
+        font-size: 12px
+        left: 10px; top:7px
+        width:50px;height:40px
+        border:2px solid rgba(256,256,256,1)
+    .DiskN
+        width: 90px; height:40px
+        margin-left:20px;
+        margin-top:-35px;
+        text-overflow:ellipsis;
+        overflow:hidden;
+        font-size:10px
+        transform:rotate(-90deg)
+        font-family: Futura
+        font-style: Black
+        z-index:99999
 """
 
 render: -> """
@@ -270,7 +288,9 @@ render: -> """
             <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
         <p></p>
 
-        <a class="nav a1 ai" target="_blank" href="#" id="62"></a>
+        <a class="nav ai" target="_blank" href="#" id="62" style="margin-right:140px"><s></s><b></b>
+            <div class="Disk">Vol。</div>
+            <div class="DiskN" id="62content"></div></a>
         <a class="nav a0" target="_blank" href="#" id="63"><s></s><b></b>
             <div class="id">63</div>
             <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
@@ -278,8 +298,12 @@ render: -> """
             <div class="id">64</div>
             <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
 
-        <a class="nav ai" target="_blank" href="#" id="65"></a>
-        <a class="nav ai" target="_blank" href="#" id="66"></a>
+        <a class="nav ai" target="_blank" href="#" id="65"><s></s><b></b>
+            <div class="Disk">Vol。</div>
+            <div class="DiskN" id="65content"></div></a>
+        <a class="nav ai" target="_blank" href="#" id="66"><s></s><b></b>
+            <div class="Disk" style="background-color: rgba(128,128,160,1)">Sys。</div>
+            <div class="DiskN" id="66content"></div></a>
         <a class="nav a0" target="_blank" href="#" id="67"><s></s><b></b>
             <div class="id">67</div>
             <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
@@ -288,7 +312,9 @@ render: -> """
             <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
         <p></p>
 
-        <a class="nav a1 ai" target="_blank" href="#" id="69"></a>
+        <a class="nav ai" target="_blank" href="#" id="69" style="margin-right:140px"><s></s><b></b>
+            <div class="Disk">Vol。</div>
+            <div class="DiskN" id="69content"></div></a>
         <a class="nav a0" target="_blank" href="#" id="70"><s></s><b></b>
             <div class="id">70</div>
             <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
@@ -296,7 +322,9 @@ render: -> """
             <div class="id">71</div>
             <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
 
-        <a class="nav ai" target="_blank" href="#" id="72"></a>
+        <a class="nav ai" target="_blank" href="#" id="72"><s></s><b></b>
+            <div class="Disk">Vol。</div>
+            <div class="DiskN" id="72content"></div></a>
         <a class="nav a0" target="_blank" href="#" id="73"><s></s><b></b>
             <div class="id">73</div>
             <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
@@ -435,7 +463,7 @@ render: -> """
         <a class="nav a4" target="_blank" href="#" id="38"><s></s><b3></b3></a>
         <a class="nav a4" target="_blank" href="#" id="39"><s2></s2><b3></b3></a>
         <a class="nav a4" target="_blank" href="#" id="40" style="z-index:9999"><s2></s2><b></b>
-            <div class="a4x" style="margin-top:-200px;margin-left:-150px;width:400px;transform:rotate(-90deg);text-align:left;visibility:hidden"><span class="OP"></span></div></a>
+            <div class="a4x" style="margin-top:-200px;margin-left:-150px;width:400px;transform:rotate(-90deg);text-align:left;visibility:hidden"><span class="OP" style="text-transform:none"></span></div></a>
         <p></p>
 
         <a class="nav a4" target="_blank" href="#" id="41" style="margin-right:140px"><s></s><b2></b2></a>
@@ -444,7 +472,7 @@ render: -> """
     </div>
 """
 
-command: "pmset -g batt | grep \"%\" | awk 'BEGINN { FS = \";\" };{ print $1,$2,$3,$4 }' | sed -e 's/-I/I/' -e 's/-0//' -e 's/;//' -e 's/;//' && ps aux  | awk 'BEGIN { sum = 0 }  { sum += $3 }; END { print sum }' && sysctl hw.ncpu | awk '{print $2}' && ps aux  | awk 'BEGIN { sum = 0 }  { sum += $4 }; END { print sum }' && du -ch ~/.Trash | grep total | cut -c 1-5"
+command: "pmset -g batt | grep \"%\" | awk 'BEGINN { FS = \";\" };{ print $1,$2,$3,$4 }' | sed -e 's/-I/I/' -e 's/-0//' -e 's/;//' -e 's/;//' && ps aux  | awk 'BEGIN { sum = 0 }  { sum += $3 }; END { print sum }' && sysctl hw.ncpu | awk '{print $2}' && ps aux  | awk 'BEGIN { sum = 0 }  { sum += $4 }; END { print sum }' && du -ch ~/.Trash | grep total | cut -c 1-5 && ls /Volumes/ | awk -F'\t' '{ print $0}'"
 update: (output, domEl) ->
 #   Initialise warnings
     warning=0;
@@ -529,6 +557,28 @@ update: (output, domEl) ->
     else
         Nwarning=0
 #   Deliver output
+    # Disks
+        if (AllOutputs.length > 6)
+            $(domEl).find("#66").css("visibility","visible")
+            $(domEl).find('#66content').text("#{AllOutputs[5]}")
+        else    $(domEl).find("#66").css("visibility","hidden")
+        if (AllOutputs.length > 7)
+            $(domEl).find("#69").css("visibility","visible")
+            $(domEl).find('#69content').text("#{AllOutputs[6]}")
+        else    $(domEl).find("#69").css("visibility","hidden")
+        if (AllOutputs.length > 8)
+            $(domEl).find("#72").css("visibility","visible")
+            $(domEl).find('#72content').text("#{AllOutputs[7]}")
+        else    $(domEl).find("#72").css("visibility","hidden")
+        if (AllOutputs.length > 9)
+            $(domEl).find("#62").css("visibility","visible")
+            $(domEl).find('#62content').text("#{AllOutputs[8]}")
+        else    $(domEl).find("#62").css("visibility","hidden")
+        if (AllOutputs.length > 10)
+            $(domEl).find("#65").css("visibility","visible")
+            $(domEl).find('#65content').text("#{AllOutputs[9]}")
+        else    $(domEl).find("#65").css("visibility","hidden")
+    # Other
     $(domEl).find('.OP').text("#{output}")
     if (Batterievalues[0].indexOf("InternalBattery") > -1)
         $(domEl).find('.Bat').text("innenbatterie")
@@ -634,10 +684,14 @@ update: (output, domEl) ->
             alert colorChange(".a4", "rgba(10,10,10,0)")
             $(domEl).find(".a4x").css("visibility",               "hidden")
     )
-
 afterRender: (domEl) ->
     $(domEl).on 'click', '.iTunesPre', => @run "osascript -e 'tell application \"iTunes\" to previous track'"
     $(domEl).on 'click', '.iTunesNext', => @run "osascript -e 'tell application \"iTunes\" to next track'"
     $(domEl).on 'click', '.iTunesPause', => @run "osascript -e 'tell application \"iTunes\" to pause'"
     $(domEl).on 'click', '.iTunesPlay', => @run "osascript -e 'tell application \"iTunes\" to play'"
     $(domEl).on 'click', '#TrashCell', => @run "rm -rf ~/.Trash/* && rm -rf ~/.Trash/.*"
+    $(domEl).on 'click', '#66', => @run "open /Volumes/#{AllOutputs[5]}"
+    $(domEl).on 'click', '#69', => @run "open /Volumes/#{AllOutputs[6]}"
+    $(domEl).on 'click', '#72', => @run "open /Volumes/#{AllOutputs[7]}"
+    $(domEl).on 'click', '#62', => @run "open /Volumes/#{AllOutputs[8]}"
+    $(domEl).on 'click', '#65', => @run "open /Volumes/#{AllOutputs[9]}"
