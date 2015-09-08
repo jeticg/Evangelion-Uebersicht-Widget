@@ -12,7 +12,17 @@ refreshFrequency: 1000
 ## the gaps between the originally seperated cells. Almost all the elements in the cells are
 ## positioned manually, this is to ensure that the UI looks exactly the same on different
 ## environments. Übersicht is using the safari engine to render the widgets, therefore the UI under
-## different versions of Safari could be different, if so please contact me and I'll fix this.
+## different versions of Safari could be different, if so please contact me and I'll fix this. There
+## are also classes like a0, a1, a2, a3, a4, these act as collective cell controlls allowing me to
+## change the output of all related cells when necessary. ai cells are initially hidden; a1 and a2
+## are used to adjust the lines so that the cells won't crash into each other; a3 is the battery
+## cell; a4 is the console output cell; ax hasn't been used. Contents in the cells can use the
+## classes content of bigger text or contents for smaller text, although most of the time it might
+## be better to adjust the font-size manually. It is obvious that some of the cells are hidden(ai),
+## these can be easily modified to display new contents as you like. I will personally add more to
+## this widget as well. Please look out for my updates and if you've done something amazing with
+## your copy of this widget and want me to add, please contact me.
+##
 style: """
     top: -25px
     font-family: Futura
