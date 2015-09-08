@@ -1,5 +1,18 @@
-# Version: 0.6a
+# Version: 0.61a
+## If you do not want a transparent widget, please adjust the opacity setting under STYLE
+## If you do not know how to write HTML/CSS, it is best for you to learn it first before
+## attempting to customise the UI. Or you can contact me.
+## Any advise or new idea is welcome. Do not hesitate to contact me, my email is: jetic@me.com
+# Refreshing Frequency is set to once every 1000ms
 refreshFrequency: 1000
+# Information on cells
+## Cells consists of three parts. A main body(nav), a top and a bottom(s and b). Cells are rotated
+## 90 degrees to the current position. For special cells (Battery cell, iTunes cell), the toppings
+## and bottoms are slightly different, for example s1, s2, b1, b2, these are modified to cover
+## the gaps between the originally seperated cells. Almost all the elements in the cells are
+## positioned manually, this is to ensure that the UI looks exactly the same on different
+## environments. Übersicht is using the safari engine to render the widgets, therefore the UI under
+## different versions of Safari could be different, if so please contact me and I'll fix this.
 style: """
     top: -25px
     font-family: Futura
@@ -231,6 +244,8 @@ style: """
         left: 10px; top:7px
         width:50px;height:40px
         border:2px solid rgba(256,256,256,1)
+        border-right: 5px solid rgba(256,256,256,1)
+        z-index:99999
     .DiskN
         width: 90px; height:40px
         margin-left:20px;
@@ -302,7 +317,7 @@ render: -> """
             <div class="Disk">Vol。</div>
             <div class="DiskN" id="65content"></div></a>
         <a class="nav ai" target="_blank" href="#" id="66"><s></s><b></b>
-            <div class="Disk" style="background-color: rgba(128,128,160,1)">Sys。</div>
+            <div class="Disk">Vol。</div>
             <div class="DiskN" id="66content"></div></a>
         <a class="nav a0" target="_blank" href="#" id="67"><s></s><b></b>
             <div class="id">67</div>
@@ -472,7 +487,13 @@ render: -> """
     </div>
 """
 
-command: "pmset -g batt | grep \"%\" | awk 'BEGINN { FS = \";\" };{ print $1,$2,$3,$4 }' | sed -e 's/-I/I/' -e 's/-0//' -e 's/;//' -e 's/;//' && ps aux  | awk 'BEGIN { sum = 0 }  { sum += $3 }; END { print sum }' && sysctl hw.ncpu | awk '{print $2}' && ps aux  | awk 'BEGIN { sum = 0 }  { sum += $4 }; END { print sum }' && du -ch ~/.Trash | grep total | cut -c 1-5 && ls /Volumes/ | awk -F'\t' '{ print $0}'"
+command:    "   pmset -g batt | grep \"%\" | awk 'BEGINN { FS = \";\" };{ print $1,$2,$3,$4 }' | sed -e 's/-I/I/' -e 's/-0//' -e 's/;//' -e 's/;//' &&
+                ps aux  | awk 'BEGIN { sum = 0 }  { sum += $3 }; END { print sum }' &&
+                sysctl hw.ncpu | awk '{print $2}' &&
+                ps aux  | awk 'BEGIN { sum = 0 }  { sum += $4 }; END { print sum }' &&
+                du -ch ~/.Trash | grep total | cut -c 1-5 &&
+                ls -F /Volumes/ | awk -F'\t' '{ print $0}'
+            "
 update: (output, domEl) ->
 #   Initialise warnings
     warning=0;
@@ -492,6 +513,7 @@ update: (output, domEl) ->
     ]
 
 #   functions
+    # This is for the warning animations, for better battery life, please consider changing these settings
     animation_on = (cell) ->
         $(domEl).find("#{cell} s").css("animation", "meow_BS 1s linear 0s infinite alternate")
         $(domEl).find("#{cell} b").css("animation", "meow_BB 1s linear 0s infinite alternate")
@@ -500,6 +522,7 @@ update: (output, domEl) ->
         $(domEl).find("#{cell} s").css("animation", "")
         $(domEl).find("#{cell} b").css("animation", "")
         $(domEl).find("#{cell}"  ).css("animation", "")
+    # This function is for changing the colour of cell(s).
     colorChange = (cell, colour) ->
         $(domEl).find("#{cell} s").css("border-bottom-color",   colour)
         $(domEl).find("#{cell} b").css("border-top-color",      colour)
@@ -509,6 +532,19 @@ update: (output, domEl) ->
         $(domEl).find("#{cell} b2").css("border-top-color",     colour)
         $(domEl).find("#{cell} b3").css("border-top-color",     colour)
         $(domEl).find("#{cell}").css("background",              colour)
+    # Display disk information
+    diskDisplay = (cell, tmp) ->
+        $(domEl).find("#{cell}").css("visibility","visible")
+        $(domEl).find("#{cell} .DiskN").text("#{tmp[0..(tmp.length-2)]}")
+        #console .log tmp.indexOf("@")
+        if (tmp.indexOf("@") > -1 )
+            $(domEl).find("#{cell} .Disk").css("background-color","rgba(128,128,160,1)")
+            $(domEl).find("#{cell} .Disk").text("Sys。")
+        else
+            $(domEl).find("#{cell} .Disk").css("background-color","rgba(226,161,54,1)")
+            $(domEl).find("#{cell} .Disk").text("Vol。")
+    # General warning settings. This function is called when a general warning is on,
+    # which will turn every not-in-use cell into displaying warning signals
     warning_on = () ->
         colorChange(".a0", "rgba(256,0,0,1)")
         $(domEl).find(".Wcontent").css("visibility","visible")
@@ -518,6 +554,7 @@ update: (output, domEl) ->
         $(domEl).find(".Wcontent").css("visibility","hidden")
         $(domEl).find(".id").css("display","inline-block")
 #   Processing time
+    # This is for outputing the time. Nothing really
     date = new Date()
     hour = date.getHours()
     minutes = date.getMinutes()
@@ -536,7 +573,7 @@ update: (output, domEl) ->
     timeSegment = segments[10] if 19 <= hour < 21
     timeSegment = segments[11] if 21 <= hour < 23
 
-#   Processing output
+#   Processing output, passing values from command line output to variables
     AllOutputs = output.split('\n')
     Batterievalues  = AllOutputs[0].split(' ')
     CPUUsage        = AllOutputs[1].split(' ')
@@ -545,6 +582,7 @@ update: (output, domEl) ->
     Trashvalues     = AllOutputs[4].split(' ')
     Trashvalues="#{Trashvalues}".replace /,/g, ''
     Trashvalues="#{Trashvalues}".replace /\s+/g, ''
+    # The following is for Public IP testing
     Nwarning=0
     $.ajax 'https://api.ipify.org?format=json',
         dataType: 'json'
@@ -557,29 +595,27 @@ update: (output, domEl) ->
     else
         Nwarning=0
 #   Deliver output
-    # Disks
-        if (AllOutputs.length > 6)
-            $(domEl).find("#66").css("visibility","visible")
-            $(domEl).find('#66content').text("#{AllOutputs[5]}")
-        else    $(domEl).find("#66").css("visibility","hidden")
-        if (AllOutputs.length > 7)
-            $(domEl).find("#69").css("visibility","visible")
-            $(domEl).find('#69content').text("#{AllOutputs[6]}")
-        else    $(domEl).find("#69").css("visibility","hidden")
-        if (AllOutputs.length > 8)
-            $(domEl).find("#72").css("visibility","visible")
-            $(domEl).find('#72content').text("#{AllOutputs[7]}")
-        else    $(domEl).find("#72").css("visibility","hidden")
-        if (AllOutputs.length > 9)
-            $(domEl).find("#62").css("visibility","visible")
-            $(domEl).find('#62content').text("#{AllOutputs[8]}")
-        else    $(domEl).find("#62").css("visibility","hidden")
-        if (AllOutputs.length > 10)
-            $(domEl).find("#65").css("visibility","visible")
-            $(domEl).find('#65content').text("#{AllOutputs[9]}")
-        else    $(domEl).find("#65").css("visibility","hidden")
-    # Other
+    # Disks, all five disks are hidden by default, only when such disk exists shall it be displayed
+    # Because each volume takes a single line in the output, we have to judge by the length of output
+    if (AllOutputs.length > 6)
+        diskDisplay("#66", AllOutputs[5])
+    else    $(domEl).find("#66").css("visibility","hidden")
+    if (AllOutputs.length > 7)
+        diskDisplay("#69", AllOutputs[6])
+    else    $(domEl).find("#69").css("visibility","hidden")
+    if (AllOutputs.length > 8)
+        diskDisplay("#72", AllOutputs[7])
+    else    $(domEl).find("#72").css("visibility","hidden")
+    if (AllOutputs.length > 9)
+        diskDisplay("#62", AllOutputs[8])
+    else    $(domEl).find("#62").css("visibility","hidden")
+    if (AllOutputs.length > 10)
+        diskDisplay("#65", AllOutputs[9])
+    else    $(domEl).find("#65").css("visibility","hidden")
+    # Outputting all the information for debug
     $(domEl).find('.OP').text("#{output}")
+    # Battery information, originally it's in english, this part translates all the
+    # information into German
     if (Batterievalues[0].indexOf("InternalBattery") > -1)
         $(domEl).find('.Bat').text("innenbatterie")
     else
@@ -594,6 +630,7 @@ update: (output, domEl) ->
     else
         $(domEl).find('.BatStatus').text("#{Batterievalues[2]}")
     $(domEl).find('.BatRe').text("#{Batterievalues[3]}")
+    # Output other information
     $(domEl).find('.CPUU').text("#{Math.floor(CPUUsage/CPUAmount)}")
     $(domEl).find('.MEMU').text("#{Math.floor(MemUsage)}")
     $(domEl).find('.sal').text("#{timeSegment}")
@@ -605,25 +642,26 @@ update: (output, domEl) ->
         $(domEl).find('.TrashSize').text("#{Trashvalues}")
 
 #   Dealing with warnings
+    # Bwarning stands for Battery warning, triggers when battery drops below 20% without charging.
     if (parseInt(Batterievalues[1]) <= 20 & Batterievalues[2].indexOf("discharging") > -1)
         Bwarning = 1
         colorChange(".a3", "rgba(256,0,0,1)")
     else
         Bwarning = 0
         colorChange(".a3", "rgba(10,10,10,1)")
-
+    # Nwarning stands for Network Warning, triggers when no external ip address could be fetched
     if Nwarning == 1
         colorChange("#IPCell", "rgba(256,10,10,1)")
     else
         colorChange("#IPCell", "rgba(10,10,10,1)")
-
+    # Cwarning is for CPU usage. Default value is to trigger when CPU usage reaches 90%
     if CPUUsage/CPUAmount > 90
         Cwarning = 1
         colorChange("#CPUCell", "rgba(256,0,0,1)")
     else
         Cwarning = 0
         colorChange("#CPUCell", "rgba(10,10,10,1)")
-
+    #General warning trigger.
     if Bwarning+Cwarning != 0
         warning = 1
     else warning = 0
@@ -634,6 +672,7 @@ update: (output, domEl) ->
     else
         animation_off(".a0")
         warning_off()
+    # Battery countdown, triggers when battery warning is on
     if Bwarning == 1
         colorChange("#15", "rgba(128,0,0,1)")
         $(domEl).find("#15").css("visibility","visible")
@@ -641,7 +680,7 @@ update: (output, domEl) ->
         colorChange("#15", "rgba(128,0,0,0)")
         $(domEl).find("#15").css("visibility","hidden")
 
-#   hover effects
+#   hover effects, dealing with hovering
     $('#IPCell').hover (->
             if Cwarning == 1
                 colorChange("#IPCell", "rgba(128,0,0,1)")
@@ -690,8 +729,8 @@ afterRender: (domEl) ->
     $(domEl).on 'click', '.iTunesPause', => @run "osascript -e 'tell application \"iTunes\" to pause'"
     $(domEl).on 'click', '.iTunesPlay', => @run "osascript -e 'tell application \"iTunes\" to play'"
     $(domEl).on 'click', '#TrashCell', => @run "rm -rf ~/.Trash/* && rm -rf ~/.Trash/.*"
-    $(domEl).on 'click', '#66', => @run "open /Volumes/#{AllOutputs[5]}"
-    $(domEl).on 'click', '#69', => @run "open /Volumes/#{AllOutputs[6]}"
-    $(domEl).on 'click', '#72', => @run "open /Volumes/#{AllOutputs[7]}"
-    $(domEl).on 'click', '#62', => @run "open /Volumes/#{AllOutputs[8]}"
-    $(domEl).on 'click', '#65', => @run "open /Volumes/#{AllOutputs[9]}"
+    $(domEl).on 'click', '#66', => @run "open /Volumes"
+    $(domEl).on 'click', '#69', => @run "open /Volumes"
+    $(domEl).on 'click', '#72', => @run "open /Volumes"
+    $(domEl).on 'click', '#62', => @run "open /Volumes"
+    $(domEl).on 'click', '#65', => @run "open /Volumes"
