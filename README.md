@@ -1,7 +1,11 @@
 # Evangelion-Übersicht-Widget
 
 ## About
-This widget is an Evangelion Übersicht Widget, displaying information through a huge amount of cells on your desktop. The interface is in German because I am learning German, if you want it's really easy to convert it to English. If you want an English version please let me know by sending me an email, if more than 10 people make the demand than I'll add an English version. Currently with this widget you can:
+This widget is an Evangelion Übersicht Widget, displaying information through a huge amount of cells on your desktop.
+
+If you leaves nothing on your desktop except for less than six mounted volumes (system volumes, connected servers etc.), this widget can replace your desktop completely.
+
+The interface is in German because I am learning German, if you want it's really easy to convert it to English. If you want an English version please let me know by sending me an email, if more than 10 people make the demand than I'll add an English version. Currently with this widget you can:
 
 1. View time
 2. Check CPU and memory usage (Memory usage here includes cache usage, so it might come over 100%)
