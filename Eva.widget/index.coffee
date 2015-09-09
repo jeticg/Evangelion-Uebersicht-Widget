@@ -1,4 +1,4 @@
-# Version: 0.62a
+# Version: 0.63a
 ## If you do not want a transparent widget, please adjust the opacity setting under STYLE
 ## If you do not know how to write HTML/CSS, it is best for you to learn it first before
 ## attempting to customise the UI. Or you can contact me.
@@ -300,6 +300,18 @@ render: -> """
         <a class="nav a1 ai" target="_blank" href="#" id="55"></a>
         <a class="nav a5" target="_blank" href="#" id="56"><s></s><b3></b3></a>
         <a class="nav a5" target="_blank" href="#" id="57" style="z-index:99999"><s2></s2><b></b>
+            <div class="contactS" style="text-overflow:ellipsis;
+                                         overflow:hidden;
+                                         position:absolute;
+                                         transform:rotate(-90deg);
+                                         top:-85px;left:-15px;
+                                         text-align:center;height:40px;width:200px;font-size:12px" id="iTunesArtist"> </div>
+            <div class="contactS" style="text-overflow:ellipsis;
+                                         overflow:hidden;
+                                         position:absolute;
+                                         transform:rotate(-90deg);
+                                         top:-85px;left:-92px;
+                                         text-align:center;height:40px;width:200px;font-size:12px" id="iTunesTitle"> </div>
             <div class="iTunesPre"></div><div class="iTunesPre"></div>
             <div class="iTunesPause"></div><div class="iTunesPlay"></div>
             <div class="iTunesNext"></div><div class="iTunesNext"></div>
@@ -502,6 +514,7 @@ command:    "   pmset -g batt | grep \"%\" | awk 'BEGINN { FS = \";\" };{ print 
                 sysctl hw.ncpu | awk '{print $2}' &&
                 ps aux  | awk 'BEGIN { sum = 0 }  { sum += $4 }; END { print sum }' &&
                 du -ch ~/.Trash | grep total | cut -c 1-5 &&
+                osascript 'Eva.widget/iTunes.scpt' &&
                 ls -F /Volumes/ | awk -F'\t' '{ print $0}'
             "
 update: (output, domEl) ->
@@ -590,6 +603,7 @@ update: (output, domEl) ->
     CPUAmount       = AllOutputs[2].split(' ')
     MemUsage        = AllOutputs[3].split(' ')
     Trashvalues     = AllOutputs[4].split(' ')
+    iTunesvalues    = AllOutputs[5].split('~')
     Trashvalues="#{Trashvalues}".replace /,/g, ''
     Trashvalues="#{Trashvalues}".replace /\s+/g, ''
     # The following is for Public IP testing
@@ -607,20 +621,20 @@ update: (output, domEl) ->
 #   Deliver output
     # Disks, all five disks are hidden by default, only when such disk exists shall it be displayed
     # Because each volume takes a single line in the output, we have to judge by the length of output
-    if (AllOutputs.length > 6)
-        diskDisplay("#66", AllOutputs[5])
-    else    $(domEl).find("#66").css("visibility","hidden")
     if (AllOutputs.length > 7)
-        diskDisplay("#69", AllOutputs[6])
-    else    $(domEl).find("#69").css("visibility","hidden")
+        diskDisplay("#66", AllOutputs[6])
+    else    $(domEl).find("#66").css("visibility","hidden")
     if (AllOutputs.length > 8)
-        diskDisplay("#72", AllOutputs[7])
-    else    $(domEl).find("#72").css("visibility","hidden")
+        diskDisplay("#69", AllOutputs[7])
+    else    $(domEl).find("#69").css("visibility","hidden")
     if (AllOutputs.length > 9)
-        diskDisplay("#62", AllOutputs[8])
-    else    $(domEl).find("#62").css("visibility","hidden")
+        diskDisplay("#72", AllOutputs[8])
+    else    $(domEl).find("#72").css("visibility","hidden")
     if (AllOutputs.length > 10)
-        diskDisplay("#65", AllOutputs[9])
+        diskDisplay("#62", AllOutputs[9])
+    else    $(domEl).find("#62").css("visibility","hidden")
+    if (AllOutputs.length > 11)
+        diskDisplay("#65", AllOutputs[10])
     else    $(domEl).find("#65").css("visibility","hidden")
     # Outputting all the information for debug
     $(domEl).find('.OP').text("#{output}")
@@ -644,6 +658,8 @@ update: (output, domEl) ->
     $(domEl).find('.CPUU').text("#{Math.floor(CPUUsage/CPUAmount)}")
     $(domEl).find('.MEMU').text("#{Math.floor(MemUsage)}")
     $(domEl).find('.sal').text("#{timeSegment}")
+    $(domEl).find('#iTunesArtist').text("#{iTunesvalues[1]}")
+    $(domEl).find('#iTunesTitle').text("#{iTunesvalues[0]}")
     $(domEl).find('.time').text("#{hour}:#{minutes}")
     $(domEl).find('.day').text("#{daylist[days]}")
     if (Trashvalues.indexOf("0B") > -1)

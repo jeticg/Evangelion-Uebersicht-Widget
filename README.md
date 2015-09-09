@@ -12,7 +12,7 @@ The interface is in German because I am learning German, if you want it's really
 3. Check battery status
 4. Check you Trash size
 5. Check your public ip address
-6. Control your iTunes
+6. Control your iTunes, show current artist and title
 7. Show first 5 of all your mounted volumes in alphabetical order
 
 Special features
@@ -30,6 +30,9 @@ Feedback
 Who am I kidding, the only thing you need to know is this is a widget for Übersicht, http://tracesof.net/uebersicht/
 
 ## Updates
+
+0.63a
+* Added title and artist displaying on iTunes cell
 
 0.62a
 * Added function, now you can open up a volume by clicking!
