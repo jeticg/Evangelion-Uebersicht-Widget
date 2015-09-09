@@ -14,17 +14,21 @@ This widget is an Evangelion Übersicht Widget, displaying information through a
 Special features
 * Alarm system, triggers when CPU usage is too high or battery drops to below 20% without charging
 * Empty your trash bin by clicking the trash cell
+* Open up a volume by clicking it
 
 Feedback
 
 * My email is jetic@me.com
 * Please note that this widget is still under development and open for suggestions. If you have any idea on how to improve this widget or new features you would like to see, please do not hesitate to contact me.
-* If you are encountering any problem with the display, please click cell number 32 and see the original console output and contact me with the information you see in the output, otherwise it could be hard to determine what went wrong. 
+* If you are encountering any problem with the display, please click cell number 32 and see the original console output and contact me with the information you see in the output, otherwise it could be hard to determine what went wrong.
 
 ## Installation
 Who am I kidding, the only thing you need to know is this is a widget for Übersicht, http://tracesof.net/uebersicht/
 
 ## Updates
+
+0.62a
+* Added function, now you can open up a volume by clicking!
 
 0.61a
 * Fixed bug where non-system volumes might be shown as a system volumes. If one is still experiencing irregularities with their volumes one could try ls /Volumes/ command in Terminal

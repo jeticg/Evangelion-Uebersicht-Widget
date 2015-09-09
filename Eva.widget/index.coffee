@@ -1,4 +1,4 @@
-# Version: 0.61a
+# Version: 0.62a
 ## If you do not want a transparent widget, please adjust the opacity setting under STYLE
 ## If you do not know how to write HTML/CSS, it is best for you to learn it first before
 ## attempting to customise the UI. Or you can contact me.
@@ -739,8 +739,14 @@ afterRender: (domEl) ->
     $(domEl).on 'click', '.iTunesPause', => @run "osascript -e 'tell application \"iTunes\" to pause'"
     $(domEl).on 'click', '.iTunesPlay', => @run "osascript -e 'tell application \"iTunes\" to play'"
     $(domEl).on 'click', '#TrashCell', => @run "rm -rf ~/.Trash/* && rm -rf ~/.Trash/.*"
-    $(domEl).on 'click', '#66', => @run "open /Volumes"
-    $(domEl).on 'click', '#69', => @run "open /Volumes"
-    $(domEl).on 'click', '#72', => @run "open /Volumes"
-    $(domEl).on 'click', '#62', => @run "open /Volumes"
-    $(domEl).on 'click', '#65', => @run "open /Volumes"
+#   Command to open up mounted volumes
+    $(domEl).on 'click', '#66', => @run "ls /Volumes/ | awk -F'\t' '{ print $0}' > tmp.txt;i=1; cat tmp.txt | while read line; do if [ \"$i\" -eq 1 ]; then open /Volumes/\"${line}\"; fi; let i=i+1; done; rm tmp.txt
+"
+    $(domEl).on 'click', '#69', => @run "ls /Volumes/ | awk -F'\t' '{ print $0}' > tmp.txt;i=1; cat tmp.txt | while read line; do if [ \"$i\" -eq 2 ]; then open /Volumes/\"${line}\"; fi; let i=i+1; done; rm tmp.txt
+"
+    $(domEl).on 'click', '#72', => @run "ls /Volumes/ | awk -F'\t' '{ print $0}' > tmp.txt;i=1; cat tmp.txt | while read line; do if [ \"$i\" -eq 3 ]; then open /Volumes/\"${line}\"; fi; let i=i+1; done; rm tmp.txt
+"
+    $(domEl).on 'click', '#62', => @run "ls /Volumes/ | awk -F'\t' '{ print $0}' > tmp.txt;i=1; cat tmp.txt | while read line; do if [ \"$i\" -eq 4 ]; then open /Volumes/\"${line}\"; fi; let i=i+1; done; rm tmp.txt
+"
+    $(domEl).on 'click', '#65', => @run "ls /Volumes/ | awk -F'\t' '{ print $0}' > tmp.txt;i=1; cat tmp.txt | while read line; do if [ \"$i\" -eq 5 ]; then open /Volumes/\"${line}\"; fi; let i=i+1; done; rm tmp.txt
+"
