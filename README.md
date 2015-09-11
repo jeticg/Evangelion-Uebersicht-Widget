@@ -5,7 +5,12 @@ This widget is an Evangelion Übersicht Widget, displaying information through a
 
 If you leaves nothing on your desktop except for less than six mounted volumes (system volumes, connected servers etc.), this widget can replace your desktop completely.
 
-The interface is in German because I am learning German, if you want it's really easy to convert it to English. If you want an English version please let me know by sending me an email, if more than 10 people make the demand than I'll add an English version. Currently with this widget you can:
+The interface is now MULTI-LANGUAGE! Supported language:
+* Deutsch
+* English
+* 繁體中文
+
+Currently with this widget you can:
 
 1. View time
 2. Check CPU and memory usage (Memory usage here includes cache usage, so it might come over 100%)
@@ -30,6 +35,9 @@ Feedback
 Who am I kidding, the only thing you need to know is this is a widget for Übersicht, http://tracesof.net/uebersicht/
 
 ## Updates
+
+0.7a
+* Added Multi-language support, currently supporting English, German and Chinese
 
 0.63a
 * Added title and artist displaying on iTunes cell

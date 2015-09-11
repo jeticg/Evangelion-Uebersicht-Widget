@@ -1,4 +1,4 @@
-# Version: 0.63a
+# Version: 0.7a
 ## If you do not want a transparent widget, please adjust the opacity setting under STYLE
 ## If you do not know how to write HTML/CSS, it is best for you to learn it first before
 ## attempting to customise the UI. Or you can contact me.
@@ -168,12 +168,10 @@ style: """
         border: 1px solid #fff
     .content
         transform:rotate(-90deg)
-        font-family: Futura
         font-style: Black
         font-size: 40px
         z-index:99999
     .clock
-        font-family: Futura
         font-size: 30px
     .sal
         font-family: Songti SC
@@ -181,26 +179,24 @@ style: """
         font-size: 40px
     .Wcontent
         transform:rotate(-90deg)
-        font-family: Futura
         font-style: Black
         font-size: 15px
         z-index:99999
         visibility:hidden
     .contentS
         transform:rotate(-90deg)
-        font-family: Futura
         font-style: Black
         font-size: 15px
         z-index:99999
     .Bat
-        font-family: Futura
         font-weight: bold
         font-size: 15px
         text-transform: uppercase
     .id
         font-size:20px
+        font-family:Futura
+        font-style:normal
     .BatStatus
-        font-family: Futura
         font-weight: bold
         font-size: 20px
         text-transform: uppercase
@@ -264,7 +260,6 @@ style: """
         overflow:hidden;
         font-size:10px
         transform:rotate(-90deg)
-        font-family: Futura
         font-style: Black
         z-index:99999
 """
@@ -427,10 +422,10 @@ render: -> """
             <div class="id">8</div>
             <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
         <a class="nav a2" target="_blank" href="#" id="9"><s></s>
-            <div class="content clock"><span class="time"></span></div><b></b></a><p></p>
+            <div class="content clock" style="font-family:Futura;font-style:normal"><span class="time"></span></div><b></b></a><p></p>
         <a class="nav a1" target="_blank" href="#" id="CPUCell"><s></s><b></b>
             <div class="contentS" style="margin-left:-35px">CPU</div>
-            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px"><span class="CPUU">Fehler</span>%</div></a>
+            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px;font-family:Futura;font-style:normal"><span class="CPUU">Fehler</span>%</div></a>
 
         <a class="nav a2" target="_blank" href="#" id="11"><s></s><b></b>
             <div class="content clock"><span class="sal"></span></div></a><p></p>
@@ -446,7 +441,7 @@ render: -> """
 
         <a class="nav a1" target="_blank" href="#" id="MemCell"><s></s><b></b>
             <div class="contentS" style="margin-left:-35px">Speicher</div>
-            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px"><span class="MEMU">Fehler</span>%</div></a>
+            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px;font-family:Futura;font-style:normal"><span class="MEMU">Fehler</span>%</div></a>
         <a class="nav a3" target="_blank" href="#" id="17" style="z-index:9999"><s2></s2><b></b>
             <div class="Rotate" style="margin-top:-70px;margin-left:-60px;text-align:left"><span class="Bat"></span></div>
             <div class="Rotate" style="margin-top:-60px;margin-left:-35px;text-align:left"><span class="BatStatus"></span></div></a><p></p>
@@ -456,7 +451,7 @@ render: -> """
             <div class="id">19</div>
             <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
         <a class="nav a3" target="_blank" href="#" id="BatCell"><s></s><b2></b2>
-            <div class="Rotate" style="margin-top:0px;margin-left:-45px;width:200px;text-align:center"><span class="BatPer">Fehler</span></div></a>
+            <div class="Rotate" style="margin-top:0px;margin-left:-45px;width:200px;text-align:center;font-family:Futura;font-style:normal"><span class="BatPer">Fehler</span></div></a>
         <a class="nav a0" target="_blank" href="#" id="21"><s></s><b></b>
             <div class="contentS" style="text-decoration:underline overline">WARNUNG</div></a>
         <p></p>
@@ -479,7 +474,7 @@ render: -> """
 
         <a class="nav a1" target="_blank" href="#" id="IPCell"><s></s><b></b>
             <div class="contentS" style="margin-left:-35px">PublikIP</div>
-            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:14px"><span class="PubIP">Fehler</span></div></a>
+            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:14px;font-family:Futura;font-style:normal"><span class="PubIP">Fehler</span></div></a>
         <a class="nav a0" target="_blank" href="#" id="29"><s></s><b></b>
             <div class="id">29</div>
             <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a><p></p>
@@ -488,7 +483,7 @@ render: -> """
         <a class="nav a0" target="_blank" href="#" id="31"><s></s><b></b>
             <div class="id">31</div>
             <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a>
-        <a class="nav a2" target="_blank" href="#" id="32"><s></s>32<b></b></a>
+        <a class="nav a2" target="_blank" href="#" id="32" style="font-family:Futura;font-style:normal"><s></s>32<b></b></a>
         <a class="nav ai" target="_blank" href="#" id="33"></a><p></p>
         <a class="nav ai" target="_blank" href="#" id="34"></a><p></p>
 
@@ -518,6 +513,14 @@ command:    "   pmset -g batt | grep \"%\" | awk 'BEGINN { FS = \";\" };{ print 
                 ls -F /Volumes/ | awk -F'\t' '{ print $0}'
             "
 update: (output, domEl) ->
+#   Get System Language
+    language = navigator.language;
+    if (language.indexOf("de") > -1)
+        language = 1
+    else if (language.indexOf("cn") > -1)
+        language = 2
+    else
+        language = 0
 #   Initialise warnings
     warning=0;
     Bwarning=0;
@@ -525,16 +528,80 @@ update: (output, domEl) ->
     Nwarning=0;
 #   Define constants
     segments = ["子時", "丑時", "寅時", "卯時", "辰時", "巳時", "午時", "未時", "申時", "酉時", "戌時", "亥時"]
-    daylist = [
-        'Sonntag'
-        'Montag'
-        'Dienstag'
-        'Mittwoch'
-        'Donnerstag'
-        'Freitag'
-        'Samstag'
-    ]
-
+    if language == 1
+        daylist = [
+            'Sonntag'
+            'Montag'
+            'Dienstag'
+            'Mittwoch'
+            'Donnerstag'
+            'Freitag'
+            'Samstag'
+        ]
+        TrashEmpty = "Leer"
+        ErrorMessage = "Fehler"
+        BatteryStatus = [
+            'laden'
+            'geladen'
+            'entladen'
+            'beenden'
+        ]
+        BatteryType = "innenbatterie"
+    else if language == 2
+        daylist = [
+            '禮拜日'
+            '禮拜一'
+            '禮拜二'
+            '禮拜三'
+            '禮拜四'
+            '禮拜五'
+            '禮拜六'
+        ]
+        $(domEl).css("font-family", "Songti TC")
+        $(domEl).css("font-style", "Black")
+        $(domEl).find("#CPUCell     .contentS").text("處理器")
+        $(domEl).find("#MemCell     .contentS").text("內存")
+        $(domEl).find("#IPCell      .contentS").text("公網地址")
+        $(domEl).find("#TrashCell   .contentS").text("廢紙簍")
+        $(domEl).find(".Wcontent             ").text("警告")
+        $(domEl).find("#21          .contentS").text("警告")
+        $(domEl).find(".Wcontent             ").css("font-size", "23px")
+        $(domEl).find(".contentS             ").css("font-size", "23px")
+        $(domEl).find(".Bat                  ").css("font-size", "23px")
+        $(domEl).find(".BatStatus            ").css("font-size", "30px")
+        TrashEmpty = "空"
+        ErrorMessage = "錯誤"
+        BatteryStatus = [
+            '充電中'
+            '充電完成'
+            '消耗中'
+            '充電完成中'
+        ]
+        BatteryType = "內部電源"
+    else
+        daylist = [
+            'Sunday'
+            'Monday'
+            'Tuesday'
+            'Wednesday'
+            'Thursday'
+            'Friday'
+            'Saturday'
+        ]
+        $(domEl).find("#MemCell     .contentS").text("Memory")
+        $(domEl).find("#IPCell      .contentS").text("PublicIP")
+        $(domEl).find("#TrashCell   .contentS").text("Trash")
+        $(domEl).find(".Wcontent             ").text("WARNING")
+        $(domEl).find("#21          .contentS").text("WARNING")
+        TrashEmpty = "Empty"
+        ErrorMessage = "Error"
+        BatteryStatus = [
+            'charging'
+            'charged'
+            'discharging'
+            'finishing'
+        ]
+        BatteryType = "internalbattery"
 #   functions
     # This is for the warning animations, for better battery life, please consider changing these settings
     animation_on = (cell) ->
@@ -613,8 +680,8 @@ update: (output, domEl) ->
         success: (data, textStatus, jqXHR) ->
             $(domEl).find('.PubIP').text("#{data.ip}")
         error: (jqXHR, textStatus, errorThrown) ->
-            $(domEl).find('.PubIP').text("Fehler")
-    if $(domEl).find('.PubIP').text().indexOf("Fehler") > -1
+            $(domEl).find('.PubIP').text("#{ErrorMessage}")
+    if $(domEl).find('.PubIP').text().indexOf("#{ErrorMessage}") > -1
         Nwarning=1
     else
         Nwarning=0
@@ -641,16 +708,18 @@ update: (output, domEl) ->
     # Battery information, originally it's in english, this part translates all the
     # information into German
     if (Batterievalues[0].indexOf("InternalBattery") > -1)
-        $(domEl).find('.Bat').text("innenbatterie")
+        $(domEl).find('.Bat').text("#{BatteryType}")
     else
         $(domEl).find('.Bat').text("#{Batterievalues[0]}")
     $(domEl).find('.BatPer').text("#{Batterievalues[1]}")
-    if (Batterievalues[2].indexOf("charged") > -1)
-        $(domEl).find('.BatStatus').text("geladen")
-    else if (Batterievalues[2].indexOf("discharging") > -1)
-        $(domEl).find('.BatStatus').text("entladen")
+    if (Batterievalues[2].indexOf("discharging") > -1)
+        $(domEl).find('.BatStatus').text("#{BatteryStatus[2]}")
+    else if (Batterievalues[2].indexOf("charged") > -1)
+        $(domEl).find('.BatStatus').text("#{BatteryStatus[1]}")
+    else if (Batterievalues[2].indexOf("charging") > -1)
+        $(domEl).find('.BatStatus').text("#{BatteryStatus[0]}")
     else if (Batterievalues[2].indexOf("finishing") > -1)
-        $(domEl).find('.BatStatus').text("beenden")
+        $(domEl).find('.BatStatus').text("#{BatteryStatus[3]}")
     else
         $(domEl).find('.BatStatus').text("#{Batterievalues[2]}")
     $(domEl).find('.BatRe').text("#{Batterievalues[3]}")
@@ -663,7 +732,7 @@ update: (output, domEl) ->
     $(domEl).find('.time').text("#{hour}:#{minutes}")
     $(domEl).find('.day').text("#{daylist[days]}")
     if (Trashvalues.indexOf("0B") > -1)
-        $(domEl).find('.TrashSize').text("Leer")
+        $(domEl).find('.TrashSize').text("#{TrashEmpty}")
     else
         $(domEl).find('.TrashSize').text("#{Trashvalues}")
 
