@@ -36,6 +36,9 @@ Who am I kidding, the only thing you need to know is this is a widget for Übers
 
 ## Updates
 
+0.71a
+* Fixed a bug while iTunes Cell might not display contents correctly under Yosemite
+
 0.7a
 * Added Multi-language support, currently supporting English, German and Chinese
 

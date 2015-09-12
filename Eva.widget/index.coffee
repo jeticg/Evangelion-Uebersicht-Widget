@@ -1,4 +1,4 @@
-# Version: 0.7a
+# Version: 0.71a
 ## If you do not want a transparent widget, please adjust the opacity setting under STYLE
 ## If you do not know how to write HTML/CSS, it is best for you to learn it first before
 ## attempting to customise the UI. Or you can contact me.
@@ -295,16 +295,14 @@ render: -> """
         <a class="nav a1 ai" target="_blank" href="#" id="55"></a>
         <a class="nav a5" target="_blank" href="#" id="56"><s></s><b3></b3></a>
         <a class="nav a5" target="_blank" href="#" id="57" style="z-index:99999"><s2></s2><b></b>
-            <div class="contactS" style="text-overflow:ellipsis;
+            <div class="Rotate" style="text-overflow:ellipsis;
                                          overflow:hidden;
                                          position:absolute;
-                                         transform:rotate(-90deg);
                                          top:-85px;left:-15px;
                                          text-align:center;height:40px;width:200px;font-size:12px" id="iTunesArtist"> </div>
-            <div class="contactS" style="text-overflow:ellipsis;
+            <div class="Rotate" style="text-overflow:ellipsis;
                                          overflow:hidden;
                                          position:absolute;
-                                         transform:rotate(-90deg);
                                          top:-85px;left:-92px;
                                          text-align:center;height:40px;width:200px;font-size:12px" id="iTunesTitle"> </div>
             <div class="iTunesPre"></div><div class="iTunesPre"></div>
@@ -474,7 +472,7 @@ render: -> """
 
         <a class="nav a1" target="_blank" href="#" id="IPCell"><s></s><b></b>
             <div class="contentS" style="margin-left:-35px">PublikIP</div>
-            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:14px;font-family:Futura;font-style:normal"><span class="PubIP">Fehler</span></div></a>
+            <div class="content"  style="margin-left:10px;margin-top:-57px;font-size:13px;font-family:Futura;font-style:normal"><span class="PubIP">Fehler</span></div></a>
         <a class="nav a0" target="_blank" href="#" id="29"><s></s><b></b>
             <div class="id">29</div>
             <div class="Wcontent" style="text-decoration:underline overline">WARNUNG</div></a><p></p>
