@@ -1,5 +1,12 @@
 # Evangelion-Übersicht-Widget
 
+## Notice
+0.8a is out! With brand new design of the warning cell, it looks a lot cooler. 
+
+But by default you will be downloading version 0.71a, which has been tested for a long time now and proven to consume relatively less energy than 0.8a. 0.8a will be tested by myself for a little longer because I want to make sure it doesn't ridiculously affect battery life, I've already noticed the heat brought by 0.8a with alarm triggered. If you want to try it out please feel free to download it from github, it's under the folder **Eva.widget**, not the **zip**.
+
+If you think 0.8a is much better and worth the extra battery consumption, please write to me so I can decide what to do.
+
 ## About
 This widget is an Evangelion Übersicht Widget, displaying information through a huge amount of cells on your desktop.
 
@@ -35,6 +42,11 @@ Feedback
 Who am I kidding, the only thing you need to know is this is a widget for Übersicht, http://tracesof.net/uebersicht/
 
 ## Updates
+
+0.8a
+* Modified the design of warning cell, it looks cooler
+* Adjusted the line height of output cell
+* Modified the render mechanism to execute less commands when updating
 
 0.71a
 * Fixed a bug while iTunes Cell might not display contents correctly under Yosemite
