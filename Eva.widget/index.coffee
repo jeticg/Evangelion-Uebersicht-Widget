@@ -1,4 +1,4 @@
-# Version: 0.8a
+# Version: 0.81a
 ## If you do not want a transparent widget, please adjust the opacity setting under STYLE
 ## If you do not know how to write HTML/CSS, it is best for you to learn it first before
 ## attempting to customise the UI. Or you can contact me.
@@ -591,6 +591,12 @@ afterRender: (domEl) ->
 #   Define constants
     window.segments = ["子時", "丑時", "寅時", "卯時", "辰時", "巳時", "午時", "未時", "申時", "酉時", "戌時", "亥時"]
     if language == 1
+        window.Batterievalues  = [
+            'NUR AC'
+            ''
+            'AC Power'
+            ''
+        ]
         window.daylist = [
             'Sonntag'
             'Montag'
@@ -610,6 +616,12 @@ afterRender: (domEl) ->
         ]
         window.BatteryType = "innenbatterie"
     else if language == 2
+        window.Batterievalues  = [
+            '内部电源不存在'
+            ''
+            '外部电源'
+            ''
+        ]
         window.daylist = [
             '禮拜日'
             '禮拜一'
@@ -641,6 +653,12 @@ afterRender: (domEl) ->
         $(domEl).find(".Bat                  ").css("font-size", "23px")
         $(domEl).find(".BatStatus            ").css("font-size", "30px")
     else
+        window.Batterievalues  = [
+            'AC Only'
+            ''
+            'AC Power'
+            ''
+        ]
         window.daylist = [
             'Sunday'
             'Monday'
@@ -752,12 +770,16 @@ update: (output, domEl) ->
 
 #   Processing output, passing values from command line output to variables
     AllOutputs = output.split('\n')
-    Batterievalues  = AllOutputs[0].split(' ')
-    CPUUsage        = AllOutputs[1].split(' ')
-    CPUAmount       = AllOutputs[2].split(' ')
-    MemUsage        = AllOutputs[3].split(' ')
-    Trashvalues     = AllOutputs[4].split(' ')
-    iTunesvalues    = AllOutputs[5].split('~')
+    if (AllOutputs[0].indexOf("InternalBattery") > -1)
+        window.Batterievalues  = AllOutputs[0].split(' ')
+        i = 0
+    else
+        i = -1
+    CPUUsage        = AllOutputs[1+i].split(' ')
+    CPUAmount       = AllOutputs[2+i].split(' ')
+    MemUsage        = AllOutputs[3+i].split(' ')
+    Trashvalues     = AllOutputs[4+i].split(' ')
+    iTunesvalues    = AllOutputs[5+i].split('~')
     Trashvalues="#{Trashvalues}".replace /,/g, ''
     Trashvalues="#{Trashvalues}".replace /\s+/g, ''
     # The following is for Public IP testing
