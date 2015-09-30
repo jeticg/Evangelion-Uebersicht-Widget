@@ -1,10 +1,10 @@
-# Version: 0.81a
+# Version: 0.82a
 ## If you do not want a transparent widget, please adjust the opacity setting under STYLE
 ## If you do not know how to write HTML/CSS, it is best for you to learn it first before
 ## attempting to customise the UI. Or you can contact me.
 ## Any advise or new idea is welcome. Do not hesitate to contact me, my email is: jetic@me.com
 # Refreshing Frequency is set to once every 1000ms
-refreshFrequency: 1000
+refreshFrequency: 2000
 # Information on cells
 ## Cells consists of three parts. A main body(nav), a top and a bottom(s and b). Cells are rotated
 ## 90 degrees to the current position. For special cells (Battery cell, iTunes cell), the toppings
@@ -296,40 +296,40 @@ style: """
 
 render: -> """
     <div class="left" style="float:left">
-        <a class="nav ai" target="_blank" href="#" id="44"></a>
-        <a class="nav ai" target="_blank" href="#" id="45"></a>
-        <a class="nav a0" target="_blank" href="#" id="46"><s></s><b></b>
+        <div class="nav ai" target="_blank" href="#" id="44"></div>
+        <div class="nav ai" target="_blank" href="#" id="45"></div>
+        <div class="nav a0" target="_blank" href="#" id="46"><s></s><b></b>
             <div class="id">46</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
-        <a class="nav a0" target="_blank" href="#" id="47"><s></s><b></b>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
+        <div class="nav a0" target="_blank" href="#" id="47"><s></s><b></b>
             <div class="id">47</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
         <p></p>
 
-        <a class="nav a1 ai" target="_blank" href="#" id="48"></a>
-        <a class="nav a0" target="_blank" href="#" id="49"><s></s><b></b>
+        <div class="nav a1 ai" target="_blank" href="#" id="48"></div>
+        <div class="nav a0" target="_blank" href="#" id="49"><s></s><b></b>
             <div class="id">49</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
-        <a class="nav a0" target="_blank" href="#" id="50"><s></s><b></b>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
+        <div class="nav a0" target="_blank" href="#" id="50"><s></s><b></b>
             <div class="id">50</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
 
-        <a class="nav ai" target="_blank" href="#" id="51"></a>
-        <a class="nav ai" target="_blank" href="#" id="52"></a>
-        <a class="nav a5" target="_blank" href="#" id="53"><s1></s1><b1></b1></a>
-        <a class="nav a0" target="_blank" href="#" id="54"><s></s><b></b>
+        <div class="nav ai" target="_blank" href="#" id="51"></div>
+        <div class="nav ai" target="_blank" href="#" id="52"></div>
+        <div class="nav a5" target="_blank" href="#" id="53"><s1></s1><b1></b1></div>
+        <div class="nav a0" target="_blank" href="#" id="54"><s></s><b></b>
             <div class="id">54</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
         <p></p>
 
-        <a class="nav a1 ai" target="_blank" href="#" id="55"></a>
-        <a class="nav a5" target="_blank" href="#" id="56"><s></s><b3></b3></a>
-        <a class="nav a5" target="_blank" href="#" id="57" style="z-index:99999"><s2></s2><b></b>
+        <div class="nav a1 ai" target="_blank" href="#" id="55"></div>
+        <div class="nav a5" target="_blank" href="#" id="56"><s></s><b3></b3></div>
+        <div class="nav a5" target="_blank" href="#" id="57" style="z-index:99999"><s2></s2><b></b>
             <div class="Rotate" style="text-overflow:ellipsis;
                                          overflow:hidden;
                                          position:absolute;
@@ -342,232 +342,232 @@ render: -> """
                                          text-align:center;height:40px;width:200px;font-size:12px" id="iTunesTitle"> </div>
             <div class="iTunesPre"></div><div class="iTunesPre"></div>
             <div class="iTunesPause"></div><div class="iTunesPlay"></div>
-            <div class="iTunesNext"></div><div class="iTunesNext"></div>
-        <a class="nav ai" target="_blank" href="#" id="58"></a>
-        <a class="nav a0" target="_blank" href="#" id="59"><s></s><b></b>
+            <div class="iTunesNext"></div><div class="iTunesNext"></div></div>
+        <div class="nav ai" target="_blank" href="#" id="58"></div>
+        <div class="nav a0" target="_blank" href="#" id="59"><s></s><b></b>
             <div class="id">59</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
-        <a class="nav a5" target="_blank" href="#" id="60"><s></s><b2></b2></a>
-        <a class="nav a0" target="_blank" href="#" id="61"><s></s><b></b>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
+        <div class="nav a5" target="_blank" href="#" id="60"><s></s><b2></b2></div>
+        <div class="nav a0" target="_blank" href="#" id="61"><s></s><b></b>
             <div class="id">61</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
         <p></p>
 
-        <a class="nav ai" target="_blank" href="#" id="62" style="margin-right:140px"><s></s><b></b>
+        <div class="nav ai" target="_blank" href="#" id="62" style="margin-right:140px"><s></s><b></b>
             <div class="Disk">Vol。</div>
-            <div class="DiskN" id="62content"></div></a>
-        <a class="nav a0" target="_blank" href="#" id="63"><s></s><b></b>
+            <div class="DiskN" id="62content"></div></div>
+        <div class="nav a0" target="_blank" href="#" id="63"><s></s><b></b>
             <div class="id">63</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
-        <a class="nav a0" target="_blank" href="#" id="64"><s></s><b></b>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
+        <div class="nav a0" target="_blank" href="#" id="64"><s></s><b></b>
             <div class="id">64</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
 
-        <a class="nav ai" target="_blank" href="#" id="65"><s></s><b></b>
+        <div class="nav ai" target="_blank" href="#" id="65"><s></s><b></b>
             <div class="Disk">Vol。</div>
-            <div class="DiskN" id="65content"></div></a>
-        <a class="nav ai" target="_blank" href="#" id="66"><s></s><b></b>
+            <div class="DiskN" id="65content"></div></div>
+        <div class="nav ai" target="_blank" href="#" id="66"><s></s><b></b>
             <div class="Disk">Vol。</div>
-            <div class="DiskN" id="66content"></div></a>
-        <a class="nav a0" target="_blank" href="#" id="67"><s></s><b></b>
+            <div class="DiskN" id="66content"></div></div>
+        <div class="nav a0" target="_blank" href="#" id="67"><s></s><b></b>
             <div class="id">67</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
-        <a class="nav a0" target="_blank" href="#" id="68"><s></s><b></b>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
+        <div class="nav a0" target="_blank" href="#" id="68"><s></s><b></b>
             <div class="id">68</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
         <p></p>
 
-        <a class="nav ai" target="_blank" href="#" id="69" style="margin-right:140px"><s></s><b></b>
+        <div class="nav ai" target="_blank" href="#" id="69" style="margin-right:140px"><s></s><b></b>
             <div class="Disk">Vol。</div>
-            <div class="DiskN" id="69content"></div></a>
-        <a class="nav a0" target="_blank" href="#" id="70"><s></s><b></b>
+            <div class="DiskN" id="69content"></div></div>
+        <div class="nav a0" target="_blank" href="#" id="70"><s></s><b></b>
             <div class="id">70</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
-        <a class="nav a0" target="_blank" href="#" id="71"><s></s><b></b>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
+        <div class="nav a0" target="_blank" href="#" id="71"><s></s><b></b>
             <div class="id">71</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
 
-        <a class="nav ai" target="_blank" href="#" id="72"><s></s><b></b>
+        <div class="nav ai" target="_blank" href="#" id="72"><s></s><b></b>
             <div class="Disk">Vol。</div>
-            <div class="DiskN" id="72content"></div></a>
-        <a class="nav a0" target="_blank" href="#" id="73"><s></s><b></b>
+            <div class="DiskN" id="72content"></div></div>
+        <div class="nav a0" target="_blank" href="#" id="73"><s></s><b></b>
             <div class="id">73</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
-        <a class="nav a0" target="_blank" href="#" id="74"><s></s><b></b>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
+        <div class="nav a0" target="_blank" href="#" id="74"><s></s><b></b>
             <div class="id">74</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
-        <a class="nav a0" target="_blank" href="#" id="75"><s></s><b></b>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
+        <div class="nav a0" target="_blank" href="#" id="75"><s></s><b></b>
             <div class="id">75</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
         <p></p>
 
-        <a class="nav a1 a0" target="_blank" href="#" id="76"><s></s><b></b>
+        <div class="nav a1 a0" target="_blank" href="#" id="76"><s></s><b></b>
             <div class="id">76</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
-        <a class="nav a0" target="_blank" href="#" id="77"><s></s><b></b>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
+        <div class="nav a0" target="_blank" href="#" id="77"><s></s><b></b>
             <div class="id">77</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
-        <a class="nav a0" target="_blank" href="#" id="78"><s></s><b></b>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
+        <div class="nav a0" target="_blank" href="#" id="78"><s></s><b></b>
             <div class="id">78</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
 
-        <a class="nav a0" target="_blank" href="#" id="79"><s></s><b></b>
+        <div class="nav a0" target="_blank" href="#" id="79"><s></s><b></b>
             <div class="id">79</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
-        <a class="nav a0" target="_blank" href="#" id="80"><s></s><b></b>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
+        <div class="nav a0" target="_blank" href="#" id="80"><s></s><b></b>
             <div class="id">80</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
-        <a class="nav a0" target="_blank" href="#" id="81"><s></s><b></b>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
+        <div class="nav a0" target="_blank" href="#" id="81"><s></s><b></b>
             <div class="id">81</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
-        <a class="nav a0" target="_blank" href="#" id="82"><s></s><b></b>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
+        <div class="nav a0" target="_blank" href="#" id="82"><s></s><b></b>
             <div class="id">82</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
     </div>
     <div class="right">
-        <a class="nav a0" target="_blank" href="#" id="0"><s></s><b></b>
+        <div class="nav a0" target="_blank" href="#" id="0"><s></s><b></b>
             <div class="id">0</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
-        <a class="nav a0" target="_blank" href="#" id="1"><s></s><b></b>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
+        <div class="nav a0" target="_blank" href="#" id="1"><s></s><b></b>
             <div class="id">1</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
-        <a class="nav a0" target="_blank" href="#" id="2"><s></s><b></b>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
+        <div class="nav a0" target="_blank" href="#" id="2"><s></s><b></b>
             <div class="id">2</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
-        <a class="nav a0" target="_blank" href="#" id="3"><s></s><b></b>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
+        <div class="nav a0" target="_blank" href="#" id="3"><s></s><b></b>
             <div class="id">3</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
         <p></p>
 
-        <a class="nav a1 a0" target="_blank" href="#" id="4"><s></s><b></b>
+        <div class="nav a1 a0" target="_blank" href="#" id="4"><s></s><b></b>
             <div class="id">4</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
-        <a class="nav a2" target="_blank" href="#" id="5"><s></s><b></b>
-            <div class="contentS"><span class="day"></span></div></a><p></p>
-        <a class="nav a0" target="_blank" href="#" id="6"><s></s><b></b>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
+        <div class="nav a2" target="_blank" href="#" id="5"><s></s><b></b>
+            <div class="contentS"><span class="day"></span></div></div><p></p>
+        <div class="nav a0" target="_blank" href="#" id="6"><s></s><b></b>
             <div class="id">6</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
 
-        <a class="nav a0" target="_blank" href="#" id="7"><s></s><b></b>
+        <div class="nav a0" target="_blank" href="#" id="7"><s></s><b></b>
             <div class="id">7</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
-        <a class="nav a0" target="_blank" href="#" id="8"><s></s><b></b>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
+        <div class="nav a0" target="_blank" href="#" id="8"><s></s><b></b>
             <div class="id">8</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
-        <a class="nav a2" target="_blank" href="#" id="9"><s></s>
-            <div class="content clock" style="font-family:Futura;font-style:normal"><span class="time"></span></div><b></b></a><p></p>
-        <a class="nav a1" target="_blank" href="#" id="CPUCell"><s></s><b></b>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
+        <div class="nav a2" target="_blank" href="#" id="9"><s></s>
+            <div class="content clock" style="font-family:Futura;font-style:normal"><span class="time"></span></div><b></b></div><p></p>
+        <div class="nav a1" target="_blank" href="#" id="CPUCell"><s></s><b></b>
             <div class="contentS" style="margin-left:-35px">CPU</div>
-            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px;font-family:Futura;font-style:normal"><span class="CPUU">Fehler</span>%</div></a>
+            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px;font-family:Futura;font-style:normal"><span class="CPUU">Fehler</span>%</div></div>
 
-        <a class="nav a2" target="_blank" href="#" id="11"><s></s><b></b>
-            <div class="content clock"><span class="sal"></span></div></a><p></p>
-        <a class="nav ai" target="_blank" href="#" id="12"></a>
+        <div class="nav a2" target="_blank" href="#" id="11"><s></s><b></b>
+            <div class="content clock"><span class="sal"></span></div></div><p></p>
+        <div class="nav ai" target="_blank" href="#" id="12"></div>
 
-        <a class="nav a0" target="_blank" href="#" id="13"><s></s><b></b>
+        <div class="nav a0" target="_blank" href="#" id="13"><s></s><b></b>
             <div class="id">13</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
-        <a class="nav a3" target="_blank" href="#" id="14"><s></s><b1></b1></a>
-        <a class="nav ai" target="_blank" href="#" id="15"><s></s><b></b>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
+        <div class="nav a3" target="_blank" href="#" id="14"><s></s><b1></b1></div>
+        <div class="nav ai" target="_blank" href="#" id="15"><s></s><b></b>
             <div class="contentS" style="margin-left:-35px">verbleibend</div>
-            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px"><span class="BatRe">Fehler</span></div></a><p></p>
+            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px"><span class="BatRe">Fehler</span></div></div><p></p>
 
-        <a class="nav a1" target="_blank" href="#" id="MemCell"><s></s><b></b>
+        <div class="nav a1" target="_blank" href="#" id="MemCell"><s></s><b></b>
             <div class="contentS" style="margin-left:-35px">Speicher</div>
-            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px;font-family:Futura;font-style:normal"><span class="MEMU">Fehler</span>%</div></a>
-        <a class="nav a3" target="_blank" href="#" id="17" style="z-index:9999"><s2></s2><b></b>
+            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px;font-family:Futura;font-style:normal"><span class="MEMU">Fehler</span>%</div></div>
+        <div class="nav a3" target="_blank" href="#" id="17" style="z-index:9999"><s2></s2><b></b>
             <div class="Rotate" style="margin-top:-70px;margin-left:-60px;text-align:left"><span class="Bat"></span></div>
-            <div class="Rotate" style="margin-top:-60px;margin-left:-35px;text-align:left"><span class="BatStatus"></span></div></a><p></p>
-        <a class="nav ai" target="_blank" href="#" id="18"></a>
+            <div class="Rotate" style="margin-top:-60px;margin-left:-35px;text-align:left"><span class="BatStatus"></span></div></div><p></p>
+        <div class="nav ai" target="_blank" href="#" id="18"></div>
 
-        <a class="nav a0" target="_blank" href="#" id="19"><s></s><b></b>
+        <div class="nav a0" target="_blank" href="#" id="19"><s></s><b></b>
             <div class="id">19</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
-        <a class="nav a3" target="_blank" href="#" id="BatCell"><s></s><b2></b2>
-            <div class="Rotate" style="margin-top:0px;margin-left:-45px;width:200px;text-align:center;font-family:Futura;font-style:normal"><span class="BatPer">Fehler</span></div></a>
-        <a class="nav a0" target="_blank" href="#" id="21"><s></s><b></b>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
+        <div class="nav a3" target="_blank" href="#" id="BatCell"><s></s><b2></b2>
+            <div class="Rotate" style="margin-top:0px;margin-left:-45px;width:200px;text-align:center;font-family:Futura;font-style:normal"><span class="BatPer">Fehler</span></div></div>
+        <div class="nav a0" target="_blank" href="#" id="21"><s></s><b></b>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="contentS" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
+            <div class="contentS" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
         <p></p>
 
-        <a class="nav a1 a0" target="_blank" href="#" id="22"><s></s><b></b>
+        <div class="nav a1 a0" target="_blank" href="#" id="22"><s></s><b></b>
             <div class="id">22</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
-        <a class="nav a2" target="_blank" href="#" id="TrashCell"><s></s><b></b>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
+        <div class="nav a2" target="_blank" href="#" id="TrashCell"><s></s><b></b>
             <div class="contentS" style="margin-left:-35px">Papierkorb</div>
-            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px"><span class="TrashSize">Fehler</span></div></a><p></p>
-        <a class="nav ai" target="_blank" href="#" id="24"></a>
+            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px"><span class="TrashSize">Fehler</span></div></div><p></p>
+        <div class="nav ai" target="_blank" href="#" id="24"></div>
 
-        <a class="nav a0" target="_blank" href="#" id="25"><s></s><b></b>
+        <div class="nav a0" target="_blank" href="#" id="25"><s></s><b></b>
             <div class="id">25</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
-        <a class="nav a0" target="_blank" href="#" id="26"><s></s><b></b>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
+        <div class="nav a0" target="_blank" href="#" id="26"><s></s><b></b>
             <div class="id">26</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
-        <a class="nav ai" target="_blank" href="#" id="27"></a><p></p>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
+        <div class="nav ai" target="_blank" href="#" id="27"></div><p></p>
 
-        <a class="nav a1" target="_blank" href="#" id="IPCell"><s></s><b></b>
+        <div class="nav a1" target="_blank" href="#" id="IPCell"><s></s><b></b>
             <div class="contentS" style="margin-left:-35px">PublikIP</div>
-            <div class="content"  style="margin-left:10px;margin-top:-57px;font-size:13px;font-family:Futura;font-style:normal"><span class="PubIP">Fehler</span></div></a>
-        <a class="nav a0" target="_blank" href="#" id="29"><s></s><b></b>
+            <div class="content"  style="margin-left:10px;margin-top:-57px;font-size:13px;font-family:Futura;font-style:normal"><span class="PubIP">Fehler</span></div></div>
+        <div class="nav a0" target="_blank" href="#" id="29"><s></s><b></b>
             <div class="id">29</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a><p></p>
-        <a class="nav ai" target="_blank" href="#" id="30"></a>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div><p></p>
+        <div class="nav ai" target="_blank" href="#" id="30"></div>
 
-        <a class="nav a0" target="_blank" href="#" id="31"><s></s><b></b>
+        <div class="nav a0" target="_blank" href="#" id="31"><s></s><b></b>
             <div class="id">31</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></a>
-        <a class="nav a2" target="_blank" href="#" id="32" style="font-family:Futura;font-style:normal"><s></s>32<b></b></a>
-        <a class="nav ai" target="_blank" href="#" id="33"></a><p></p>
-        <a class="nav ai" target="_blank" href="#" id="34"></a><p></p>
+            <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
+        <div class="nav a2" target="_blank" href="#" id="32" style="font-family:Futura;font-style:normal"><s></s>32<b></b></div>
+        <div class="nav ai" target="_blank" href="#" id="33"></div><p></p>
+        <div class="nav ai" target="_blank" href="#" id="34"></div><p></p>
 
-        <a class="nav a4" target="_blank" href="#" id="35" style="margin-right:140px"><s></s><b1></b1></a>
-        <a class="nav a4" target="_blank" href="#" id="36"><s></s><b1></b1>
-            <div class='a4x' style="transform:rotate(-90deg);margin-left:-10px;visibility:hidden">OUTPUT</div></a><p></p>
-        <a class="nav ai" target="_blank" href="#" id="37"></a>
+        <div class="nav a4" target="_blank" href="#" id="35" style="margin-right:140px"><s></s><b1></b1></div>
+        <div class="nav a4" target="_blank" href="#" id="36"><s></s><b1></b1>
+            <div class='a4x' style="transform:rotate(-90deg);margin-left:-10px;visibility:hidden">OUTPUT</div></div><p></p>
+        <div class="nav ai" target="_blank" href="#" id="37"></div>
 
-        <a class="nav a4" target="_blank" href="#" id="38"><s></s><b3></b3></a>
-        <a class="nav a4" target="_blank" href="#" id="39"><s2></s2><b3></b3></a>
-        <a class="nav a4" target="_blank" href="#" id="40" style="z-index:9999"><s2></s2><b></b>
-            <div class="a4x" style="margin-top:-200px;margin-left:-150px;width:400px;transform:rotate(-90deg);text-align:left;visibility:hidden;line-height:110%"><span class="OP" style="text-transform:none"></span></div></a>
+        <div class="nav a4" target="_blank" href="#" id="38"><s></s><b3></b3></div>
+        <div class="nav a4" target="_blank" href="#" id="39"><s2></s2><b3></b3></div>
+        <div class="nav a4" target="_blank" href="#" id="40" style="z-index:9999"><s2></s2><b></b>
+            <div class="a4x" style="margin-top:-200px;margin-left:-150px;width:400px;transform:rotate(-90deg);text-align:left;visibility:hidden;line-height:110%"><span class="OP" style="text-transform:none"></span></div></div>
         <p></p>
 
-        <a class="nav a4" target="_blank" href="#" id="41" style="margin-right:140px"><s></s><b2></b2></a>
-        <a class="nav a4" target="_blank" href="#" id="42"><s></s><b2></b2></a><p></p>
-        <a class="nav ai" target="_blank" href="#" id="43"></a>
+        <div class="nav a4" target="_blank" href="#" id="41" style="margin-right:140px"><s></s><b2></b2></div>
+        <div class="nav a4" target="_blank" href="#" id="42"><s></s><b2></b2></div><p></p>
+        <div class="nav ai" target="_blank" href="#" id="43"></div>
     </div>
 """
 
@@ -797,20 +797,20 @@ update: (output, domEl) ->
 #   Deliver output
     # Disks, all five disks are hidden by default, only when such disk exists shall it be displayed
     # Because each volume takes a single line in the output, we have to judge by the length of output
-    if (AllOutputs.length > 7)
-        diskDisplay("#66", AllOutputs[6])
+    if (AllOutputs.length > 7+i)
+        diskDisplay("#66", AllOutputs[6+i])
     else    $(domEl).find("#66").css("visibility","hidden")
-    if (AllOutputs.length > 8)
-        diskDisplay("#69", AllOutputs[7])
+    if (AllOutputs.length > 8+i)
+        diskDisplay("#69", AllOutputs[7+i])
     else    $(domEl).find("#69").css("visibility","hidden")
-    if (AllOutputs.length > 9)
-        diskDisplay("#72", AllOutputs[8])
+    if (AllOutputs.length > 9+i)
+        diskDisplay("#72", AllOutputs[8+i])
     else    $(domEl).find("#72").css("visibility","hidden")
-    if (AllOutputs.length > 10)
-        diskDisplay("#62", AllOutputs[9])
+    if (AllOutputs.length > 10+i)
+        diskDisplay("#62", AllOutputs[9+i])
     else    $(domEl).find("#62").css("visibility","hidden")
-    if (AllOutputs.length > 11)
-        diskDisplay("#65", AllOutputs[10])
+    if (AllOutputs.length > 11+i)
+        diskDisplay("#65", AllOutputs[10+i])
     else    $(domEl).find("#65").css("visibility","hidden")
     # Outputting all the information for debug
     $(domEl).find('.OP').text("#{output}")

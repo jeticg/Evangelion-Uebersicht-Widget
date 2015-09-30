@@ -36,6 +36,9 @@ Who am I kidding, the only thing you need to know is this is a widget for Übers
 
 ## Updates
 
+0.82a
+* Fixed an issue with disk displaying when the computer doesn't have an installed battery
+
 0.81a
 * Fixed an issue with battery displaying when the computer doesn't have an installed battery
 
