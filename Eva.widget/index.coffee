@@ -1,10 +1,10 @@
-# Version: 0.82a
+# Version: 0.83a
 ## If you do not want a transparent widget, please adjust the opacity setting under STYLE
 ## If you do not know how to write HTML/CSS, it is best for you to learn it first before
 ## attempting to customise the UI. Or you can contact me.
 ## Any advise or new idea is welcome. Do not hesitate to contact me, my email is: jetic@me.com
 # Refreshing Frequency is set to once every 1000ms
-refreshFrequency: 2000
+refreshFrequency: 3000
 # Information on cells
 ## Cells consists of three parts. A main body(nav), a top and a bottom(s and b). Cells are rotated
 ## 90 degrees to the current position. For special cells (Battery cell, iTunes cell), the toppings
@@ -319,7 +319,11 @@ render: -> """
             <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
 
         <div class="nav ai" target="_blank" href="#" id="51"></div>
-        <div class="nav ai" target="_blank" href="#" id="52"></div>
+        <div class="nav a2" target="_blank" href="#" id="NetUCell" style="z-index:9999"><s1></s1><b></b>
+                    <div class="contentS" style="margin-left:-35px">Ibytes/s</div>
+                    <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:25px;font-family:Futura;font-style:normal"><span class="NetU">Fehler</span></div>
+                    <div class="contentS" style="position: absolute;left:48px;top:-95px;">Obytes/s</div>
+                    </div>
         <div class="nav a5" target="_blank" href="#" id="53"><s1></s1><b1></b1></div>
         <div class="nav a0" target="_blank" href="#" id="54"><s></s><b></b>
             <div class="id">54</div>
@@ -327,7 +331,8 @@ render: -> """
             <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
         <p></p>
 
-        <div class="nav a1 ai" target="_blank" href="#" id="55"></div>
+        <div class="nav a1 a2" target="_blank" href="#" id="NetDCell"><s></s><b2></b2>
+            <div class="content"  style="margin-left:10px;margin-top:0px;font-size:25px;font-family:Futura;font-style:normal"><span class="NetD">Fehler</span></div></div>
         <div class="nav a5" target="_blank" href="#" id="56"><s></s><b3></b3></div>
         <div class="nav a5" target="_blank" href="#" id="57" style="z-index:99999"><s2></s2><b></b>
             <div class="Rotate" style="text-overflow:ellipsis;
@@ -577,6 +582,7 @@ command:    "   pmset -g batt | grep \"%\" | awk 'BEGINN { FS = \";\" };{ print 
                 ps aux  | awk 'BEGIN { sum = 0 }  { sum += $4 }; END { print sum }' &&
                 du -ch ~/.Trash | grep total | cut -c 1-5 &&
                 osascript 'Eva.widget/iTunes.scpt' &&
+                sar -n DEV 1 1 2>/dev/null | grep Average| awk 'BEGIN { sum = 0; sum2 = 0 }  { sum += $4;sum2 += $6 }; END { print sum,sum2 }' &&
                 ls -F /Volumes/ | awk -F'\t' '{ print $0}'
             "
 afterRender: (domEl) ->
@@ -780,8 +786,23 @@ update: (output, domEl) ->
     MemUsage        = AllOutputs[3+i].split(' ')
     Trashvalues     = AllOutputs[4+i].split(' ')
     iTunesvalues    = AllOutputs[5+i].split('~')
+    Networkvalues   = AllOutputs[6+i].split(' ')
     Trashvalues="#{Trashvalues}".replace /,/g, ''
     Trashvalues="#{Trashvalues}".replace /\s+/g, ''
+    if (parseInt(Networkvalues[0])>=1024)
+        Networkvalues[0] = parseInt(Networkvalues[0])/1024
+        if (parseInt(Networkvalues[0])>=1024)
+            Networkvalues[0] = parseInt(Networkvalues[0])/1024
+            Networkvalues[0] = Math.round(Networkvalues[0]*100)/100 + 'M'
+        else
+            Networkvalues[0] = Math.round(Networkvalues[0]*100)/100 + 'K'
+    if (parseInt(Networkvalues[1])>=1024)
+        Networkvalues[1] = parseInt(Networkvalues[1])/1024
+        if (parseInt(Networkvalues[1])>=1024)
+            Networkvalues[1] = parseInt(Networkvalues[1])/1024
+            Networkvalues[1] = Math.round(Networkvalues[1]*100)/100 + 'M'
+        else
+            Networkvalues[1] = Math.round(Networkvalues[1]*100)/100 + 'K'
     # The following is for Public IP testing
     Nwarning=0
     $.ajax 'https://api.ipify.org?format=json',
@@ -797,20 +818,20 @@ update: (output, domEl) ->
 #   Deliver output
     # Disks, all five disks are hidden by default, only when such disk exists shall it be displayed
     # Because each volume takes a single line in the output, we have to judge by the length of output
-    if (AllOutputs.length > 7+i)
-        diskDisplay("#66", AllOutputs[6+i])
-    else    $(domEl).find("#66").css("visibility","hidden")
     if (AllOutputs.length > 8+i)
-        diskDisplay("#69", AllOutputs[7+i])
-    else    $(domEl).find("#69").css("visibility","hidden")
+        diskDisplay("#66", AllOutputs[7+i])
+    else    $(domEl).find("#66").css("visibility","hidden")
     if (AllOutputs.length > 9+i)
-        diskDisplay("#72", AllOutputs[8+i])
-    else    $(domEl).find("#72").css("visibility","hidden")
+        diskDisplay("#69", AllOutputs[8+i])
+    else    $(domEl).find("#69").css("visibility","hidden")
     if (AllOutputs.length > 10+i)
-        diskDisplay("#62", AllOutputs[9+i])
-    else    $(domEl).find("#62").css("visibility","hidden")
+        diskDisplay("#72", AllOutputs[9+i])
+    else    $(domEl).find("#72").css("visibility","hidden")
     if (AllOutputs.length > 11+i)
-        diskDisplay("#65", AllOutputs[10+i])
+        diskDisplay("#62", AllOutputs[10+i])
+    else    $(domEl).find("#62").css("visibility","hidden")
+    if (AllOutputs.length > 12+i)
+        diskDisplay("#65", AllOutputs[11+i])
     else    $(domEl).find("#65").css("visibility","hidden")
     # Outputting all the information for debug
     $(domEl).find('.OP').text("#{output}")
@@ -838,6 +859,8 @@ update: (output, domEl) ->
     $(domEl).find('.sal').text("#{timeSegment}")
     $(domEl).find('#iTunesArtist').text("#{iTunesvalues[1]}")
     $(domEl).find('#iTunesTitle').text("#{iTunesvalues[0]}")
+    $(domEl).find('.NetU').text("#{Networkvalues[0]}")
+    $(domEl).find('.NetD').text("#{Networkvalues[1]}")
     $(domEl).find('.time').text("#{hour}:#{minutes}")
     $(domEl).find('.day').text("#{daylist[days]}")
     if (Trashvalues.indexOf("0B") > -1)

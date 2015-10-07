@@ -19,6 +19,7 @@ Currently with this widget you can:
 5. Check your public ip address
 6. Control your iTunes, show current artist and title
 7. Show first 5 of all your mounted volumes in alphabetical order
+8. Show network traffic
 
 Special features
 * Alarm system, triggers when CPU usage is too high or battery drops to below 20% without charging
@@ -35,6 +36,9 @@ Feedback
 Who am I kidding, the only thing you need to know is this is a widget for Übersicht, http://tracesof.net/uebersicht/
 
 ## Updates
+
+0.83a
+* Added two blocks to show the sum of network traffic on all interfaces, notice that it includes localhost2localhost traffic.
 
 0.82a
 * Fixed an issue with disk displaying when the computer doesn't have an installed battery
