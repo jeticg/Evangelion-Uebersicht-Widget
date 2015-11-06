@@ -1,4 +1,4 @@
-# Version: 0.84a
+# Version: 0.85a
 ## If you do not want a transparent widget, please adjust the opacity setting under STYLE
 ## If you do not know how to write HTML/CSS, it is best for you to learn it first before
 ## attempting to customise the UI. Or you can contact me.
@@ -698,7 +698,7 @@ afterRender: (domEl) ->
     $(domEl).on 'click', '.iTunesNext', => @run "osascript -e 'tell application \"iTunes\" to next track'"
     $(domEl).on 'click', '.iTunesPause', => @run "osascript -e 'tell application \"iTunes\" to pause'"
     $(domEl).on 'click', '.iTunesPlay', => @run "osascript -e 'tell application \"iTunes\" to play'"
-    $(domEl).on 'click', '#TrashCell', => @run "rm -rf ~/.Trash/* && rm -rf ~/.Trash/.*"
+    $(domEl).on 'click', '#TrashCell', => @run "osascript -e 'tell application \"Finder\" to empty'"
 #   Command to open up mounted volumes
     $(domEl).on 'click', '#66', => @run "ls /Volumes/ | awk -F'\t' '{ print $0}' > tmp.txt;i=1; cat tmp.txt | while read line; do if [ \"$i\" -eq 1 ]; then open /Volumes/\"${line}\"; fi; let i=i+1; done; rm tmp.txt
 "
