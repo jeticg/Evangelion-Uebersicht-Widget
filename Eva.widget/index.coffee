@@ -1,4 +1,4 @@
-# Version: 0.84a
+# Version: 0.85a
 ## If you do not want a transparent widget, please adjust the opacity setting under STYLE
 ## If you do not know how to write HTML/CSS, it is best for you to learn it first before
 ## attempting to customise the UI. Or you can contact me.
