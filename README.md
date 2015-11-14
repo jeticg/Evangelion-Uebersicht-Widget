@@ -37,7 +37,10 @@ Who am I kidding, the only thing you need to know is this is a widget for Übers
 
 ## Updates
 
-0.85
+0.86a
+* Fixed a bug with network traffic cells.
+
+0.85a
 * Fixed a bug with Empty Trash function, contributed by @mgarbacz
 
 0.84a

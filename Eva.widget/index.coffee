@@ -1,4 +1,4 @@
-# Version: 0.85a
+# Version: 0.86a
 ## If you do not want a transparent widget, please adjust the opacity setting under STYLE
 ## If you do not know how to write HTML/CSS, it is best for you to learn it first before
 ## attempting to customise the UI. Or you can contact me.
@@ -319,7 +319,7 @@ render: -> """
             <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
 
         <div class="nav ai" target="_blank" href="#" id="51"></div>
-        <div class="nav a2" target="_blank" href="#" id="NetUCell" style="z-index:9999"><s1></s1><b></b>
+        <div class="nav a2 NetCell" target="_blank" href="#" style="z-index:9999"><s1></s1><b></b>
                     <div class="contentS" style="margin-left:-35px">Ibytes/s</div>
                     <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:25px;font-family:Futura;font-style:normal"><span class="NetU">Fehler</span></div>
                     <div class="contentS" style="position: absolute;left:48px;top:-95px;">Obytes/s</div>
@@ -331,7 +331,7 @@ render: -> """
             <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
         <p></p>
 
-        <div class="nav a1 a2" target="_blank" href="#" id="NetDCell"><s></s><b2></b2>
+        <div class="nav a1 a2 NetCell" target="_blank" href="#"><s></s><b2></b2>
             <div class="content"  style="margin-left:10px;margin-top:0px;font-size:25px;font-family:Futura;font-style:normal"><span class="NetD">Fehler</span></div></div>
         <div class="nav a5" target="_blank" href="#" id="56"><s></s><b3></b3></div>
         <div class="nav a5" target="_blank" href="#" id="57" style="z-index:99999"><s2></s2><b></b>
@@ -964,4 +964,10 @@ update: (output, domEl) ->
         ->
             colorChange(".a4", "rgba(10,10,10,0)")
             $(domEl).find(".a4x").css("visibility",               "hidden")
+    )
+
+    $('.NetCell').hover (->
+            colorChange(".NetCell", "rgba(128,128,128,1)")
+    ), (->
+            colorChange(".NetCell", "rgba(10,10,10,1)")
     )
