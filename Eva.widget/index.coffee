@@ -1,4 +1,4 @@
-# Version: 0.86a
+# Version: 0.87a
 ## If you do not want a transparent widget, please adjust the opacity setting under STYLE
 ## If you do not know how to write HTML/CSS, it is best for you to learn it first before
 ## attempting to customise the UI. Or you can contact me.
@@ -485,8 +485,8 @@ render: -> """
             <div class="id">8</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
             <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
-        <div class="nav a2" target="_blank" href="#" id="9"><s></s>
-            <div class="content clock" style="font-family:Futura;font-style:normal"><span class="time"></span></div><b></b></div><p></p>
+        <div class="nav a2" target="_blank" href="#" id="9"><s></s><b></b>
+            <div class="content clock" style="font-family:Futura;font-style:normal"><span class="time"></span></div></div><p></p>
         <div class="nav a1" target="_blank" href="#" id="CPUCell"><s></s><b></b>
             <div class="contentS" style="margin-left:-35px">CPU</div>
             <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px;font-family:Futura;font-style:normal"><span class="CPUU">Fehler</span>%</div></div>

@@ -37,6 +37,9 @@ Who am I kidding, the only thing you need to know is this is a widget for Übers
 
 ## Updates
 
+0.87a
+* Fixed a bug with time display on new version of übersicht.
+
 0.86a
 * Fixed a bug with network traffic cells.
 
