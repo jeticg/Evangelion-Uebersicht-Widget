@@ -1,4 +1,4 @@
-# Version: 0.87a
+# Version: 0.88a
 ## If you do not want a transparent widget, please adjust the opacity setting under STYLE
 ## If you do not know how to write HTML/CSS, it is best for you to learn it first before
 ## attempting to customise the UI. Or you can contact me.
@@ -292,12 +292,44 @@ style: """
         transform:rotate(-90deg)
         font-style: Black
         z-index:99999
+    .iTunesCover
+        position: fixed;
+        left:410px; bottom:500px;
+        width:200px; height:200px;
+        background-color: rgba(10,10,10,1);
+        z-index:99999
+    .iTunesCoverMask
+        color:white
+        position: fixed;
+        margin-left:5px; margin-top:5px;
+        width: 190px; height: 190px;
+        background-color: rgba(10,10,10,0.75);
+    .iTunesRatingBlock
+        width:33px;height:10px;
+        margin-left:1px;margin-right:1px;
+        background-color: rgba(256,256,256,0.5);
+        display:inline-block;
+
 """
 
 render: -> """
     <div class="left" style="float:left">
-        <div class="nav ai" target="_blank" href="#" id="44"></div>
-        <div class="nav ai" target="_blank" href="#" id="45"></div>
+        <div class="iTunesCover CoverCell">
+            <div class="iTunesCoverMask">
+                <div style="font-size:40px;font-family:HeadlineA">itunes</div>
+                <div style="font-size:80px;font-family:HeadlineA" id="iTunesTrack">00</div>
+                <div style="font-size:30px;font-family:HeadlineA">SOUND</div>
+                <div style="font-size:30px;font-family:HeadlineA">ONLY</div>
+            </div>
+            <div style="width:190px;height:190px;margin-top:5px" id="iTunesCoverImg"></div>
+            <div class="iTunesRatingBlock" id="rate1"></div>
+            <div class="iTunesRatingBlock" id="rate2"></div>
+            <div class="iTunesRatingBlock" id="rate3"></div>
+            <div class="iTunesRatingBlock" id="rate4"></div>
+            <div class="iTunesRatingBlock" id="rate5"></div>
+        </div>
+        <div class="nav a2 CoverCell" target="_blank" href="#" id="44"><s></s><b1></b1></div>
+        <div class="nav a2 CoverCell" target="_blank" href="#" id="45"><s1></s1><b></b></div>
         <div class="nav a0" target="_blank" href="#" id="46"><s></s><b></b>
             <div class="id">46</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
@@ -308,7 +340,7 @@ render: -> """
             <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
         <p></p>
 
-        <div class="nav a1 ai" target="_blank" href="#" id="48"></div>
+        <div class="nav a1 CoverCell" target="_blank" href="#" id="48"><s></s><b2></b2></div>
         <div class="nav a0" target="_blank" href="#" id="49"><s></s><b></b>
             <div class="id">49</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
@@ -360,7 +392,7 @@ render: -> """
             <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
         <p></p>
 
-        <div class="nav ai" target="_blank" href="#" id="62" style="margin-right:140px"><s></s><b></b>
+        <div class="nav a2" target="_blank" href="#" id="62" style="margin-right:140px"><s></s><b></b>
             <div class="Disk">Vol。</div>
             <div class="DiskN" id="62content"></div></div>
         <div class="nav a0" target="_blank" href="#" id="63"><s></s><b></b>
@@ -372,10 +404,10 @@ render: -> """
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
             <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
 
-        <div class="nav ai" target="_blank" href="#" id="65"><s></s><b></b>
+        <div class="nav a2" target="_blank" href="#" id="65"><s></s><b></b>
             <div class="Disk">Vol。</div>
             <div class="DiskN" id="65content"></div></div>
-        <div class="nav ai" target="_blank" href="#" id="66"><s></s><b></b>
+        <div class="nav a2" target="_blank" href="#" id="66"><s></s><b></b>
             <div class="Disk">Vol。</div>
             <div class="DiskN" id="66content"></div></div>
         <div class="nav a0" target="_blank" href="#" id="67"><s></s><b></b>
@@ -388,7 +420,7 @@ render: -> """
             <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
         <p></p>
 
-        <div class="nav ai" target="_blank" href="#" id="69" style="margin-right:140px"><s></s><b></b>
+        <div class="nav a2" target="_blank" href="#" id="69" style="margin-right:140px"><s></s><b></b>
             <div class="Disk">Vol。</div>
             <div class="DiskN" id="69content"></div></div>
         <div class="nav a0" target="_blank" href="#" id="70"><s></s><b></b>
@@ -400,7 +432,7 @@ render: -> """
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
             <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
 
-        <div class="nav ai" target="_blank" href="#" id="72"><s></s><b></b>
+        <div class="nav a2" target="_blank" href="#" id="72"><s></s><b></b>
             <div class="Disk">Vol。</div>
             <div class="DiskN" id="72content"></div></div>
         <div class="nav a0" target="_blank" href="#" id="73"><s></s><b></b>
@@ -700,15 +732,15 @@ afterRender: (domEl) ->
     $(domEl).on 'click', '.iTunesPlay', => @run "osascript -e 'tell application \"iTunes\" to play'"
     $(domEl).on 'click', '#TrashCell', => @run "osascript -e 'tell application \"Finder\" to empty'"
 #   Command to open up mounted volumes
-    $(domEl).on 'click', '#66', => @run "ls /Volumes/ | awk -F'\t' '{ print $0}' > tmp.txt;i=1; cat tmp.txt | while read line; do if [ \"$i\" -eq 1 ]; then open /Volumes/\"${line}\"; fi; let i=i+1; done; rm tmp.txt
+    $(domEl).on 'click', '#66', => @run "ls /Volumes/ | awk -F'\t' '{ print $0}' > tmp.txt;i=1; cat tmp.txt | sed -e 's/[ ]/\\ /g ' | while read line; do if [ \"$i\" -eq 1 ]; then open /Volumes/\"${line}\"; fi; let i=i+1; done; rm tmp.txt
 "
-    $(domEl).on 'click', '#69', => @run "ls /Volumes/ | awk -F'\t' '{ print $0}' > tmp.txt;i=1; cat tmp.txt | while read line; do if [ \"$i\" -eq 2 ]; then open /Volumes/\"${line}\"; fi; let i=i+1; done; rm tmp.txt
+    $(domEl).on 'click', '#69', => @run "ls /Volumes/ | awk -F'\t' '{ print $0}' > tmp.txt;i=1; cat tmp.txt | sed -e 's/[ ]/\\ /g ' | while read line; do if [ \"$i\" -eq 2 ]; then open /Volumes/\"${line}\"; fi; let i=i+1; done; rm tmp.txt
 "
-    $(domEl).on 'click', '#72', => @run "ls /Volumes/ | awk -F'\t' '{ print $0}' > tmp.txt;i=1; cat tmp.txt | while read line; do if [ \"$i\" -eq 3 ]; then open /Volumes/\"${line}\"; fi; let i=i+1; done; rm tmp.txt
+    $(domEl).on 'click', '#72', => @run "ls /Volumes/ | awk -F'\t' '{ print $0}' > tmp.txt;i=1; cat tmp.txt | sed -e 's/[ ]/\\ /g ' | while read line; do if [ \"$i\" -eq 3 ]; then open /Volumes/\"${line}\"; fi; let i=i+1; done; rm tmp.txt
 "
-    $(domEl).on 'click', '#62', => @run "ls /Volumes/ | awk -F'\t' '{ print $0}' > tmp.txt;i=1; cat tmp.txt | while read line; do if [ \"$i\" -eq 4 ]; then open /Volumes/\"${line}\"; fi; let i=i+1; done; rm tmp.txt
+    $(domEl).on 'click', '#62', => @run "ls /Volumes/ | awk -F'\t' '{ print $0}' > tmp.txt;i=1; cat tmp.txt | sed -e 's/[ ]/\\ /g ' | while read line; do if [ \"$i\" -eq 4 ]; then open /Volumes/\"${line}\"; fi; let i=i+1; done; rm tmp.txt
 "
-    $(domEl).on 'click', '#65', => @run "ls /Volumes/ | awk -F'\t' '{ print $0}' > tmp.txt;i=1; cat tmp.txt | while read line; do if [ \"$i\" -eq 5 ]; then open /Volumes/\"${line}\"; fi; let i=i+1; done; rm tmp.txt
+    $(domEl).on 'click', '#65', => @run "ls /Volumes/ | awk -F'\t' '{ print $0}' > tmp.txt;i=1; cat tmp.txt | sed -e 's/[ ]/\\ /g ' | while read line; do if [ \"$i\" -eq 5 ]; then open /Volumes/\"${line}\"; fi; let i=i+1; done; rm tmp.txt
 "
 
 
@@ -806,6 +838,17 @@ update: (output, domEl) ->
     Networkvalues   = AllOutputs[6+i].split(' ')
     Trashvalues="#{Trashvalues}".replace /,/g, ''
     Trashvalues="#{Trashvalues}".replace /\s+/g, ''
+    if (AllOutputs[5+i].indexOf("~ ~ ~ 0 ~ 0") > -1)
+        $(domEl).find(".CoverCell").css("visibility","hidden")
+        $(domEl).find("#44").css("visibility","hidden")
+        $(domEl).find("#45").css("visibility","hidden")
+        $(domEl).find("#48").css("visibility","hidden")
+    else
+        $(domEl).find(".CoverCell").css("visibility","visible")
+        $(domEl).find("#44").css("visibility","visible")
+        $(domEl).find("#45").css("visibility","visible")
+        $(domEl).find("#48").css("visibility","visible")
+    iTunesvalues[3] = "0"+ iTunesvalues[3] if iTunesvalues[3] < 10
     if (parseInt(Networkvalues[0])>=1024)
         Networkvalues[0] = parseInt(Networkvalues[0])/1024
         if (parseInt(Networkvalues[0])>=1024)
@@ -873,6 +916,7 @@ update: (output, domEl) ->
     $(domEl).find('.CPUU').text("#{Math.floor(CPUUsage/CPUAmount)}")
     $(domEl).find('.MEMU').text("#{Math.floor(MemUsage)}")
     $(domEl).find('.sal').text("#{timeSegment}")
+    $(domEl).find('#iTunesTrack').text("#{iTunesvalues[3]}")
     $(domEl).find('#iTunesArtist').text("#{iTunesvalues[1]}")
     $(domEl).find('#iTunesTitle').text("#{iTunesvalues[0]}")
     $(domEl).find('.NetU').text("#{Networkvalues[0]}")
@@ -883,7 +927,28 @@ update: (output, domEl) ->
         $(domEl).find('.TrashSize').text("#{TrashEmpty}")
     else
         $(domEl).find('.TrashSize').text("#{Trashvalues}")
-
+    $(domEl).find('#iTunesCoverImg').html("<img style='width:190px;height:190px;margin-left:5px;' src='Eva.widget/album.jpg'>")
+#   Dealing with rating
+    if (iTunesvalues[4]>0)
+        $(domEl).find('#rate1').css("visibility","visible")
+    else
+        $(domEl).find('#rate1').css("visibility","hidden")
+    if (iTunesvalues[4]>20)
+        $(domEl).find('#rate2').css("visibility","visible")
+    else
+        $(domEl).find('#rate2').css("visibility","hidden")
+    if (iTunesvalues[4]>40)
+        $(domEl).find('#rate3').css("visibility","visible")
+    else
+        $(domEl).find('#rate3').css("visibility","hidden")
+    if (iTunesvalues[4]>60)
+        $(domEl).find('#rate4').css("visibility","visible")
+    else
+        $(domEl).find('#rate4').css("visibility","hidden")
+    if (iTunesvalues[4]>80)
+        $(domEl).find('#rate5').css("visibility","visible")
+    else
+        $(domEl).find('#rate5').css("visibility","hidden")
 #   Dealing with warnings
     # Bwarning stands for Battery warning, triggers when battery drops below 20% without charging.
     if (parseInt(Batterievalues[1]) <= 20 & Batterievalues[2].indexOf("discharging") > -1)
@@ -970,4 +1035,9 @@ update: (output, domEl) ->
             colorChange(".NetCell", "rgba(128,128,128,1)")
     ), (->
             colorChange(".NetCell", "rgba(10,10,10,1)")
+    )
+    $('.CoverCell').hover (->
+            colorChange(".CoverCell", "rgba(128,128,128,1)")
+    ), (->
+            colorChange(".CoverCell", "rgba(10,10,10,1)")
     )

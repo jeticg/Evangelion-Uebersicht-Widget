@@ -17,7 +17,7 @@ Currently with this widget you can:
 3. Check battery status
 4. Check you Trash size
 5. Check your public ip address
-6. Control your iTunes, show current artist and title
+6. Control your iTunes, show current artist and title, and Album cover
 7. Show first 5 of all your mounted volumes in alphabetical order
 8. Show network traffic
 
@@ -36,6 +36,10 @@ Feedback
 Who am I kidding, the only thing you need to know is this is a widget for Übersicht, http://tracesof.net/uebersicht/
 
 ## Updates
+
+0.88a
+* Added iTunes Album cover display.
+* Fixed a bug where disk cell might not function properly.
 
 0.87a
 * Fixed a bug with time display on new version of übersicht.
