@@ -37,6 +37,10 @@ Who am I kidding, the only thing you need to know is this is a widget for Übers
 
 ## Updates
 
+0.89a
+* Fixed a UI problem with newer versions of übersicht.
+* Changed iTunes to SEELE, it looks better.
+
 0.88a
 * Added iTunes Album cover display.
 * Fixed a bug where disk cell might not function properly.

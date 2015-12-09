@@ -1,4 +1,4 @@
-# Version: 0.88a
+# Version: 0.89a
 ## If you do not want a transparent widget, please adjust the opacity setting under STYLE
 ## If you do not know how to write HTML/CSS, it is best for you to learn it first before
 ## attempting to customise the UI. Or you can contact me.
@@ -316,7 +316,7 @@ render: -> """
     <div class="left" style="float:left">
         <div class="iTunesCover CoverCell">
             <div class="iTunesCoverMask">
-                <div style="font-size:40px;font-family:HeadlineA">itunes</div>
+                <div style="font-size:30px;font-family:HeadlineA">SEELE</div>
                 <div style="font-size:80px;font-family:HeadlineA" id="iTunesTrack">00</div>
                 <div style="font-size:30px;font-family:HeadlineA">SOUND</div>
                 <div style="font-size:30px;font-family:HeadlineA">ONLY</div>
@@ -354,7 +354,7 @@ render: -> """
         <div class="nav a2 NetCell" target="_blank" href="#" style="z-index:9999"><s1></s1><b></b>
                     <div class="contentS" style="margin-left:-35px">Ibytes/s</div>
                     <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:25px;font-family:Futura;font-style:normal"><span class="NetU">Fehler</span></div>
-                    <div class="contentS" style="position: absolute;left:48px;top:-95px;">Obytes/s</div>
+                    <div class="contentS" style="position: absolute;left:53px;top:-95px;">Obytes/s</div>
                     </div>
         <div class="nav a5" target="_blank" href="#" id="53"><s1></s1><b1></b1></div>
         <div class="nav a0" target="_blank" href="#" id="54"><s></s><b></b>
@@ -364,7 +364,7 @@ render: -> """
         <p></p>
 
         <div class="nav a1 a2 NetCell" target="_blank" href="#"><s></s><b2></b2>
-            <div class="content"  style="margin-left:10px;margin-top:0px;font-size:25px;font-family:Futura;font-style:normal"><span class="NetD">Fehler</span></div></div>
+            <div class="content"  style="margin-left:15px;margin-top:0px;font-size:25px;font-family:Futura;font-style:normal"><span class="NetD">Fehler</span></div></div>
         <div class="nav a5" target="_blank" href="#" id="56"><s></s><b3></b3></div>
         <div class="nav a5" target="_blank" href="#" id="57" style="z-index:99999"><s2></s2><b></b>
             <div class="Rotate" style="text-overflow:ellipsis;
