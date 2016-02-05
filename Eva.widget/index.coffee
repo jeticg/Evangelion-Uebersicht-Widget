@@ -1,4 +1,4 @@
-# Version: 0.89a
+# Version: 0.90a
 ## If you do not want a transparent widget, please adjust the opacity setting under STYLE
 ## If you do not know how to write HTML/CSS, it is best for you to learn it first before
 ## attempting to customise the UI. Or you can contact me.
@@ -162,9 +162,13 @@ style: """
         right:0px
         top:-95px
     .a0, .a0 s, .a0 b
-        @keyframes meow_BG { from { background-color:rgba(256,0,0,1); } to { background-color:rgba(128,0,0,1); }  }
-        @keyframes meow_BS { from { border-bottom-color:rgba(256,0,0,1); } to { border-bottom-color:rgba(128,0,0,1); }  }
-        @keyframes meow_BB { from { border-top-color:rgba(256,0,0,1); } to { border-top-color:rgba(128,0,0,1); }  }
+        @keyframes meow_BG_red { from { background-color:rgba(256,0,0,1); } to { background-color:rgba(128,0,0,1); }  }
+        @keyframes meow_BS_red { from { border-bottom-color:rgba(256,0,0,1); } to { border-bottom-color:rgba(128,0,0,1); }  }
+        @keyframes meow_BB_red { from { border-top-color:rgba(256,0,0,1); } to { border-top-color:rgba(128,0,0,1); }  }
+        @keyframes meow_BG_ora { from { background-color:rgba(256,96,0,1); } to { background-color:rgba(128,48,0,1); }  }
+        @keyframes meow_BS_ora { from { border-bottom-color:rgba(256,96,0,1); } to { border-bottom-color:rgba(128,48,0,1); }  }
+        @keyframes meow_BB_ora { from { border-top-color:rgba(256,96,0,1); } to { border-top-color:rgba(128,48,0,1); }  }
+
     .a1
         margin-right:140px
     .ai
@@ -380,7 +384,7 @@ render: -> """
             <div class="iTunesPre"></div><div class="iTunesPre"></div>
             <div class="iTunesPause"></div><div class="iTunesPlay"></div>
             <div class="iTunesNext"></div><div class="iTunesNext"></div></div>
-        <div class="nav ai" target="_blank" href="#" id="58"></div>
+        <div class="nav ai" target="_blank" href="#" id="58"><s></s><b></b></div>
         <div class="nav a0" target="_blank" href="#" id="59"><s></s><b></b>
             <div class="id">59</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
@@ -615,6 +619,7 @@ command:    "   pmset -g batt | grep \"%\" | awk 'BEGINN { FS = \";\" };{ print 
                 du -ch ~/.Trash | grep total | cut -c 1-5 &&
                 osascript 'Eva.widget/iTunes.scpt' &&
                 sar -n DEV 1 1 2>/dev/null | grep Average| awk 'BEGIN { sum = 0; sum2 = 0 }  { sum += $4;sum2 += $6 }; END { print sum,sum2 }' &&
+                defaults read ~/Library/Preferences/ByHost/com.apple.notificationcenterui.*.plist | grep doNotDisturb | awk '{print $3}' &&
                 ls -F /Volumes/ | awk -F'\t' '{ print $0}'
             "
 afterRender: (domEl) ->
@@ -684,8 +689,8 @@ afterRender: (domEl) ->
         $(domEl).find("#MemCell     .contentS").text("內存")
         $(domEl).find("#IPCell      .contentS").text("公網地址")
         $(domEl).find("#TrashCell   .contentS").text("廢紙簍")
-        $(domEl).find(".Wcontent             ").text("警告")
-        $(domEl).find("#21          .contentS").text("警告")
+        $(domEl).find(".Wcontent             ").html("<u></u><d></d>警告")
+        $(domEl).find("#21          .contentS").html("<u></u><d></d>警告")
         $(domEl).find(".Wcontent             ").css("font-size", "23px")
         $(domEl).find(".contentS             ").css("font-size", "23px")
         $(domEl).find(".Bat                  ").css("font-size", "23px")
@@ -718,14 +723,15 @@ afterRender: (domEl) ->
         $(domEl).find("#MemCell     .contentS").text("Memory")
         $(domEl).find("#IPCell      .contentS").text("PublicIP")
         $(domEl).find("#TrashCell   .contentS").text("Trash")
-        $(domEl).find(".Wcontent             ").text("WARNING")
-        $(domEl).find("#21          .contentS").text("WARNING")
+        $(domEl).find(".Wcontent             ").html("<u></u><d></d>WARNING")
+        $(domEl).find("#21          .contentS").html("<u></u><d></d>WARNING")
 #   Initialise warnings
     window.warning=0;
     window.Bwarning=0;
     window.Cwarning=0;
     window.Nwarning=0;
-
+    window.Mwarning=0;
+    window.Owarning=0;
     $(domEl).on 'click', '.iTunesPre', => @run "osascript -e 'tell application \"iTunes\" to previous track'"
     $(domEl).on 'click', '.iTunesNext', => @run "osascript -e 'tell application \"iTunes\" to next track'"
     $(domEl).on 'click', '.iTunesPause', => @run "osascript -e 'tell application \"iTunes\" to pause'"
@@ -748,9 +754,14 @@ update: (output, domEl) ->
 #   functions
     # This is for the warning animations, for better battery life, please consider changing these settings
     animation_on = (cell) -> () ->
-        $(domEl).find("#{cell} s").css("animation", "meow_BS 1s linear 0s infinite alternate")
-        $(domEl).find("#{cell} b").css("animation", "meow_BB 1s linear 0s infinite alternate")
-        $(domEl).find("#{cell}"  ).css("animation", "meow_BG 1s linear 0s infinite alternate")
+        if warning==1
+            $(domEl).find("#{cell} s").css("animation", "meow_BS_red 1s linear 0s infinite alternate")
+            $(domEl).find("#{cell} b").css("animation", "meow_BB_red 1s linear 0s infinite alternate")
+            $(domEl).find("#{cell}"  ).css("animation", "meow_BG_red 1s linear 0s infinite alternate")
+        else
+            $(domEl).find("#{cell} s").css("animation", "meow_BS_ora 1s linear 0s infinite alternate")
+            $(domEl).find("#{cell} b").css("animation", "meow_BB_ora 1s linear 0s infinite alternate")
+            $(domEl).find("#{cell}"  ).css("animation", "meow_BG_ora 1s linear 0s infinite alternate")
     animation_off = (cell) ->
         $(domEl).find("#{cell} s").css("animation", "")
         $(domEl).find("#{cell} b").css("animation", "")
@@ -785,24 +796,33 @@ update: (output, domEl) ->
     # General warning settings. This function is called when a general warning is on,
     # which will turn every not-in-use cell into displaying warning signals
     warning_on = () ->
+        animation_off(".a0")
         for element in $(domEl).find(".a0")
             work = (cell) -> () ->
                 $cell = $(cell)
                 $cell.find(".Wcontent").css("visibility","visible")
-                $cell.find(".id"      ).css("display"   ,"none"   )
-                colorChange($cell, "rgba(256,0,0,1)")
+                $cell.find(".id").css("display"   ,"none"   )
+                if warning==1
+                    colorChange($cell, "rgba(256,0,0,1)")
+                    $(domEl).find(".Wcontent").html("<u></u><d></d>WARNUNG")
+                else
+                    colorChange($cell, "rgba(256,96,0,1)")
+                    $(domEl).find(".Wcontent").html("NoDisturb")
             setTimeout (work(element)), Math.random() * 1000
         setTimeout (animation_on(".a0")), 1000
 
     warning_off = () ->
-        for element in $(domEl).find(".a0")
-            work = (cell) -> () ->
-                $cell = $(cell)
-                $cell.find(".Wcontent").css("visibility","hidden"      )
-                $cell.find(".id"      ).css("display"   ,"inline-block")
-                colorChange($cell, "rgba(10,10,10,1)")
-            setTimeout (work(element)), Math.random() * 1000
-        animation_off(".a0")
+        if warning+Mwarning>0
+            warning_on()
+        else
+            for element in $(domEl).find(".a0")
+                work = (cell) -> () ->
+                    $cell = $(cell)
+                    $cell.find(".Wcontent").css("visibility","hidden"      )
+                    $cell.find(".id"      ).css("display"   ,"inline-block")
+                    colorChange($cell, "rgba(10,10,10,1)")
+                setTimeout (work(element)), Math.random() * 1000
+            animation_off(".a0")
 #   Processing time
     # This is for outputing the time. Nothing really
     date = new Date()
@@ -874,23 +894,28 @@ update: (output, domEl) ->
         Nwarning=1
     else
         Nwarning=0
+    if AllOutputs[i+7] == '1;'
+        Mwarning=1
+    else
+        Mwarning=0
 #   Deliver output
     # Disks, all five disks are hidden by default, only when such disk exists shall it be displayed
     # Because each volume takes a single line in the output, we have to judge by the length of output
-    if (AllOutputs.length > 8+i)
-        diskDisplay("#66", AllOutputs[7+i])
+    idisk = i+8
+    if (AllOutputs.length > idisk+1)
+        diskDisplay("#66", AllOutputs[idisk+0])
     else    $(domEl).find("#66").css("visibility","hidden")
-    if (AllOutputs.length > 9+i)
-        diskDisplay("#69", AllOutputs[8+i])
+    if (AllOutputs.length > idisk+2)
+        diskDisplay("#69", AllOutputs[idisk+1])
     else    $(domEl).find("#69").css("visibility","hidden")
-    if (AllOutputs.length > 10+i)
-        diskDisplay("#72", AllOutputs[9+i])
+    if (AllOutputs.length > idisk+3)
+        diskDisplay("#72", AllOutputs[idisk+2])
     else    $(domEl).find("#72").css("visibility","hidden")
-    if (AllOutputs.length > 11+i)
-        diskDisplay("#62", AllOutputs[10+i])
+    if (AllOutputs.length > idisk+4)
+        diskDisplay("#62", AllOutputs[idisk+3])
     else    $(domEl).find("#62").css("visibility","hidden")
-    if (AllOutputs.length > 12+i)
-        diskDisplay("#65", AllOutputs[11+i])
+    if (AllOutputs.length > idisk+5)
+        diskDisplay("#65", AllOutputs[idisk+4])
     else    $(domEl).find("#65").css("visibility","hidden")
     # Outputting all the information for debug
     $(domEl).find('.OP').text("#{output}")
@@ -978,14 +1003,21 @@ update: (output, domEl) ->
             colorChange("#CPUCell", "rgba(10,10,10,1)")
         Cwarning = 0
     #General warning trigger.
-    if Bwarning+Cwarning != 0
-        if (warning != 1)
+    if Bwarning+Cwarning+Mwarning != 0
+        if Bwarning+Cwarning !=0
+            if (warning != 1)
+                warning_on()
+                warning = 1
+        else
+        if (Owarning != 1)
             warning_on()
-        warning = 1
+            Owarning = 1
     else
-        if (warning != 0)
+        if (Owarning!=0 || warning!=0 )
             warning_off()
-        warning = 0
+            Owarning==0
+            warning==0
+
 
 #   hover effects, dealing with hovering
     $('#IPCell').hover (->
