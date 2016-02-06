@@ -1,4 +1,4 @@
-# Version: 0.91a
+# Version: 0.92a
 ## If you do not want a transparent widget, please adjust the opacity setting under STYLE
 ## If you do not know how to write HTML/CSS, it is best for you to learn it first before
 ## attempting to customise the UI. Or you can contact me.
@@ -619,7 +619,7 @@ command:    "   pmset -g batt | grep \"%\" | awk 'BEGINN { FS = \";\" };{ print 
                 du -ch ~/.Trash | grep total | cut -c 1-5 &&
                 osascript 'Eva.widget/iTunes.scpt' &&
                 sar -n DEV 1 1 2>/dev/null | grep Average| awk 'BEGIN { sum = 0; sum2 = 0 }  { sum += $4;sum2 += $6 }; END { print sum,sum2 }' &&
-                defaults read ~/Library/Preferences/ByHost/com.apple.notificationcenterui.*.plist | grep doNotDisturb\ =\  | awk '{print $3}' &&
+                defaults read ~/Library/Preferences/ByHost/com.apple.notificationcenterui.*.plist | grep doNotDisturb' '=  | awk '{print $3}' &&
                 ls -F /Volumes/ | awk -F'\t' '{ print $0}'
             "
 afterRender: (domEl) ->
