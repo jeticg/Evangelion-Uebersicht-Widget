@@ -38,6 +38,9 @@ Who am I kidding, the only thing you need to know is this is a widget for Übers
 
 ## Updates
 
+0.91a
+* Fixed a bug with DoNotDisturb alert
+
 0.90a
 * Add DoNotDisturb alert
 * Fixed a bug with multi-language support
