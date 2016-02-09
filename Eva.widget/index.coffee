@@ -1,4 +1,4 @@
-# Version: 0.92a
+# Version: 0.93a
 ## If you do not want a transparent widget, please adjust the opacity setting under STYLE
 ## If you do not know how to write HTML/CSS, it is best for you to learn it first before
 ## attempting to customise the UI. Or you can contact me.
@@ -617,9 +617,11 @@ command:    "   pmset -g batt | grep \"%\" | awk 'BEGINN { FS = \";\" };{ print 
                 sysctl hw.ncpu | awk '{print $2}' &&
                 ps aux  | awk 'BEGIN { sum = 0 }  { sum += $4 }; END { print sum }' &&
                 du -ch ~/.Trash | grep total | cut -c 1-5 &&
-                osascript 'Eva.widget/iTunes.scpt' &&
+
                 sar -n DEV 1 1 2>/dev/null | grep Average| awk 'BEGIN { sum = 0; sum2 = 0 }  { sum += $4;sum2 += $6 }; END { print sum,sum2 }' &&
                 defaults read ~/Library/Preferences/ByHost/com.apple.notificationcenterui.*.plist | grep doNotDisturb' '=  | awk '{print $3}' &&
+
+                osascript 'Eva.widget/iTunes.scpt' &&
                 ls -F /Volumes/ | awk -F'\t' '{ print $0}'
             "
 afterRender: (domEl) ->
@@ -854,11 +856,13 @@ update: (output, domEl) ->
     CPUAmount       = AllOutputs[2+i].split(' ')
     MemUsage        = AllOutputs[3+i].split(' ')
     Trashvalues     = AllOutputs[4+i].split(' ')
-    iTunesvalues    = AllOutputs[5+i].split('~')
-    Networkvalues   = AllOutputs[6+i].split(' ')
+    Networkvalues   = AllOutputs[5+i].split(' ')
+    Disturbvalues   = AllOutputs[6+i]
+    iTunesvalues    = AllOutputs[7+i].split('~')
+
     Trashvalues="#{Trashvalues}".replace /,/g, ''
     Trashvalues="#{Trashvalues}".replace /\s+/g, ''
-    if (AllOutputs[5+i].indexOf("~ ~ ~ 0 ~ 0") > -1)
+    if (AllOutputs[7+i].indexOf("~ ~ ~ 0 ~ 0") > -1)
         $(domEl).find(".CoverCell").css("visibility","hidden")
         $(domEl).find("#44").css("visibility","hidden")
         $(domEl).find("#45").css("visibility","hidden")
@@ -894,7 +898,7 @@ update: (output, domEl) ->
         Nwarning=1
     else
         Nwarning=0
-    if AllOutputs[i+7] == '1;'
+    if Disturbvalues == '1;'
         Mwarning=1
     else
         Mwarning=0
