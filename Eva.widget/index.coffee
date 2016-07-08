@@ -321,7 +321,7 @@ render: -> """
         <div class="iTunesCover CoverCell">
             <div class="iTunesCoverMask">
                 <div style="font-size:30px;font-family:IMPACT">SEELE</div>
-                <div style="font-size:80px;font-family:IMPACT" id="iTunesTrack">00</div>
+                <div style="font-size:70px;font-family:IMPACT" id="iTunesTrack">00</div>
                 <div style="font-size:30px;font-family:IMPACT">SOUND</div>
                 <div style="font-size:30px;font-family:IMPACT">ONLY</div>
             </div>
