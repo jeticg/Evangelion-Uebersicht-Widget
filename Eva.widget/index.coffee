@@ -1,4 +1,4 @@
-# Version: 0.93a
+# Version: 0.94a
 ## If you do not want a transparent widget, please adjust the opacity setting under STYLE
 ## If you do not know how to write HTML/CSS, it is best for you to learn it first before
 ## attempting to customise the UI. Or you can contact me.
@@ -320,10 +320,10 @@ render: -> """
     <div class="left" style="float:left">
         <div class="iTunesCover CoverCell">
             <div class="iTunesCoverMask">
-                <div style="font-size:30px;font-family:HeadlineA">SEELE</div>
-                <div style="font-size:80px;font-family:HeadlineA" id="iTunesTrack">00</div>
-                <div style="font-size:30px;font-family:HeadlineA">SOUND</div>
-                <div style="font-size:30px;font-family:HeadlineA">ONLY</div>
+                <div style="font-size:30px;font-family:IMPACT">SEELE</div>
+                <div style="font-size:80px;font-family:IMPACT" id="iTunesTrack">00</div>
+                <div style="font-size:30px;font-family:IMPACT">SOUND</div>
+                <div style="font-size:30px;font-family:IMPACT">ONLY</div>
             </div>
             <div style="width:190px;height:190px;margin-top:5px" id="iTunesCoverImg"></div>
             <div class="iTunesRatingBlock" id="rate1"></div>
@@ -619,7 +619,7 @@ command:    "   pmset -g batt | grep \"%\" | awk 'BEGINN { FS = \";\" };{ print 
                 du -ch ~/.Trash | grep total | cut -c 1-5 &&
 
                 sar -n DEV 1 1 2>/dev/null | grep Average| awk 'BEGIN { sum = 0; sum2 = 0 }  { sum += $4;sum2 += $6 }; END { print sum,sum2 }' &&
-                defaults read ~/Library/Preferences/ByHost/com.apple.notificationcenterui.*.plist | grep doNotDisturb' '=  | awk '{print $3}' &&
+                defaults read ~/Library/Preferences/ByHost/com.apple.notificationcenterui doNotDisturb &&
 
                 osascript 'Eva.widget/iTunes.scpt' &&
                 ls -F /Volumes/ | awk -F'\t' '{ print $0}'
@@ -898,7 +898,7 @@ update: (output, domEl) ->
         Nwarning=1
     else
         Nwarning=0
-    if Disturbvalues == '1;'
+    if Disturbvalues == '1'
         Mwarning=1
     else
         Mwarning=0
@@ -929,18 +929,32 @@ update: (output, domEl) ->
         $(domEl).find('.Bat').text("#{BatteryType}")
     else
         $(domEl).find('.Bat').text("#{Batterievalues[0]}")
-    $(domEl).find('.BatPer').text("#{Batterievalues[1]}")
-    if (Batterievalues[2].indexOf("discharging") > -1)
-        $(domEl).find('.BatStatus').text("#{BatteryStatus[2]}")
-    else if (Batterievalues[2].indexOf("charged") > -1)
-        $(domEl).find('.BatStatus').text("#{BatteryStatus[1]}")
-    else if (Batterievalues[2].indexOf("charging") > -1)
-        $(domEl).find('.BatStatus').text("#{BatteryStatus[0]}")
-    else if (Batterievalues[2].indexOf("finishing") > -1)
-        $(domEl).find('.BatStatus').text("#{BatteryStatus[3]}")
+    if (Batterievalues[1].indexOf("id="))
+        $(domEl).find('.BatPer').text("#{Batterievalues[2]}")
+        if (Batterievalues[3].indexOf("discharging") > -1)
+            $(domEl).find('.BatStatus').text("#{BatteryStatus[3]}")
+        else if (Batterievalues[3].indexOf("charged") > -1)
+            $(domEl).find('.BatStatus').text("#{BatteryStatus[2]}")
+        else if (Batterievalues[3].indexOf("charging") > -1)
+            $(domEl).find('.BatStatus').text("#{BatteryStatus[1]}")
+        else if (Batterievalues[3].indexOf("finishing") > -1)
+            $(domEl).find('.BatStatus').text("#{BatteryStatus[4]}")
+        else
+            $(domEl).find('.BatStatus').text("#{Batterievalues[3]}")
+        $(domEl).find('.BatRe').text("#{Batterievalues[4]}")
     else
-        $(domEl).find('.BatStatus').text("#{Batterievalues[2]}")
-    $(domEl).find('.BatRe').text("#{Batterievalues[3]}")
+        $(domEl).find('.BatPer').text("#{Batterievalues[1]}")
+        if (Batterievalues[2].indexOf("discharging") > -1)
+            $(domEl).find('.BatStatus').text("#{BatteryStatus[2]}")
+        else if (Batterievalues[2].indexOf("charged") > -1)
+            $(domEl).find('.BatStatus').text("#{BatteryStatus[1]}")
+        else if (Batterievalues[2].indexOf("charging") > -1)
+            $(domEl).find('.BatStatus').text("#{BatteryStatus[0]}")
+        else if (Batterievalues[2].indexOf("finishing") > -1)
+            $(domEl).find('.BatStatus').text("#{BatteryStatus[3]}")
+        else
+            $(domEl).find('.BatStatus').text("#{Batterievalues[2]}")
+        $(domEl).find('.BatRe').text("#{Batterievalues[3]}")
     # Output other information
     $(domEl).find('.CPUU').text("#{Math.floor(CPUUsage/CPUAmount)}")
     $(domEl).find('.MEMU').text("#{Math.floor(MemUsage)}")
