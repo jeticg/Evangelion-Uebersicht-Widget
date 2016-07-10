@@ -38,6 +38,9 @@ Who am I kidding, the only thing you need to know is this is a widget for Übers
 
 ## Updates
 
+0.95a
+* Fixed a bug with battery display
+
 0.94a
 * Resolving compatibility issue with OSX Sierra
 

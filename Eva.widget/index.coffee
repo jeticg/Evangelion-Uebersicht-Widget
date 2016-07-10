@@ -1,4 +1,4 @@
-# Version: 0.94a
+# Version: 0.95a
 ## If you do not want a transparent widget, please adjust the opacity setting under STYLE
 ## If you do not know how to write HTML/CSS, it is best for you to learn it first before
 ## attempting to customise the UI. Or you can contact me.
@@ -929,16 +929,16 @@ update: (output, domEl) ->
         $(domEl).find('.Bat').text("#{BatteryType}")
     else
         $(domEl).find('.Bat').text("#{Batterievalues[0]}")
-    if (Batterievalues[1].indexOf("id="))
+    if (Batterievalues[1].indexOf("id=") > -1)
         $(domEl).find('.BatPer').text("#{Batterievalues[2]}")
         if (Batterievalues[3].indexOf("discharging") > -1)
-            $(domEl).find('.BatStatus').text("#{BatteryStatus[3]}")
-        else if (Batterievalues[3].indexOf("charged") > -1)
             $(domEl).find('.BatStatus').text("#{BatteryStatus[2]}")
-        else if (Batterievalues[3].indexOf("charging") > -1)
+        else if (Batterievalues[3].indexOf("charged") > -1)
             $(domEl).find('.BatStatus').text("#{BatteryStatus[1]}")
+        else if (Batterievalues[3].indexOf("charging") > -1)
+            $(domEl).find('.BatStatus').text("#{BatteryStatus[0]}")
         else if (Batterievalues[3].indexOf("finishing") > -1)
-            $(domEl).find('.BatStatus').text("#{BatteryStatus[4]}")
+            $(domEl).find('.BatStatus').text("#{BatteryStatus[3]}")
         else
             $(domEl).find('.BatStatus').text("#{Batterievalues[3]}")
         $(domEl).find('.BatRe').text("#{Batterievalues[4]}")
