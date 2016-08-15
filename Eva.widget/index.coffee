@@ -1,4 +1,4 @@
-# Version: 0.96a
+# Version: 0.97a
 ## If you do not want a transparent widget, please adjust the opacity setting under STYLE
 ## If you do not know how to write HTML/CSS, it is best for you to learn it first before
 ## attempting to customise the UI. Or you can contact me.
@@ -612,7 +612,7 @@ render: -> """
     </div>
 """
 
-command:    "   pmset -g batt | grep \"%\" | awk 'BEGINN { FS = \";\" };{ print $1,$2,$3,$4 }' | sed -e 's/-I/I/' -e 's/-0//' -e 's/;//' -e 's/;//' &&
+command:    "   pmset -g batt | grep \"%\" | awk 'BEGINN { FS = \";\" };{ print $1,$2,$3,$4,$5 }' | sed -e 's/-I/I/' -e 's/-0//' -e 's/;//' -e 's/;//' &&
                 ps aux  | awk 'BEGIN { sum = 0 }  { sum += $3 }; END { print sum }' &&
                 sysctl hw.ncpu | awk '{print $2}' &&
                 ps aux  | awk 'BEGIN { sum = 0 }  { sum += $4 }; END { print sum }' &&
