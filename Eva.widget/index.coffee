@@ -1,4 +1,4 @@
-# Version: 0.95a
+# Version: 0.96a
 ## If you do not want a transparent widget, please adjust the opacity setting under STYLE
 ## If you do not know how to write HTML/CSS, it is best for you to learn it first before
 ## attempting to customise the UI. Or you can contact me.
@@ -930,6 +930,8 @@ update: (output, domEl) ->
     else
         $(domEl).find('.Bat').text("#{Batterievalues[0]}")
     if (Batterievalues[1].indexOf("id=") > -1)
+        BatteryPercentage=Batterievalues[2]
+        BatteryState=Batterievalues[3]
         $(domEl).find('.BatPer').text("#{Batterievalues[2]}")
         if (Batterievalues[3].indexOf("discharging") > -1)
             $(domEl).find('.BatStatus').text("#{BatteryStatus[2]}")
@@ -943,6 +945,8 @@ update: (output, domEl) ->
             $(domEl).find('.BatStatus').text("#{Batterievalues[3]}")
         $(domEl).find('.BatRe').text("#{Batterievalues[4]}")
     else
+        BatteryPercentage=Batterievalues[1]
+        BatteryState=Batterievalues[2]
         $(domEl).find('.BatPer').text("#{Batterievalues[1]}")
         if (Batterievalues[2].indexOf("discharging") > -1)
             $(domEl).find('.BatStatus').text("#{BatteryStatus[2]}")
@@ -994,7 +998,7 @@ update: (output, domEl) ->
         $(domEl).find('#rate5').css("visibility","hidden")
 #   Dealing with warnings
     # Bwarning stands for Battery warning, triggers when battery drops below 20% without charging.
-    if (parseInt(Batterievalues[1]) <= 20 & Batterievalues[2].indexOf("discharging") > -1)
+    if (parseInt(BatteryPercentage) <= 20 & BatteryState.indexOf("discharging") > -1)
         if (Bwarning != 1)
             colorChange(".a3", "rgba(256,0,0,1)")
             colorChange("#15", "rgba(128,0,0,1)")

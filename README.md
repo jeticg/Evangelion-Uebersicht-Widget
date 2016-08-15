@@ -38,6 +38,9 @@ Who am I kidding, the only thing you need to know is this is a widget for Übers
 
 ## Updates
 
+0.96a
+* Fixed a bug with battery alert
+
 0.95a
 * Fixed a bug with battery display
 
