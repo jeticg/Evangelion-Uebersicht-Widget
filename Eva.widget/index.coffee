@@ -1,4 +1,4 @@
-# Version: 0.97a
+# Version: 0.98a
 ## If you do not want a transparent widget, please adjust the opacity setting under STYLE
 ## If you do not know how to write HTML/CSS, it is best for you to learn it first before
 ## attempting to customise the UI. Or you can contact me.
@@ -28,7 +28,7 @@ style: """
     font-family: Futura
     text-transform: uppercase
     position:relative
-    opacity: 0.5
+    opacity: 0.75
     margin:0px
     text-align:center
     text-decoration:none
@@ -618,7 +618,7 @@ command:    "   pmset -g batt | grep \"%\" | awk 'BEGINN { FS = \";\" };{ print 
                 ps aux  | awk 'BEGIN { sum = 0 }  { sum += $4 }; END { print sum }' &&
                 du -ch ~/.Trash | grep total | cut -c 1-5 &&
 
-                sar -n DEV 1 1 2>/dev/null | grep Average| awk 'BEGIN { sum = 0; sum2 = 0 }  { sum += $4;sum2 += $6 }; END { print sum,sum2 }' &&
+                chmod +x Eva.widget/netstat.sh && Eva.widget/netstat.sh &&
                 defaults read ~/Library/Preferences/ByHost/com.apple.notificationcenterui doNotDisturb &&
 
                 osascript 'Eva.widget/iTunes.scpt' &&

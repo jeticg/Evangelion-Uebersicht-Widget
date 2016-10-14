@@ -38,6 +38,9 @@ Who am I kidding, the only thing you need to know is this is a widget for Übers
 
 ## Updates
 
+0.98a
+* Fixed a compatibility issue with Sierra's removal of sar
+
 0.97a
 * Fixed a bug with battery remain
 
