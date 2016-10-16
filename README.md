@@ -8,7 +8,6 @@ If you leaves nothing on your desktop except for less than six mounted volumes (
 The interface is now MULTI-LANGUAGE! Supported language:
 * Deutsch
 * English
-* 繁體中文
 
 Currently with this widget you can:
 
@@ -37,6 +36,11 @@ Feedback
 Who am I kidding, the only thing you need to know is this is a widget for Übersicht, http://tracesof.net/uebersicht/
 
 ## Updates
+
+0.Xa
+* Removed language support for Traditional Chinese
+* Added support to adjust the size of widget(By using font-size. All sizes are specified in em instead of px now.)
+* Fixed a bug where network display and iTunes might malfunction.
 
 0.98a
 * Fixed a compatibility issue with Sierra's removal of sar

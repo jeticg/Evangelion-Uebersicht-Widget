@@ -1,4 +1,4 @@
-# Version: 0.98a
+# Version: 0.Xa
 ## If you do not want a transparent widget, please adjust the opacity setting under STYLE
 ## If you do not know how to write HTML/CSS, it is best for you to learn it first before
 ## attempting to customise the UI. Or you can contact me.
@@ -23,144 +23,145 @@ refreshFrequency: 3000
 ## this widget as well. Please look out for my updates and if you've done something amazing with
 ## your copy of this widget and want me to add, please contact me.
 ##
+# You can change the size through adjusting the font-size under style. Default is 1px
 style: """
-    top: -25px
+    font-size: 1px
+    top: -25em
     font-family: Futura
     text-transform: uppercase
     position:relative
-    opacity: 0.75
-    margin:0px
+    opacity: 0.5
+    margin:0
     text-align:center
     text-decoration:none
     .left
         position: fixed
-        bottom: -25px
-        left:-100px
-        width: 800px
+        bottom: -25em
+        left:-100em
+        width: 800em
         float:left
         vertical-align : bottom
     .right
         float:right
-        margin-right:-60px
+        margin-right:-60em
     .nav
         text-decoration: none
-        font-size: 20px
         transform:rotate(90deg)
-        width:100px;height:58px
+        width:100em;height:58em
         background:rgba(10,10,10,1)
         display:inline-block
         position:relative
-        line-height:58px
+        line-height:58em
         color:#ffffff
         float:right
-        margin-top:-5px
-        margin-left:45px
-        margin-right:45px
+        margin-top:-5em
+        margin-left:45em
+        margin-right:45em
     .nav d
         width:0;height:0
         display:block
         overflow:hidden
         position:absolute
-        border-left:6px dotted transparent
-        border-right:6px dotted transparent
-        border-bottom:12px solid rgba(256,256,256,1)
-        bottom:50px
-        right:44px
+        border-left:0.4em dotted transparent
+        border-right:0.4em dotted transparent
+        border-bottom:0.8em solid rgba(256,256,256,1)
+        bottom:3.33333em
+        right: 2.93333em
     .nav u
         width:0;height:0
         display:block
         overflow:hidden
         position:absolute
-        border-left:6px dotted transparent
-        border-right:6px dotted transparent
-        border-top:12px solid rgba(256,256,256,1)
-        top:50px
-        right:44px
+        border-left:0.4em dotted transparent
+        border-right:0.4em dotted transparent
+        border-top:0.8em solid rgba(256,256,256,1)
+        top:3.33333em
+        right:2.93333em
     .nav o
         display:block
         overflow:hidden
         position:absolute
-        border-right:2px solid rgba(256,256,256,1)
-        border-left:2px solid rgba(256,256,256,1)
-        padding-right:88px
-        padding-top:52px
-        left:4px
-        top:3px
+        border-right:2em solid rgba(256,256,256,1)
+        border-left:2em solid rgba(256,256,256,1)
+        padding-right:88em
+        padding-top:52em
+        left:4em
+        top:3em
     .nav s
-        margin-left:10px
+        margin-left:10em
         width:0;height:0
         display:block
         overflow:hidden
         position:absolute
-        border-right:50px dotted transparent
-        border-left:50px dotted transparent
-        border-bottom:30px solid rgba(10,10,10,1)
-        right:0px
-        top:-30px
+        border-right:50em dotted transparent
+        border-left:50em dotted transparent
+        border-bottom:30em solid rgba(10,10,10,1)
+        right:0em
+        top:-30em
     .nav b
-        margin-left:10px
+        margin-left:10em
         width:0;height:0
         display:block
         overflow:hidden
         position:absolute
-        border-right:50px dotted transparent
-        border-left:50px dotted transparent
-        border-top:30px solid rgba(10,10,10,1)
-        bottom:-30px
-        right:0px
+        border-right:50em dotted transparent
+        border-left:50em dotted transparent
+        border-top:30em solid rgba(10,10,10,1)
+        bottom:-30em
+        right:0em
     .nav b1
-        margin-left:10px
+        margin-left:10em
         width:0;height:0
         display:block
         overflow:hidden
         position:absolute
-        border-right:0px dotted transparent
-        border-left:100px dotted transparent
-        border-top:60px solid rgba(10,10,10,1)
-        bottom:-60px
-        right:0px
+        border-right:0em dotted transparent
+        border-left:100em dotted transparent
+        border-top:60em solid rgba(10,10,10,1)
+        bottom:-60em
+        right:0em
     .nav b2
-        margin-left:10px
+        margin-left:10em
         width:0;height:0
         display:block
         overflow:hidden
         position:absolute
-        border-right:100px dotted transparent
-        border-left:0px dotted transparent
-        border-top:60px solid rgba(10,10,10,1)
-        bottom:-60px
-        right:0px
+        border-right:100em dotted transparent
+        border-left:0em dotted transparent
+        border-top:60em solid rgba(10,10,10,1)
+        bottom:-60em
+        right:0em
     .nav b3
-        margin-left:10px
-        width:100px
+        margin-left:10em
+        width:100em
         height:0
         display:block
         position:absolute
         background-color: rgba(10,10,10,1)
-        border-top:95px solid rgba(10,10,10,1)
-        right:0px
-        bottom:-95px
+        border-top:95em solid rgba(10,10,10,1)
+        right:0em
+        bottom:-95em
     .nav s1
-        margin-left:10px
+        margin-left:10em
         width:0;height:0
         display:block
         overflow:hidden
         position:absolute
-        border-right:0px dotted transparent
-        border-left:100px dotted transparent
-        border-bottom:60px solid rgba(10,10,10,1)
-        right:0px
-        top:-60px
+        border-right:0em dotted transparent
+        border-left:100em dotted transparent
+        border-bottom:60em solid rgba(10,10,10,1)
+        right:0em
+        top:-60em
     .nav s2
-        margin-left:10px
-        width:100px
+        margin-left:10em
+        width:100em
         height:0
         display:block
         position:absolute
         background-color: rgba(10,10,10,1)
-        border-bottom:95px solid rgba(10,10,10,1)
-        right:0px
-        top:-95px
+        border-bottom:95em solid rgba(10,10,10,1)
+        right:0em
+        top:-95em
     .a0, .a0 s, .a0 b
         @keyframes meow_BG_red { from { background-color:rgba(256,0,0,1); } to { background-color:rgba(128,0,0,1); }  }
         @keyframes meow_BS_red { from { border-bottom-color:rgba(256,0,0,1); } to { border-bottom-color:rgba(128,0,0,1); }  }
@@ -170,7 +171,7 @@ style: """
         @keyframes meow_BB_ora { from { border-top-color:rgba(256,96,0,1); } to { border-top-color:rgba(128,48,0,1); }  }
 
     .a1
-        margin-right:140px
+        margin-right:140em
     .ai
         visibility: hidden
     .a4
@@ -186,7 +187,7 @@ style: """
         border-right-color:rgba(10,10,10,0)
         background-color:rgba(10,10,10,0)
     .ax
-        height:200px
+        height:200em
     .a1:hover, .a2:hover, .a3:hover
         background-color:rgba(128,128,128,1)
     .a1:hover s, .a2:hover s, .a3:hover s
@@ -194,80 +195,78 @@ style: """
     .a1:hover b, .a2:hover b, .a3:hover b
         border-top-color:rgba(128,128,128,1)
     .output
-        padding: 5px 10px
-        font-size: 30px
+        padding: 5em 10em
+        font-size: 30em
         font-weight: 100
-        text-shadow: 0 0px 5px #000000
+        text-shadow: 0 0em 5em #000000
         background-color: rgba(0,0,0,0.2)
-        border: 1px solid #fff
+        border: 1em solid #fff
     .content
         transform:rotate(-90deg)
         font-style: Black
-        font-size: 40px
         z-index:99999
     .clock
-        font-size: 30px
+        font-size: 30em
     .sal
         font-family: Songti SC
         font-style: Black
-        font-size: 40px
+        font-size:40em
     .Wcontent
         transform:rotate(-90deg)
         font-style: Black
-        font-size: 15px
+        font-size: 15em
         z-index:99999
         visibility:hidden
     .contentS
         transform:rotate(-90deg)
         font-style: Black
-        font-size: 15px
         z-index:99999
     .Bat
         font-weight: bold
-        font-size: 15px
+        font-size: 15em
         text-transform: uppercase
     .id
-        font-size:20px
+        font-size:20em
         font-family:Futura
         font-style:normal
     .BatStatus
         font-weight: bold
-        font-size: 20px
+        font-size: 20em
         text-transform: uppercase
     .Rotate
         transform:rotate(-90deg)
-        width:200px
+        width:200em
     .iTunesPre
         width:0;height:0
         position:relative
-        border-right:11px dotted transparent
-        border-left:11px dotted transparent
-        border-top:20px solid rgba(256,256,256,1)
-        right:-40px
-        top:-10px
+        border-right:11em dotted transparent
+        border-left:11em dotted transparent
+        border-top:20em solid rgba(256,256,256,1)
+        right:-40em
+        top:-10em
     .iTunesNext
         width:0;height:0
         position:relative
-        border-right:11px dotted transparent
-        border-left:11px dotted transparent
-        border-bottom:20px solid rgba(256,256,256,1)
-        right:-40px
-        top:-260px
+        border-right:11em dotted transparent
+        border-left:11em dotted transparent
+        border-bottom:20em solid rgba(256,256,256,1)
+        right:-40em
+        top:-260em
     .iTunesPause
-        width:30px;height:8px
+        width:30em;height:8em
         position:relative
-        border-top:8px solid rgba(256,256,256,1)
-        border-bottom:8px solid rgba(256,256,256,1)
-        right:-37px
-        top:-100px
+        border-top:8em solid rgba(256,256,256,1)
+        border-bottom:8em solid rgba(256,256,256,1)
+        right:-37em
+        top:-100em
     .iTunesPlay
         width:0;height:0
         position:relative
-        border-right:17px dotted transparent
-        border-left:17px dotted transparent
-        border-bottom:30px solid rgba(256,256,256,1)
-        right:-35px
-        top:-170px
+        border-right:17em dotted transparent
+        border-left:17em dotted transparent
+        border-bottom:30em solid rgba(256,256,256,1)
+        right:-35em
+        top:-170em
     .iTunesPlay:active
         border-bottom-color: rgba(128,128,128,1)
     .iTunesPause:active
@@ -280,37 +279,37 @@ style: """
     .Disk
         background-color: rgba(226,161,54,1)
         position: relative
-        font-size: 12px
-        left: 10px; top:7px
-        width:50px;height:40px
-        border:2px solid rgba(256,256,256,1)
-        border-right: 5px solid rgba(256,256,256,1)
+        font-size: 10em
+        left: 1em; top:0.7em
+        width:5em;height:4em
+        border:0.2em solid rgba(256,256,256,1)
+        border-right: 0.5em solid rgba(256,256,256,1)
         z-index:99999
     .DiskN
-        width: 90px; height:40px
-        margin-left:20px;
-        margin-top:-35px;
+        width: 9em; height:4em
+        margin-left:2em;
+        margin-top:-3.5em;
         text-overflow:ellipsis;
         overflow:hidden;
-        font-size:10px
+        font-size:10em
         transform:rotate(-90deg)
         font-style: Black
         z-index:99999
     .iTunesCover
         position: fixed;
-        left:410px; bottom:500px;
-        width:200px; height:200px;
+        left:410em; bottom:500em;
+        width:200em; height:200em;
         background-color: rgba(10,10,10,1);
         z-index:99999
     .iTunesCoverMask
         color:white
         position: fixed;
-        margin-left:5px; margin-top:5px;
-        width: 190px; height: 190px;
+        margin-left:5em; margin-top:5em;
+        width: 190em; height: 190em;
         background-color: rgba(10,10,10,0.75);
     .iTunesRatingBlock
-        width:33px;height:10px;
-        margin-left:1px;margin-right:1px;
+        width:33em;height:10em;
+        margin-left:1em;margin-right:1em;
         background-color: rgba(256,256,256,0.5);
         display:inline-block;
 
@@ -320,12 +319,12 @@ render: -> """
     <div class="left" style="float:left">
         <div class="iTunesCover CoverCell">
             <div class="iTunesCoverMask">
-                <div style="font-size:30px;font-family:IMPACT">SEELE</div>
-                <div style="font-size:70px;font-family:IMPACT" id="iTunesTrack">00</div>
-                <div style="font-size:30px;font-family:IMPACT">SOUND</div>
-                <div style="font-size:30px;font-family:IMPACT">ONLY</div>
+                <div style="font-size:30em;font-family:IMPACT">SEELE</div>
+                <div style="font-size:70em;font-family:IMPACT" id="iTunesTrack">00</div>
+                <div style="font-size:30em;font-family:IMPACT">SOUND</div>
+                <div style="font-size:30em;font-family:IMPACT">ONLY</div>
             </div>
-            <div style="width:190px;height:190px;margin-top:5px" id="iTunesCoverImg"></div>
+            <div style="width:190em;height:190em;margin-top:5em" id="iTunesCoverImg"></div>
             <div class="iTunesRatingBlock" id="rate1"></div>
             <div class="iTunesRatingBlock" id="rate2"></div>
             <div class="iTunesRatingBlock" id="rate3"></div>
@@ -356,10 +355,16 @@ render: -> """
 
         <div class="nav ai" target="_blank" href="#" id="51"></div>
         <div class="nav a2 NetCell" target="_blank" href="#" style="z-index:9999"><s1></s1><b></b>
-                    <div class="contentS" style="margin-left:-35px">Ibytes/s</div>
-                    <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:25px;font-family:Futura;font-style:normal"><span class="NetU">Fehler</span></div>
-                    <div class="contentS" style="position: absolute;left:53px;top:-95px;">Obytes/s</div>
+                    <div class="contentS" style="margin-left:-25em">
+                        <span style="font-size:15em">Ibytes/s</span>
                     </div>
+                    <div class="content"  style="margin-left:30em;margin-top:-70em;font-family:Futura;font-style:normal">
+                        <span class="NetU" style="font-size:25em">Fehler</span>
+                    </div>
+                    <div class="contentS" style="position:absolute;left:55em;top:-95em;">
+                        <span style="font-size:15em">Obytes/s</span>
+                    </div>
+        </div>
         <div class="nav a5" target="_blank" href="#" id="53"><s1></s1><b1></b1></div>
         <div class="nav a0" target="_blank" href="#" id="54"><s></s><b></b>
             <div class="id">54</div>
@@ -368,19 +373,25 @@ render: -> """
         <p></p>
 
         <div class="nav a1 a2 NetCell" target="_blank" href="#"><s></s><b2></b2>
-            <div class="content"  style="margin-left:15px;margin-top:0px;font-size:25px;font-family:Futura;font-style:normal"><span class="NetD">Fehler</span></div></div>
+            <div class="content"  style="margin-left:30em;margin-top:-4em;font-family:Futura;font-style:normal">
+                <span class="NetD" style="font-size:25em">Fehler</span>
+            </div></div>
         <div class="nav a5" target="_blank" href="#" id="56"><s></s><b3></b3></div>
         <div class="nav a5" target="_blank" href="#" id="57" style="z-index:99999"><s2></s2><b></b>
             <div class="Rotate" style="text-overflow:ellipsis;
                                          overflow:hidden;
                                          position:absolute;
-                                         top:-85px;left:-15px;
-                                         text-align:center;height:40px;width:200px;font-size:12px" id="iTunesArtist"> </div>
+                                         top:-85em;left:-20em;
+                                         text-align:center;height:40em;width:200em">
+                <span id="iTunesArtist" style="font-size:12em"></span>
+            </div>
             <div class="Rotate" style="text-overflow:ellipsis;
                                          overflow:hidden;
                                          position:absolute;
-                                         top:-85px;left:-92px;
-                                         text-align:center;height:40px;width:200px;font-size:12px" id="iTunesTitle"> </div>
+                                         top:-85em;left:-92em;
+                                         text-align:center;height:40em;width:200em">
+                <span id="iTunesTitle" style="font-size:12em"></span>
+            </div>
             <div class="iTunesPre"></div><div class="iTunesPre"></div>
             <div class="iTunesPause"></div><div class="iTunesPlay"></div>
             <div class="iTunesNext"></div><div class="iTunesNext"></div></div>
@@ -396,7 +407,7 @@ render: -> """
             <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
         <p></p>
 
-        <div class="nav a2" target="_blank" href="#" id="62" style="margin-right:140px"><s></s><b></b>
+        <div class="nav a2" target="_blank" href="#" id="62" style="margin-right:140em"><s></s><b></b>
             <div class="Disk">Vol。</div>
             <div class="DiskN" id="62content"></div></div>
         <div class="nav a0" target="_blank" href="#" id="63"><s></s><b></b>
@@ -424,7 +435,7 @@ render: -> """
             <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
         <p></p>
 
-        <div class="nav a2" target="_blank" href="#" id="69" style="margin-right:140px"><s></s><b></b>
+        <div class="nav a2" target="_blank" href="#" id="69" style="margin-right:140em"><s></s><b></b>
             <div class="Disk">Vol。</div>
             <div class="DiskN" id="69content"></div></div>
         <div class="nav a0" target="_blank" href="#" id="70"><s></s><b></b>
@@ -507,7 +518,9 @@ render: -> """
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
             <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
         <div class="nav a2" target="_blank" href="#" id="5"><s></s><b></b>
-            <div class="contentS"><span class="day"></span></div></div><p></p>
+            <div class="contentS" style="margin-left:10em;margin-top:-5em">
+                <span class="day" style="font-size:15em"></span>
+            </div></div><p></p>
         <div class="nav a0" target="_blank" href="#" id="6"><s></s><b></b>
             <div class="id">6</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
@@ -522,13 +535,21 @@ render: -> """
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
             <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
         <div class="nav a2" target="_blank" href="#" id="9"><s></s><b></b>
-            <div class="content clock" style="font-family:Futura;font-style:normal"><span class="time"></span></div></div><p></p>
+            <div class="content" style="margin-left:10em;margin-top:-5em">
+                <span class="time" style="font-size:30em;font-family:Futura;font-style:normal"></span>
+            </div></div><p></p>
         <div class="nav a1" target="_blank" href="#" id="CPUCell"><s></s><b></b>
-            <div class="contentS" style="margin-left:-35px">CPU</div>
-            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px;font-family:Futura;font-style:normal"><span class="CPUU">Fehler</span>%</div></div>
+            <div class="contentS" style="margin-left:-25em">
+                <span style="font-size:15em">CPU</span>
+            </div>
+            <div class="content"  style="margin-left:30em;margin-top:-70em;font-family:Futura;font-style:normal">
+                <span class="CPUU" style="font-size:30em;">Fehler</span>
+            </div></div>
 
         <div class="nav a2" target="_blank" href="#" id="11"><s></s><b></b>
-            <div class="content clock"><span class="sal"></span></div></div><p></p>
+            <div class="content" style="margin-left:10em;margin-top:-5em">
+                <span class="sal"></span>
+            </div></div><p></p>
         <div class="nav ai" target="_blank" href="#" id="12"></div>
 
         <div class="nav a0" target="_blank" href="#" id="13"><s></s><b></b>
@@ -537,15 +558,23 @@ render: -> """
             <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
         <div class="nav a3" target="_blank" href="#" id="14"><s></s><b1></b1></div>
         <div class="nav ai" target="_blank" href="#" id="15"><s></s><b></b>
-            <div class="contentS" style="margin-left:-35px">verbleibend</div>
-            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px"><span class="BatRe">Fehler</span></div></div><p></p>
+            <div class="contentS" style="margin-left:-25em;margin-top:-4em">
+                <span style="font-size:15em">verbleibend</span>
+            </div>
+            <div class="content"  style="margin-left:30em;margin-top:-65em">
+                <span class="BatRe" style="font-size:30em">Fehler</span>
+            </div></div><p></p>
 
         <div class="nav a1" target="_blank" href="#" id="MemCell"><s></s><b></b>
-            <div class="contentS" style="margin-left:-35px">Speicher</div>
-            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px;font-family:Futura;font-style:normal"><span class="MEMU">Fehler</span>%</div></div>
+            <div class="contentS" style="margin-left:-25em">
+                <span style="font-size:15em">Speicher</span>
+            </div>
+            <div class="content"  style="margin-left:30em;margin-top:-70em;font-family:Futura;font-style:normal">
+                <span class="MEMU" style="font-size:30em">Fehler</span>
+            </div></div>
         <div class="nav a3" target="_blank" href="#" id="17" style="z-index:9999"><s2></s2><b></b>
-            <div class="Rotate" style="margin-top:-70px;margin-left:-60px;text-align:left"><span class="Bat"></span></div>
-            <div class="Rotate" style="margin-top:-60px;margin-left:-35px;text-align:left"><span class="BatStatus"></span></div></div><p></p>
+            <div class="Rotate" style="margin-top:-70em;margin-left:-60em;text-align:left"><span class="Bat"></span></div>
+            <div class="Rotate" style="margin-top:-65em;margin-left:-35em;text-align:left"><span class="BatStatus"></span></div></div><p></p>
         <div class="nav ai" target="_blank" href="#" id="18"></div>
 
         <div class="nav a0" target="_blank" href="#" id="19"><s></s><b></b>
@@ -553,10 +582,12 @@ render: -> """
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
             <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
         <div class="nav a3" target="_blank" href="#" id="BatCell"><s></s><b2></b2>
-            <div class="Rotate" style="margin-top:0px;margin-left:-45px;width:200px;text-align:center;font-family:Futura;font-style:normal"><span class="BatPer">Fehler</span></div></div>
+            <div class="Rotate" style="margin-top:-5em;margin-left:-35em;width:200em;text-align:center;font-family:Futura;font-style:normal">
+                <span class="BatPer" style="font-size:20em">Fehler</span>
+            </div></div>
         <div class="nav a0" target="_blank" href="#" id="21"><s></s><b></b>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
-            <div class="contentS" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
+            <div class="contentS" style="text-decoration:underline overline;font-size:15em"><u></u><d></d>WARNUNG</div></div>
         <p></p>
 
         <div class="nav a1 a0" target="_blank" href="#" id="22"><s></s><b></b>
@@ -564,8 +595,12 @@ render: -> """
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
             <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
         <div class="nav a2" target="_blank" href="#" id="TrashCell"><s></s><b></b>
-            <div class="contentS" style="margin-left:-35px">Papierkorb</div>
-            <div class="content"  style="margin-left:10px;margin-top:-60px;font-size:30px"><span class="TrashSize">Fehler</span></div></div><p></p>
+            <div class="contentS" style="margin-left:-25em;margin-top:-5em">
+                <span style="font-size:15em">Papierkorb</span>
+            </div>
+            <div class="content"  style="margin-left:30em;margin-top:-65em">
+                <span class="TrashSize" style="font-size:30em">Fehler</span>
+            </div></div><p></p>
         <div class="nav ai" target="_blank" href="#" id="24"></div>
 
         <div class="nav a0" target="_blank" href="#" id="25"><s></s><b></b>
@@ -579,8 +614,12 @@ render: -> """
         <div class="nav ai" target="_blank" href="#" id="27"></div><p></p>
 
         <div class="nav a1" target="_blank" href="#" id="IPCell"><s></s><b></b>
-            <div class="contentS" style="margin-left:-35px">PublikIP</div>
-            <div class="content"  style="margin-left:10px;margin-top:-57px;font-size:13px;font-family:Futura;font-style:normal"><span class="PubIP">Fehler</span></div></div>
+            <div class="contentS" style="margin-left:-25em">
+                <span style="font-size:15em">PublikIP</span>
+            </div>
+            <div class="content"  style="margin-left:15em;margin-top:-64em;">
+                <span class="PubIP" style="font-size:13em;font-family:Futura;font-style:normal">Fehler</span>
+            </div></div>
         <div class="nav a0" target="_blank" href="#" id="29"><s></s><b></b>
             <div class="id">29</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
@@ -591,22 +630,28 @@ render: -> """
             <div class="id">31</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
             <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
-        <div class="nav a2" target="_blank" href="#" id="32" style="font-family:Futura;font-style:normal"><s></s>32<b></b></div>
+        <div class="nav a2" target="_blank" href="#" id="32"><s></s><div style="font-size:20em">32</div><b></b></div>
         <div class="nav ai" target="_blank" href="#" id="33"></div><p></p>
         <div class="nav ai" target="_blank" href="#" id="34"></div><p></p>
 
-        <div class="nav a4" target="_blank" href="#" id="35" style="margin-right:140px"><s></s><b1></b1></div>
+        <div class="nav a4" target="_blank" href="#" id="35" style="margin-right:140em"><s></s><b1></b1></div>
         <div class="nav a4" target="_blank" href="#" id="36"><s></s><b1></b1>
-            <div class='a4x' style="transform:rotate(-90deg);margin-left:-10px;visibility:hidden">OUTPUT</div></div><p></p>
+            <div class='a4x' style="transform:rotate(-90deg);margin-left:-10em;visibility:hidden">
+                <div style="font-size:20em">OUTPUT</div>
+            </div>
+        </div><p></p>
         <div class="nav ai" target="_blank" href="#" id="37"></div>
 
         <div class="nav a4" target="_blank" href="#" id="38"><s></s><b3></b3></div>
         <div class="nav a4" target="_blank" href="#" id="39"><s2></s2><b3></b3></div>
         <div class="nav a4" target="_blank" href="#" id="40" style="z-index:9999"><s2></s2><b></b>
-            <div class="a4x" style="margin-top:-200px;margin-left:-150px;width:400px;transform:rotate(-90deg);text-align:left;visibility:hidden;line-height:110%"><span class="OP" style="text-transform:none"></span></div></div>
+            <div class="a4x" style="margin-top:-200em;margin-left:-150em;width:400em;transform:rotate(-90deg);text-align:left;visibility:hidden;line-height:110%">
+                <span class="OP" style="text-transform:none;font-size:20em"></span>
+            </div>
+        </div>
         <p></p>
 
-        <div class="nav a4" target="_blank" href="#" id="41" style="margin-right:140px"><s></s><b2></b2></div>
+        <div class="nav a4" target="_blank" href="#" id="41" style="margin-right:140em"><s></s><b2></b2></div>
         <div class="nav a4" target="_blank" href="#" id="42"><s></s><b2></b2></div><p></p>
         <div class="nav ai" target="_blank" href="#" id="43"></div>
     </div>
@@ -627,15 +672,9 @@ command:    "   pmset -g batt | grep \"%\" | awk 'BEGINN { FS = \";\" };{ print 
 afterRender: (domEl) ->
 #   Get System Language
     language = navigator.language;
-    if (language.indexOf("de") > -1)
-        language = 1
-    else if (language.indexOf("cn") > -1)
-        language = 2
-    else
-        language = 0
 #   Define constants
     window.segments = ["子時", "丑時", "寅時", "卯時", "辰時", "巳時", "午時", "未時", "申時", "酉時", "戌時", "亥時"]
-    if language == 1
+    if (language.indexOf("de") > -1)
         window.Batterievalues  = [
             'NUR AC'
             ''
@@ -660,43 +699,6 @@ afterRender: (domEl) ->
             'beenden'
         ]
         window.BatteryType = "innenbatterie"
-    else if language == 2
-        window.Batterievalues  = [
-            '内部电源不存在'
-            ''
-            '外部电源'
-            ''
-        ]
-        window.daylist = [
-            '禮拜日'
-            '禮拜一'
-            '禮拜二'
-            '禮拜三'
-            '禮拜四'
-            '禮拜五'
-            '禮拜六'
-        ]
-        window.TrashEmpty = "空"
-        window.ErrorMessage = "錯誤"
-        window.BatteryStatus = [
-            '充電中'
-            '充電完成'
-            '消耗中'
-            '充電完成中'
-        ]
-        window.BatteryType = "內部電源"
-        $(domEl).css("font-family", "Songti TC")
-        $(domEl).css("font-style", "Black")
-        $(domEl).find("#CPUCell     .contentS").text("處理器")
-        $(domEl).find("#MemCell     .contentS").text("內存")
-        $(domEl).find("#IPCell      .contentS").text("公網地址")
-        $(domEl).find("#TrashCell   .contentS").text("廢紙簍")
-        $(domEl).find(".Wcontent             ").html("<u></u><d></d>警告")
-        $(domEl).find("#21          .contentS").html("<u></u><d></d>警告")
-        $(domEl).find(".Wcontent             ").css("font-size", "23px")
-        $(domEl).find(".contentS             ").css("font-size", "23px")
-        $(domEl).find(".Bat                  ").css("font-size", "23px")
-        $(domEl).find(".BatStatus            ").css("font-size", "30px")
     else
         window.Batterievalues  = [
             'AC Only'
@@ -722,11 +724,11 @@ afterRender: (domEl) ->
             'finishing'
         ]
         window.BatteryType = "internalbattery"
-        $(domEl).find("#MemCell     .contentS").text("Memory")
-        $(domEl).find("#IPCell      .contentS").text("PublicIP")
-        $(domEl).find("#TrashCell   .contentS").text("Trash")
-        $(domEl).find(".Wcontent             ").html("<u></u><d></d>WARNING")
-        $(domEl).find("#21          .contentS").html("<u></u><d></d>WARNING")
+        $(domEl).find("#MemCell     span").text("Memory")
+        $(domEl).find("#IPCell      span").text("PublicIP")
+        $(domEl).find("#TrashCell   span").text("Trash")
+        $(domEl).find(".Wcontent        ").html("<u></u><d></d>WARNING")
+        $(domEl).find("#21          span").html("<u></u><d></d>WARNING")
 #   Initialise warnings
     window.warning=0;
     window.Bwarning=0;
@@ -858,6 +860,8 @@ update: (output, domEl) ->
     Trashvalues     = AllOutputs[4+i].split(' ')
     Networkvalues   = AllOutputs[5+i].split(' ')
     Disturbvalues   = AllOutputs[6+i]
+    if (AllOutputs[7+i].indexOf("osascript: Eva.widget/iTunes.scp:") > -1)
+        AllOutputs[7+i] = "~ ~ ~ 0 ~ 0"
     iTunesvalues    = AllOutputs[7+i].split('~')
 
     Trashvalues="#{Trashvalues}".replace /,/g, ''
@@ -960,21 +964,23 @@ update: (output, domEl) ->
             $(domEl).find('.BatStatus').text("#{Batterievalues[2]}")
         $(domEl).find('.BatRe').text("#{Batterievalues[3]}")
     # Output other information
-    $(domEl).find('.CPUU').text("#{Math.floor(CPUUsage/CPUAmount)}")
-    $(domEl).find('.MEMU').text("#{Math.floor(MemUsage)}")
+    $(domEl).find('.CPUU').text("#{Math.floor(CPUUsage/CPUAmount)}%")
+    $(domEl).find('.MEMU').text("#{Math.floor(MemUsage)}%")
     $(domEl).find('.sal').text("#{timeSegment}")
     $(domEl).find('#iTunesTrack').text("#{iTunesvalues[3]}")
     $(domEl).find('#iTunesArtist').text("#{iTunesvalues[1]}")
     $(domEl).find('#iTunesTitle').text("#{iTunesvalues[0]}")
-    $(domEl).find('.NetU').text("#{Networkvalues[0]}")
-    $(domEl).find('.NetD').text("#{Networkvalues[1]}")
+    if (Networkvalues[0]?)
+        $(domEl).find('.NetU').text("#{Networkvalues[0]}")
+    if (Networkvalues[1]?)
+        $(domEl).find('.NetD').text("#{Networkvalues[1]}")
     $(domEl).find('.time').text("#{hour}:#{minutes}")
     $(domEl).find('.day').text("#{daylist[days]}")
     if (Trashvalues.indexOf("0B") > -1)
         $(domEl).find('.TrashSize').text("#{TrashEmpty}")
     else
         $(domEl).find('.TrashSize').text("#{Trashvalues}")
-    $(domEl).find('#iTunesCoverImg').html("<img style='width:190px;height:190px;margin-left:5px;' src='Eva.widget/album.jpg'>")
+    $(domEl).find('#iTunesCoverImg').html("<img style='width:190em;height:190em;margin-left:5em;' src='Eva.widget/album.jpg'>")
 #   Dealing with rating
     if (iTunesvalues[4]>0)
         $(domEl).find('#rate1').css("visibility","visible")
