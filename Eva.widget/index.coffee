@@ -24,6 +24,8 @@ refreshFrequency: 3000
 ## your copy of this widget and want me to add, please contact me.
 ##
 # You can change the size through adjusting the font-size under style. Default is 1px
+# You can also change the battery alert level from 20% to any other value of your desire. It is on
+# the 1009th line
 style: """
     font-size: 1px
     top: -25em
