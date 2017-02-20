@@ -1,3 +1,26 @@
-ORZ=$(netstat -w1 & sleep 1; kill $!;)
-ORZ=($ORZ)
-echo ${ORZ[12]} ${ORZ[15]}
+run_data(){
+    if [ ! -f Eva.widget/netstat.working ]; then
+        ORZ=$(netstat -w1 & sleep 1; kill $!;)
+        ORZ=($ORZ)
+        sed -i "" "1s/.*/${ORZ[12]} ${ORZ[15]}/" Eva.widget/netstat.output
+    fi
+}
+
+run_ip() {
+    if [ ! -f Eva.widget/netstat.ipworking ]; then
+        touch Eva.widget/netstat.ipworking
+        IP=$(dig +short myip.opendns.com +tries=1 @resolver1.opendns.com)
+        if [[ $IP != *.*.*.* ]];
+        then
+            IP="Fehler"
+        fi
+        sed -i "" "2s/.*/$IP/" Eva.widget/netstat.output
+        sleep 5
+        rm Eva.widget/netstat.ipworking
+    fi
+}
+
+run_data &>/dev/null &disown
+run_ip &>/dev/null &disown
+
+cat Eva.widget/netstat.output

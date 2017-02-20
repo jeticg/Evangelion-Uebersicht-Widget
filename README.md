@@ -37,6 +37,9 @@ Who am I kidding, the only thing you need to know is this is a widget for Übers
 
 ## Updates
 
+0.X1a
+* This new version includes a lot of migration from commands to scripts to improve performance and potentially, decrease energy demand. I want to experiment with some new ideas to make it more battery and CPU friendly.
+
 0.Xa
 * Removed language support for Traditional Chinese
 * Added support to adjust the size of widget(By using font-size. All sizes are specified in em instead of px now.)

@@ -1,4 +1,4 @@
-# Version: 0.Xa
+# Version: 0.X1a
 ## If you do not want a transparent widget, please adjust the opacity setting under STYLE
 ## If you do not know how to write HTML/CSS, it is best for you to learn it first before
 ## attempting to customise the UI. Or you can contact me.
@@ -659,13 +659,11 @@ render: -> """
     </div>
 """
 
-command:    "   pmset -g batt | grep \"%\" | awk 'BEGINN { FS = \";\" };{ print $1,$2,$3,$4,$5 }' | sed -e 's/-I/I/' -e 's/-0//' -e 's/;//' -e 's/;//' &&
-                ps aux  | awk 'BEGIN { sum = 0 }  { sum += $3 }; END { print sum }' &&
-                sysctl hw.ncpu | awk '{print $2}' &&
-                ps aux  | awk 'BEGIN { sum = 0 }  { sum += $4 }; END { print sum }' &&
+command:    "   sh Eva.widget/battery.sh &&
+                sh Eva.widget/cpu_mem.sh &&
                 du -ch ~/.Trash | grep total | cut -c 1-5 &&
 
-                chmod +x Eva.widget/netstat.sh && Eva.widget/netstat.sh &&
+                sh Eva.widget/netstat.sh &&
                 defaults read ~/Library/Preferences/ByHost/com.apple.notificationcenterui doNotDisturb &&
 
                 osascript 'Eva.widget/iTunes.scpt' &&
@@ -754,7 +752,7 @@ afterRender: (domEl) ->
 "
     $(domEl).on 'click', '#65', => @run "ls /Volumes/ | awk -F'\t' '{ print $0}' > tmp.txt;i=1; cat tmp.txt | sed -e 's/[ ]/\\ /g ' | while read line; do if [ \"$i\" -eq 5 ]; then open /Volumes/\"${line}\"; fi; let i=i+1; done; rm tmp.txt
 "
-
+    @run "rm Eva.widget/netstat.ipworking"
 
 update: (output, domEl) ->
 #   functions
@@ -857,18 +855,20 @@ update: (output, domEl) ->
     else
         i = -1
     CPUUsage        = AllOutputs[1+i].split(' ')
-    CPUAmount       = AllOutputs[2+i].split(' ')
-    MemUsage        = AllOutputs[3+i].split(' ')
+    MemUsage        = AllOutputs[2+i].split(' ')
+    CPUAmount       = AllOutputs[3+i].split(' ')
+
     Trashvalues     = AllOutputs[4+i].split(' ')
     Networkvalues   = AllOutputs[5+i].split(' ')
-    Disturbvalues   = AllOutputs[6+i]
-    if (AllOutputs[7+i].indexOf("osascript: Eva.widget/iTunes.scp:") > -1)
-        AllOutputs[7+i] = "~ ~ ~ 0 ~ 0"
-    iTunesvalues    = AllOutputs[7+i].split('~')
+    IPaddress       = AllOutputs[6+i]
+    Disturbvalues   = AllOutputs[7+i]
+    if (AllOutputs[8+i].indexOf("osascript: Eva.widget/iTunes.scp:") > -1)
+        AllOutputs[8+i] = "~ ~ ~ 0 ~ 0"
+    iTunesvalues    = AllOutputs[8+i].split('~')
 
     Trashvalues="#{Trashvalues}".replace /,/g, ''
     Trashvalues="#{Trashvalues}".replace /\s+/g, ''
-    if (AllOutputs[7+i].indexOf("~ ~ ~ 0 ~ 0") > -1)
+    if (AllOutputs[8+i].indexOf("~ ~ ~ 0 ~ 0") > -1)
         $(domEl).find(".CoverCell").css("visibility","hidden")
         $(domEl).find("#44").css("visibility","hidden")
         $(domEl).find("#45").css("visibility","hidden")
@@ -894,16 +894,12 @@ update: (output, domEl) ->
         else
             Networkvalues[1] = Math.round(Networkvalues[1]*100)/100 + 'K'
     # The following is for Public IP testing
-    $.ajax 'https://api.ipify.org?format=json',
-        dataType: 'json'
-        success: (data, textStatus, jqXHR) ->
-            $(domEl).find('.PubIP').text("#{data.ip}")
-        error: (jqXHR, textStatus, errorThrown) ->
-            $(domEl).find('.PubIP').text("#{ErrorMessage}")
-    if $(domEl).find('.PubIP').text().indexOf("#{ErrorMessage}") > -1
+    if (IPaddress.indexOf("Fehler") > -1)
+        IPaddress=ErrorMessage
         Nwarning=1
     else
         Nwarning=0
+    $(domEl).find('.PubIP').text("#{IPaddress}")
     if Disturbvalues == '1'
         Mwarning=1
     else
@@ -911,7 +907,7 @@ update: (output, domEl) ->
 #   Deliver output
     # Disks, all five disks are hidden by default, only when such disk exists shall it be displayed
     # Because each volume takes a single line in the output, we have to judge by the length of output
-    idisk = i+8
+    idisk = i+9
     if (AllOutputs.length > idisk+1)
         diskDisplay("#66", AllOutputs[idisk+0])
     else    $(domEl).find("#66").css("visibility","hidden")
