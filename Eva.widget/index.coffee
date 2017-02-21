@@ -1,4 +1,4 @@
-# Version: 0.X1a
+# Version: 0.X2a
 ## If you do not want a transparent widget, please adjust the opacity setting under STYLE
 ## If you do not know how to write HTML/CSS, it is best for you to learn it first before
 ## attempting to customise the UI. Or you can contact me.
@@ -165,12 +165,7 @@ style: """
         right:0em
         top:-95em
     .a0, .a0 s, .a0 b
-        @keyframes meow_BG_red { from { background-color:rgba(256,0,0,1); } to { background-color:rgba(128,0,0,1); }  }
-        @keyframes meow_BS_red { from { border-bottom-color:rgba(256,0,0,1); } to { border-bottom-color:rgba(128,0,0,1); }  }
-        @keyframes meow_BB_red { from { border-top-color:rgba(256,0,0,1); } to { border-top-color:rgba(128,0,0,1); }  }
-        @keyframes meow_BG_ora { from { background-color:rgba(256,96,0,1); } to { background-color:rgba(128,48,0,1); }  }
-        @keyframes meow_BS_ora { from { border-bottom-color:rgba(256,96,0,1); } to { border-bottom-color:rgba(128,48,0,1); }  }
-        @keyframes meow_BB_ora { from { border-top-color:rgba(256,96,0,1); } to { border-top-color:rgba(128,48,0,1); }  }
+        @keyframes meow { from { opacity:1; } to { opacity:0.6; }  }
 
     .a1
         margin-right:140em
@@ -648,7 +643,7 @@ render: -> """
         <div class="nav a4" target="_blank" href="#" id="39"><s2></s2><b3></b3></div>
         <div class="nav a4" target="_blank" href="#" id="40" style="z-index:9999"><s2></s2><b></b>
             <div class="a4x" style="margin-top:-200em;margin-left:-150em;width:400em;transform:rotate(-90deg);text-align:left;visibility:hidden;line-height:110%">
-                <span class="OP" style="text-transform:none;font-size:20em"></span>
+                <span class="OP" style="text-transform:none;font-size:20em;line-height:100%"></span>
             </div>
         </div>
         <p></p>
@@ -730,12 +725,12 @@ afterRender: (domEl) ->
         $(domEl).find(".Wcontent        ").html("<u></u><d></d>WARNING")
         $(domEl).find("#21          span").html("<u></u><d></d>WARNING")
 #   Initialise warnings
-    window.warning=0;
-    window.Bwarning=0;
-    window.Cwarning=0;
-    window.Nwarning=0;
-    window.Mwarning=0;
-    window.Owarning=0;
+    window.Bwarning=0
+    window.Cwarning=0
+    window.IPFehler=0
+    window.Mwarning=0
+    window.cellColour=-1
+    window.count = -1
     $(domEl).on 'click', '.iTunesPre', => @run "osascript -e 'tell application \"iTunes\" to previous track'"
     $(domEl).on 'click', '.iTunesNext', => @run "osascript -e 'tell application \"iTunes\" to next track'"
     $(domEl).on 'click', '.iTunesPause', => @run "osascript -e 'tell application \"iTunes\" to pause'"
@@ -757,15 +752,13 @@ afterRender: (domEl) ->
 update: (output, domEl) ->
 #   functions
     # This is for the warning animations, for better battery life, please consider changing these settings
-    animation_on = (cell) -> () ->
-        if warning==1
-            $(domEl).find("#{cell} s").css("animation", "meow_BS_red 1s linear 0s infinite alternate")
-            $(domEl).find("#{cell} b").css("animation", "meow_BB_red 1s linear 0s infinite alternate")
-            $(domEl).find("#{cell}"  ).css("animation", "meow_BG_red 1s linear 0s infinite alternate")
-        else
-            $(domEl).find("#{cell} s").css("animation", "meow_BS_ora 1s linear 0s infinite alternate")
-            $(domEl).find("#{cell} b").css("animation", "meow_BB_ora 1s linear 0s infinite alternate")
-            $(domEl).find("#{cell}"  ).css("animation", "meow_BG_ora 1s linear 0s infinite alternate")
+    animation_on = (cell, colour) -> () ->
+        if colour == 1
+            $(domEl).find("#{cell}"  ).css("animation", "meow 1s linear 0s infinite alternate")
+        else if colour == 2
+            $(domEl).find("#{cell}"  ).css("animation", "meow 1s linear 0s infinite alternate")
+        else if colour == 0
+            animation_off(cell)
     animation_off = (cell) ->
         $(domEl).find("#{cell} s").css("animation", "")
         $(domEl).find("#{cell} b").css("animation", "")
@@ -799,34 +792,39 @@ update: (output, domEl) ->
             $(domEl).find("#{cell} .Disk").text("Vol。")
     # General warning settings. This function is called when a general warning is on,
     # which will turn every not-in-use cell into displaying warning signals
-    warning_on = () ->
-        animation_off(".a0")
-        for element in $(domEl).find(".a0")
-            work = (cell) -> () ->
-                $cell = $(cell)
-                $cell.find(".Wcontent").css("visibility","visible")
-                $cell.find(".id").css("display"   ,"none"   )
-                if warning==1
-                    colorChange($cell, "rgba(256,0,0,1)")
-                    $(domEl).find(".Wcontent").html("<u></u><d></d>WARNUNG")
-                else
-                    colorChange($cell, "rgba(256,96,0,1)")
-                    $(domEl).find(".Wcontent").html("NoDisturb")
-            setTimeout (work(element)), Math.random() * 1000
-        setTimeout (animation_on(".a0")), 1000
+    warning_switch = (red, orange) ->
+        CorrectColour = 0
+        if orange > 0
+            CorrectColour = 2
+        if red > 0
+            CorrectColour = 1
 
-    warning_off = () ->
-        if warning+Mwarning>0
-            warning_on()
-        else
+        if (cellColour != CorrectColour)
+            cellColour += CorrectColour - cellColour
+            animation_off(".a0")
+
             for element in $(domEl).find(".a0")
                 work = (cell) -> () ->
                     $cell = $(cell)
-                    $cell.find(".Wcontent").css("visibility","hidden"      )
-                    $cell.find(".id"      ).css("display"   ,"inline-block")
-                    colorChange($cell, "rgba(10,10,10,1)")
+                    if cellColour == 1
+                        colorChange($cell, "rgba(256,0,0,1)")
+                        $cell.find(".Wcontent").html("<u></u><d></d>WARNUNG")
+                        $cell.find(".Wcontent").css("visibility","visible")
+                        $cell.find(".id"      ).css("display"   ,"none"   )
+                    else if cellColour == 2
+                        colorChange($cell, "rgba(256,96,0,1)")
+                        $cell.find(".Wcontent").html("NoDisturb")
+                        $cell.find(".Wcontent").css("visibility","visible")
+                        $cell.find(".id"      ).css("display"   ,"none"   )
+                    else
+                        colorChange($cell, "rgba(10,10,10,1)")
+                        $cell.find(".Wcontent").css("visibility","hidden"      )
+                        $cell.find(".id"      ).css("display"   ,"inline-block")
                 setTimeout (work(element)), Math.random() * 1000
-            animation_off(".a0")
+            setTimeout (animation_on(".a0", cellColour)), 1000
+
+
+
 #   Processing time
     # This is for outputing the time. Nothing really
     date = new Date()
@@ -853,22 +851,22 @@ update: (output, domEl) ->
         window.Batterievalues  = AllOutputs[0].split(' ')
         i = 0
     else
-        i = -1
-    CPUUsage        = AllOutputs[1+i].split(' ')
-    MemUsage        = AllOutputs[2+i].split(' ')
-    CPUAmount       = AllOutputs[3+i].split(' ')
+        i = 0
+    CPUUsage        = AllOutputs[1].split(' ')
+    MemUsage        = AllOutputs[2].split(' ')
+    CPUAmount       = AllOutputs[3].split(' ')
 
-    Trashvalues     = AllOutputs[4+i].split(' ')
-    Networkvalues   = AllOutputs[5+i].split(' ')
-    IPaddress       = AllOutputs[6+i]
-    Disturbvalues   = AllOutputs[7+i]
-    if (AllOutputs[8+i].indexOf("osascript: Eva.widget/iTunes.scp:") > -1)
-        AllOutputs[8+i] = "~ ~ ~ 0 ~ 0"
-    iTunesvalues    = AllOutputs[8+i].split('~')
+    Trashvalues     = AllOutputs[4].split(' ')
+    Networkvalues   = AllOutputs[5].split(' ')
+    IPaddress       = AllOutputs[6]
+    Disturbvalues   = AllOutputs[7]
+    if (AllOutputs[8].indexOf("osascript: Eva.widget/iTunes.scp:") > -1)
+        AllOutputs[8] = "~ ~ ~ 0 ~ 0"
+    iTunesvalues    = AllOutputs[8].split('~')
 
     Trashvalues="#{Trashvalues}".replace /,/g, ''
     Trashvalues="#{Trashvalues}".replace /\s+/g, ''
-    if (AllOutputs[8+i].indexOf("~ ~ ~ 0 ~ 0") > -1)
+    if (AllOutputs[8].indexOf("~ ~ ~ 0 ~ 0") > -1)
         $(domEl).find(".CoverCell").css("visibility","hidden")
         $(domEl).find("#44").css("visibility","hidden")
         $(domEl).find("#45").css("visibility","hidden")
@@ -893,21 +891,21 @@ update: (output, domEl) ->
             Networkvalues[1] = Math.round(Networkvalues[1]*100)/100 + 'M'
         else
             Networkvalues[1] = Math.round(Networkvalues[1]*100)/100 + 'K'
-    # The following is for Public IP testing
+    # The following is for Public IP and it's warning
     if (IPaddress.indexOf("Fehler") > -1)
         IPaddress=ErrorMessage
-        Nwarning=1
+        if IPFehler != 1
+            IPFehler = 1
+            colorChange("#IPCell", "rgba(256,10,10,1)")
     else
-        Nwarning=0
+        if IPFehler != 0
+            IPFehler = 0
+            colorChange("#IPCell", "rgba(10,10,10,1)")
     $(domEl).find('.PubIP').text("#{IPaddress}")
-    if Disturbvalues == '1'
-        Mwarning=1
-    else
-        Mwarning=0
 #   Deliver output
     # Disks, all five disks are hidden by default, only when such disk exists shall it be displayed
     # Because each volume takes a single line in the output, we have to judge by the length of output
-    idisk = i+9
+    idisk = 9
     if (AllOutputs.length > idisk+1)
         diskDisplay("#66", AllOutputs[idisk+0])
     else    $(domEl).find("#66").css("visibility","hidden")
@@ -923,8 +921,6 @@ update: (output, domEl) ->
     if (AllOutputs.length > idisk+5)
         diskDisplay("#65", AllOutputs[idisk+4])
     else    $(domEl).find("#65").css("visibility","hidden")
-    # Outputting all the information for debug
-    $(domEl).find('.OP').text("#{output}")
     # Battery information, originally it's in english, this part translates all the
     # information into German
     if (Batterievalues[0].indexOf("InternalBattery") > -1)
@@ -1003,56 +999,41 @@ update: (output, domEl) ->
 #   Dealing with warnings
     # Bwarning stands for Battery warning, triggers when battery drops below 20% without charging.
     if (parseInt(BatteryPercentage) <= 20 & BatteryState.indexOf("discharging") > -1)
-        if (Bwarning != 1)
+        if (Bwarning == 0)
             colorChange(".a3", "rgba(256,0,0,1)")
             colorChange("#15", "rgba(128,0,0,1)")
             $(domEl).find("#15").css("visibility","visible")
-        Bwarning = 1
+            Bwarning += 1
     else
-        if (Bwarning != 0)
+        if (Bwarning == 1)
             colorChange(".a3", "rgba(10,10,10,1)")
             colorChange("#15", "rgba(128,0,0,0)")
             $(domEl).find("#15").css("visibility","hidden")
-        Bwarning = 0
-    # Nwarning stands for Network Warning, triggers when no external ip address could be fetched
-    if Nwarning == 1
-        colorChange("#IPCell", "rgba(256,10,10,1)")
-    else
-        colorChange("#IPCell", "rgba(10,10,10,1)")
+            Bwarning -= 0
     # Cwarning is for CPU usage. Default value is to trigger when CPU usage reaches 90%
     if CPUUsage/CPUAmount > 90
-        if (Cwarning != 1)
+        if (Cwarning == 0)
             colorChange("#CPUCell", "rgba(256,0,0,1)")
-        Cwarning = 1
+            Cwarning += 1
     else
-        if (Cwarning != 0)
+        if (Cwarning == 1)
             colorChange("#CPUCell", "rgba(10,10,10,1)")
-        Cwarning = 0
-    #General warning trigger.
-    if Bwarning+Cwarning+Mwarning != 0
-        if Bwarning+Cwarning !=0
-            if (warning != 1)
-                warning_on()
-                warning = 1
-        else
-        if (Owarning != 1)
-            warning_on()
-            Owarning = 1
+            Cwarning -= 1
+    if Disturbvalues == '1'
+        Mwarning = 1
     else
-        if (Owarning!=0 || warning!=0 )
-            warning_off()
-            Owarning==0
-            warning==0
+        Mwarning = 0
 
+    warning_switch(Bwarning+Cwarning, Mwarning)
 
 #   hover effects, dealing with hovering
     $('#IPCell').hover (->
-            if Cwarning == 1
+            if IPFehler == 1
                 colorChange("#IPCell", "rgba(128,0,0,1)")
             else
                 colorChange("#IPCell", "rgba(128,128,128,1)")
     ), (->
-            if Cwarning == 1
+            if IPFehler == 1
                 colorChange("#IPCell", "rgba(256,0,0,1)")
             else
                 colorChange("#IPCell", "rgba(10,10,10,1)")
@@ -1099,3 +1080,5 @@ update: (output, domEl) ->
     ), (->
             colorChange(".CoverCell", "rgba(10,10,10,1)")
     )
+    # Outputting all the information for debug
+    $(domEl).find('.OP').text("#{cellColour}")
