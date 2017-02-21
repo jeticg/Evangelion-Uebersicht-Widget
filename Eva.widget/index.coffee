@@ -1,9 +1,9 @@
-# Version: 0.X2a
+# Version: 0.X3a
 ## If you do not want a transparent widget, please adjust the opacity setting under STYLE
 ## If you do not know how to write HTML/CSS, it is best for you to learn it first before
 ## attempting to customise the UI. Or you can contact me.
 ## Any advise or new idea is welcome. Do not hesitate to contact me, my email is: jetic@me.com
-# Refreshing Frequency is set to once every 1000ms
+# Refreshing Frequency is set to once every 3000ms
 refreshFrequency: 3000
 # Information on cells
 ## Cells consists of three parts. A main body(nav), a top and a bottom(s and b). Cells are rotated
@@ -24,8 +24,6 @@ refreshFrequency: 3000
 ## your copy of this widget and want me to add, please contact me.
 ##
 # You can change the size through adjusting the font-size under style. Default is 1px
-# You can also change the battery alert level from 20% to any other value of your desire. It is on
-# the 1009th line
 style: """
     font-size: 1px
     top: -25em
@@ -515,8 +513,8 @@ render: -> """
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
             <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
         <div class="nav a2" target="_blank" href="#" id="5"><s></s><b></b>
-            <div class="contentS" style="margin-left:10em;margin-top:-5em">
-                <span class="day" style="font-size:15em"></span>
+            <div class="contentS" style="margin-left:10em;margin-top:0em">
+                <span class="day" style="width:20em;font-size:15em"></span>
             </div></div><p></p>
         <div class="nav a0" target="_blank" href="#" id="6"><s></s><b></b>
             <div class="id">6</div>
@@ -595,8 +593,8 @@ render: -> """
             <div class="contentS" style="margin-left:-25em;margin-top:-5em">
                 <span style="font-size:15em">Papierkorb</span>
             </div>
-            <div class="content"  style="margin-left:30em;margin-top:-65em">
-                <span class="TrashSize" style="font-size:30em">Fehler</span>
+            <div class="content"  style="margin-left:30em;margin-top:-62em">
+                <span class="TrashSize" style="font-size:25em">Fehler</span>
             </div></div><p></p>
         <div class="nav ai" target="_blank" href="#" id="24"></div>
 
@@ -687,6 +685,7 @@ afterRender: (domEl) ->
         ]
         window.TrashEmpty = "Leer"
         window.ErrorMessage = "Fehler"
+        window.WarningMessage = "WARNUNG"
         window.BatteryStatus = [
             'laden'
             'geladen'
@@ -712,6 +711,7 @@ afterRender: (domEl) ->
         ]
         window.TrashEmpty = "Empty"
         window.ErrorMessage = "Error"
+        window.WarningMessage = "WARNING"
         window.BatteryStatus = [
             'charging'
             'charged'
@@ -722,8 +722,8 @@ afterRender: (domEl) ->
         $(domEl).find("#MemCell     span").text("Memory")
         $(domEl).find("#IPCell      span").text("PublicIP")
         $(domEl).find("#TrashCell   span").text("Trash")
-        $(domEl).find(".Wcontent        ").html("<u></u><d></d>WARNING")
-        $(domEl).find("#21          span").html("<u></u><d></d>WARNING")
+        $(domEl).find(".Wcontent        ").html("<u></u><d></d>#{window.WarningMessage}")
+        $(domEl).find("#21     .contentS").html("<u></u><d></d>#{window.WarningMessage}")
 #   Initialise warnings
     window.Bwarning=0
     window.Cwarning=0
@@ -751,7 +751,7 @@ afterRender: (domEl) ->
 
 update: (output, domEl) ->
 #   functions
-    # This is for the warning animations, for better battery life, please consider changing these settings
+    # This is for the warning animations
     animation_on = (cell, colour) -> () ->
         if colour == 1
             $(domEl).find("#{cell}"  ).css("animation", "meow 1s linear 0s infinite alternate")
@@ -783,15 +783,14 @@ update: (output, domEl) ->
     diskDisplay = (cell, tmp) ->
         $(domEl).find("#{cell}").css("visibility","visible")
         $(domEl).find("#{cell} .DiskN").text("#{tmp[0..(tmp.length-2)]}")
-        #console .log tmp.indexOf("@")
         if (tmp.indexOf("@") > -1 )
             $(domEl).find("#{cell} .Disk").css("background-color","rgba(128,128,160,1)")
             $(domEl).find("#{cell} .Disk").text("Sys。")
         else
             $(domEl).find("#{cell} .Disk").css("background-color","rgba(226,161,54,1)")
             $(domEl).find("#{cell} .Disk").text("Vol。")
-    # General warning settings. This function is called when a general warning is on,
-    # which will turn every not-in-use cell into displaying warning signals
+    # General warning settings. This function is called at the end of each
+    # widget refreshing.
     warning_switch = (red, orange) ->
         CorrectColour = 0
         if orange > 0
@@ -808,7 +807,7 @@ update: (output, domEl) ->
                     $cell = $(cell)
                     if cellColour == 1
                         colorChange($cell, "rgba(256,0,0,1)")
-                        $cell.find(".Wcontent").html("<u></u><d></d>WARNUNG")
+                        $cell.find(".Wcontent").html("<u></u><d></d>#{WarningMessage}")
                         $cell.find(".Wcontent").css("visibility","visible")
                         $cell.find(".id"      ).css("display"   ,"none"   )
                     else if cellColour == 2
@@ -847,11 +846,7 @@ update: (output, domEl) ->
 
 #   Processing output, passing values from command line output to variables
     AllOutputs = output.split('\n')
-    if (AllOutputs[0].indexOf("InternalBattery") > -1)
-        window.Batterievalues  = AllOutputs[0].split(' ')
-        i = 0
-    else
-        i = 0
+    Batterievalues  = AllOutputs[0].split(' ')
     CPUUsage        = AllOutputs[1].split(' ')
     MemUsage        = AllOutputs[2].split(' ')
     CPUAmount       = AllOutputs[3].split(' ')
@@ -881,16 +876,16 @@ update: (output, domEl) ->
         Networkvalues[0] = parseInt(Networkvalues[0])/1024
         if (parseInt(Networkvalues[0])>=1024)
             Networkvalues[0] = parseInt(Networkvalues[0])/1024
-            Networkvalues[0] = Math.round(Networkvalues[0]*100)/100 + 'M'
+            Networkvalues[0] = Math.round(Networkvalues[0]*10)/10 + 'M'
         else
-            Networkvalues[0] = Math.round(Networkvalues[0]*100)/100 + 'K'
+            Networkvalues[0] = Math.round(Networkvalues[0]*10)/10 + 'K'
     if (parseInt(Networkvalues[1])>=1024)
         Networkvalues[1] = parseInt(Networkvalues[1])/1024
         if (parseInt(Networkvalues[1])>=1024)
             Networkvalues[1] = parseInt(Networkvalues[1])/1024
-            Networkvalues[1] = Math.round(Networkvalues[1]*100)/100 + 'M'
+            Networkvalues[1] = Math.round(Networkvalues[1]*10)/10 + 'M'
         else
-            Networkvalues[1] = Math.round(Networkvalues[1]*100)/100 + 'K'
+            Networkvalues[1] = Math.round(Networkvalues[1]*10)/10 + 'K'
     # The following is for Public IP and it's warning
     if (IPaddress.indexOf("Fehler") > -1)
         IPaddress=ErrorMessage
@@ -921,8 +916,7 @@ update: (output, domEl) ->
     if (AllOutputs.length > idisk+5)
         diskDisplay("#65", AllOutputs[idisk+4])
     else    $(domEl).find("#65").css("visibility","hidden")
-    # Battery information, originally it's in english, this part translates all the
-    # information into German
+    # Battery information
     if (Batterievalues[0].indexOf("InternalBattery") > -1)
         $(domEl).find('.Bat').text("#{BatteryType}")
     else
@@ -1081,4 +1075,4 @@ update: (output, domEl) ->
             colorChange(".CoverCell", "rgba(10,10,10,1)")
     )
     # Outputting all the information for debug
-    $(domEl).find('.OP').text("#{cellColour}")
+    $(domEl).find('.OP').text("#{output}")

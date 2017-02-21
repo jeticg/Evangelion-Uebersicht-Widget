@@ -40,7 +40,11 @@ Who am I kidding, the only thing you need to know is this is a widget for Übers
 
 ## Updates
 
-0.X2a
+0.X3a
+* Fixed a few interface issues.
+* Updated a few lines of comments.
+
+0.X2a (Major Update!)
 * This is probably the most important update since 0.5a. I added some major improvements to make it faster and fixed a lot of ages old bugs, and most importantly the energy consumption problem.
 
 0.X1a
