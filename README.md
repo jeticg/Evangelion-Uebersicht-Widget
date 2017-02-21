@@ -1,5 +1,8 @@
 # Evangelion-Übersicht-Widget
 
+## Major Update Notice!
+If you are using an earlier version of this widget (before 0.X2a), please consider installing the versions after 0.X2a. I managed to solve the performance problem, now in alert mode it will only require 10% of the earlier version's energy, and 20% of the earlier version's CPU!
+
 ## About
 This widget is an Evangelion Übersicht Widget, displaying information through a huge amount of cells on your desktop.
 
