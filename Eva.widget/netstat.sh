@@ -3,7 +3,7 @@ run_data(){
         ORZ=$(netstat -w1 & sleep 1; kill $!;)
         ORZ=($ORZ)
         output="${ORZ[12]} ${ORZ[15]}"
-        if [[ $output == *\ *  ]];
+        if [[ ${#output} > 1  ]];
         then
             sed -i "" "1s/.*/${output}/" Eva.widget/netstat.output
         fi
