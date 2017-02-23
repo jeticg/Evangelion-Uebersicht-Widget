@@ -1,5 +1,11 @@
-# Version: 0.X4a
-## If you do not want a transparent widget, please adjust the opacity setting under STYLE
+Version = "0.X4a"
+config = {
+    Magnification: 1
+    BatteryAlertLevel: 20
+    CPUAlertLevel: 90
+    Opacity: 0.5
+    Voice: false
+}
 ## If you do not know how to write HTML/CSS, it is best for you to learn it first before
 ## attempting to customise the UI. Or you can contact me.
 ## Any advise or new idea is welcome. Do not hesitate to contact me, my email is: jetic@me.com
@@ -25,12 +31,12 @@ refreshFrequency: 3000
 ##
 # You can change the size through adjusting the font-size under style. Default is 1px
 style: """
-    font-size: 1px
+    font-size: #{config.Magnification}px
     top: -25em
     font-family: Futura
     text-transform: uppercase
     position:relative
-    opacity: 0.5
+    opacity: #{config.Opacity}
     margin:0
     text-align:center
     text-decoration:none
@@ -665,19 +671,15 @@ command:    "   sh Eva.widget/battery.sh &&
 afterRender: (domEl) ->
 #   Get System Language
     language = navigator.language;
-#   Voice settings
-    window.voiceEnabled = 1
-    window.voice = "yannick"
-    window.voiceBatteryLow = "warnung, batterie fast leer"
-    window.voiceBatteryCharging = "batterie laden"
-    window.voiceCPUzuHohe = "warnung, cpu auslastung zu hohe"
-    window.voiceNichtStoerenEin = "nicht stören modus eingeschaltet"
-    window.voiceNichtStoerenAus = "nicht stören modus ausgeschaltet"
-
-    window.voiceCommand = "say -v " + window.voice + " "
 #   Define constants
     window.segments = ["子時", "丑時", "寅時", "卯時", "辰時", "巳時", "午時", "未時", "申時", "酉時", "戌時", "亥時"]
     if (language.indexOf("de") > -1)
+        window.voice = "yannick"
+        window.voiceBatteryLow = "warnung, batterie fast leer"
+        window.voiceBatteryCharging = "batterie laden"
+        window.voiceCPUzuHohe = "warnung, cpu auslastung zu hohe"
+        window.voiceNichtStoerenEin = "nicht stören modus eingeschaltet"
+        window.voiceNichtStoerenAus = "nicht stören modus ausgeschaltet"
         window.Batterievalues  = [
             'NUR AC'
             ''
@@ -704,6 +706,12 @@ afterRender: (domEl) ->
         ]
         window.BatteryType = "innenbatterie"
     else
+        window.voice = "daniel"
+        window.voiceBatteryLow = "warning, battery level critical"
+        window.voiceBatteryCharging = "battery charging"
+        window.voiceCPUzuHohe = "warning, cpu overloaded"
+        window.voiceNichtStoerenEin = "no disturb mode is on"
+        window.voiceNichtStoerenAus = "no disturb mode is off"
         window.Batterievalues  = [
             'AC Only'
             ''
@@ -734,6 +742,8 @@ afterRender: (domEl) ->
         $(domEl).find("#TrashCell   span").text("Trash")
         $(domEl).find(".Wcontent        ").html("<u></u><d></d>#{window.WarningMessage}")
         $(domEl).find("#21     .contentS").html("<u></u><d></d>#{window.WarningMessage}")
+#   Voice
+    window.voiceCommand = "say -v " + window.voice + " "
 #   Initialise warnings
     window.Bwarning=0
     window.Cwarning=0
@@ -1000,24 +1010,27 @@ update: (output, domEl) ->
         $(domEl).find('#rate5').css("visibility","hidden")
 #   Dealing with warnings
     # Bwarning stands for Battery warning, triggers when battery drops below 20% without charging.
-    if (parseInt(BatteryPercentage) <= 20 & BatteryState.indexOf("discharging") > -1)
+    if (parseInt(BatteryPercentage) <= config.BatteryAlertLevel & BatteryState.indexOf("discharging") > -1)
         if (Bwarning == 0)
-            @run voiceCommand + voiceBatteryLow
+            if config.Voice
+                @run voiceCommand + voiceBatteryLow
             colorChange(".a3", "rgba(256,0,0,1)")
             colorChange("#15", "rgba(128,0,0,1)")
             $(domEl).find("#15").css("visibility","visible")
             Bwarning += 1
     else
         if (Bwarning == 1)
-            @run voiceCommand + voiceBatteryCharging
+            if config.Voice
+                @run voiceCommand + voiceBatteryCharging
             colorChange(".a3", "rgba(10,10,10,1)")
             colorChange("#15", "rgba(128,0,0,0)")
             $(domEl).find("#15").css("visibility","hidden")
             Bwarning -= 0
     # Cwarning is for CPU usage. Default value is to trigger when CPU usage reaches 90%
-    if CPUUsage/CPUAmount > 90
+    if CPUUsage/CPUAmount > config.CPUAlertLevel
         if (Cwarning == 0)
-            @run voiceCommand + voiceCPUzuHohe
+            if config.Voice
+                @run voiceCommand + voiceCPUzuHohe
             colorChange("#CPUCell", "rgba(256,0,0,1)")
             Cwarning += 1
     else
@@ -1026,11 +1039,13 @@ update: (output, domEl) ->
             Cwarning -= 1
     if Disturbvalues == '1'
         if (Mwarning == 0)
-            @run voiceCommand + voiceNichtStoerenEin
+            if config.Voice
+                @run voiceCommand + voiceNichtStoerenEin
             Mwarning += 1
     else
         if (Mwarning == 1)
-            @run voiceCommand + voiceNichtStoerenAus
+            if config.Voice
+                @run voiceCommand + voiceNichtStoerenAus
             Mwarning -= 1
 
     warning_switch(Bwarning+Cwarning, Mwarning)
@@ -1077,6 +1092,22 @@ update: (output, domEl) ->
         ->
             colorChange(".a4", "rgba(10,10,10,0)")
             $(domEl).find(".a4x").css("visibility",               "hidden")
+    )
+
+    $('#31').hover (
+        ->
+            $(domEl).find("#31 .id").text("#{Version}")
+    ), (
+        ->
+            $(domEl).find("#31 .id").text("31")
+    )
+
+    $('#25').hover (
+        ->
+            $(domEl).find("#25 .id").text("Jetic")
+    ), (
+        ->
+            $(domEl).find("#25 .id").text("25")
     )
 
     $('.NetCell').hover (->
