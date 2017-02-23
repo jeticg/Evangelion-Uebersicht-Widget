@@ -1,4 +1,4 @@
-# Version: 0.X3a
+# Version: 0.X4a
 ## If you do not want a transparent widget, please adjust the opacity setting under STYLE
 ## If you do not know how to write HTML/CSS, it is best for you to learn it first before
 ## attempting to customise the UI. Or you can contact me.
@@ -665,6 +665,16 @@ command:    "   sh Eva.widget/battery.sh &&
 afterRender: (domEl) ->
 #   Get System Language
     language = navigator.language;
+#   Voice settings
+    window.voiceEnabled = 1
+    window.voice = "yannick"
+    window.voiceBatteryLow = "warnung, batterie fast leer"
+    window.voiceBatteryCharging = "batterie laden"
+    window.voiceCPUzuHohe = "warnung, cpu auslastung zu hohe"
+    window.voiceNichtStoerenEin = "nicht stören modus eingeschaltet"
+    window.voiceNichtStoerenAus = "nicht stören modus ausgeschaltet"
+
+    window.voiceCommand = "say -v " + window.voice + " "
 #   Define constants
     window.segments = ["子時", "丑時", "寅時", "卯時", "辰時", "巳時", "午時", "未時", "申時", "酉時", "戌時", "亥時"]
     if (language.indexOf("de") > -1)
@@ -821,8 +831,6 @@ update: (output, domEl) ->
                         $cell.find(".id"      ).css("display"   ,"inline-block")
                 setTimeout (work(element)), Math.random() * 1000
             setTimeout (animation_on(".a0", cellColour)), 1000
-
-
 
 #   Processing time
     # This is for outputing the time. Nothing really
@@ -994,12 +1002,14 @@ update: (output, domEl) ->
     # Bwarning stands for Battery warning, triggers when battery drops below 20% without charging.
     if (parseInt(BatteryPercentage) <= 20 & BatteryState.indexOf("discharging") > -1)
         if (Bwarning == 0)
+            @run voiceCommand + voiceBatteryLow
             colorChange(".a3", "rgba(256,0,0,1)")
             colorChange("#15", "rgba(128,0,0,1)")
             $(domEl).find("#15").css("visibility","visible")
             Bwarning += 1
     else
         if (Bwarning == 1)
+            @run voiceCommand + voiceBatteryCharging
             colorChange(".a3", "rgba(10,10,10,1)")
             colorChange("#15", "rgba(128,0,0,0)")
             $(domEl).find("#15").css("visibility","hidden")
@@ -1007,6 +1017,7 @@ update: (output, domEl) ->
     # Cwarning is for CPU usage. Default value is to trigger when CPU usage reaches 90%
     if CPUUsage/CPUAmount > 90
         if (Cwarning == 0)
+            @run voiceCommand + voiceCPUzuHohe
             colorChange("#CPUCell", "rgba(256,0,0,1)")
             Cwarning += 1
     else
@@ -1014,9 +1025,13 @@ update: (output, domEl) ->
             colorChange("#CPUCell", "rgba(10,10,10,1)")
             Cwarning -= 1
     if Disturbvalues == '1'
-        Mwarning = 1
+        if (Mwarning == 0)
+            @run voiceCommand + voiceNichtStoerenEin
+            Mwarning += 1
     else
-        Mwarning = 0
+        if (Mwarning == 1)
+            @run voiceCommand + voiceNichtStoerenAus
+            Mwarning -= 1
 
     warning_switch(Bwarning+Cwarning, Mwarning)
 
