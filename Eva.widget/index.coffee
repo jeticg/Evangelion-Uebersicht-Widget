@@ -864,7 +864,9 @@ update: (output, domEl) ->
 
 #   Processing output, passing values from command line output to variables
     AllOutputs = output.split('\n')
-    Batterievalues  = AllOutputs[0].split(' ')
+    #   If this is a desktop machine, the first line would be empty.
+    if (AllOutputs[0].indexOf("InternalBattery") > -1)
+        window.Batterievalues  = AllOutputs[0].split(' ')
     CPUUsage        = AllOutputs[1].split(' ')
     MemUsage        = AllOutputs[2].split(' ')
     CPUAmount       = AllOutputs[3].split(' ')
