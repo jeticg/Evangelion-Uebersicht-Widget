@@ -2,7 +2,11 @@ run_data(){
     if [ ! -f Eva.widget/netstat.working ]; then
         ORZ=$(netstat -w1 & sleep 1; kill $!;)
         ORZ=($ORZ)
-        sed -i "" "1s/.*/${ORZ[12]} ${ORZ[15]}/" Eva.widget/netstat.output
+        output="${ORZ[12]} ${ORZ[15]}"
+        if [[ $output == *\ *  ]];
+        then
+            sed -i "" "1s/.*/${output}/" Eva.widget/netstat.output
+        fi
     fi
 }
 
