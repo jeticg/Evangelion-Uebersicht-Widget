@@ -1,10 +1,16 @@
-Version = "0.X4a"
+Version = "0.X4b"
 config = {
     Magnification: 1
     BatteryAlertLevel: 20
     CPUAlertLevel: 90
     Opacity: 0.5
     Voice: false
+    colourIdle: "rgba(10,10,10,1)"
+    colourWarn: "rgba(256,0,0,1)"
+    colourDNDS: "rgba(256,96,0,1)"
+    colourWhit: "rgba(256,256,256,1)"
+    colourIdleHover: "rgba(128,128,128,1)"
+    colourWarnHover: "rgba(128,0,0,1)"
 }
 ## If you do not know how to write HTML/CSS, it is best for you to learn it first before
 ## attempting to customise the UI. Or you can contact me.
@@ -54,7 +60,7 @@ style: """
         text-decoration: none
         transform:rotate(90deg)
         width:100em;height:58em
-        background:rgba(10,10,10,1)
+        background:#{config.colourIdle}
         display:inline-block
         position:relative
         line-height:58em
@@ -70,7 +76,7 @@ style: """
         position:absolute
         border-left:0.4em dotted transparent
         border-right:0.4em dotted transparent
-        border-bottom:0.8em solid rgba(256,256,256,1)
+        border-bottom:0.8em solid #{config.colourWhit}
         bottom:3.33333em
         right: 2.93333em
     .nav u
@@ -80,15 +86,15 @@ style: """
         position:absolute
         border-left:0.4em dotted transparent
         border-right:0.4em dotted transparent
-        border-top:0.8em solid rgba(256,256,256,1)
+        border-top:0.8em solid #{config.colourWhit}
         top:3.33333em
         right:2.93333em
     .nav o
         display:block
         overflow:hidden
         position:absolute
-        border-right:2em solid rgba(256,256,256,1)
-        border-left:2em solid rgba(256,256,256,1)
+        border-right:2em solid #{config.colourWhit}
+        border-left:2em solid #{config.colourWhit}
         padding-right:88em
         padding-top:52em
         left:4em
@@ -101,7 +107,7 @@ style: """
         position:absolute
         border-right:50em dotted transparent
         border-left:50em dotted transparent
-        border-bottom:30em solid rgba(10,10,10,1)
+        border-bottom:30em solid #{config.colourIdle}
         right:0em
         top:-30em
     .nav b
@@ -112,7 +118,7 @@ style: """
         position:absolute
         border-right:50em dotted transparent
         border-left:50em dotted transparent
-        border-top:30em solid rgba(10,10,10,1)
+        border-top:30em solid #{config.colourIdle}
         bottom:-30em
         right:0em
     .nav b1
@@ -123,7 +129,7 @@ style: """
         position:absolute
         border-right:0em dotted transparent
         border-left:100em dotted transparent
-        border-top:60em solid rgba(10,10,10,1)
+        border-top:60em solid #{config.colourIdle}
         bottom:-60em
         right:0em
     .nav b2
@@ -134,7 +140,7 @@ style: """
         position:absolute
         border-right:100em dotted transparent
         border-left:0em dotted transparent
-        border-top:60em solid rgba(10,10,10,1)
+        border-top:60em solid #{config.colourIdle}
         bottom:-60em
         right:0em
     .nav b3
@@ -143,8 +149,8 @@ style: """
         height:0
         display:block
         position:absolute
-        background-color: rgba(10,10,10,1)
-        border-top:95em solid rgba(10,10,10,1)
+        background-color: #{config.colourIdle}
+        border-top:95em solid #{config.colourIdle}
         right:0em
         bottom:-95em
     .nav s1
@@ -155,7 +161,7 @@ style: """
         position:absolute
         border-right:0em dotted transparent
         border-left:100em dotted transparent
-        border-bottom:60em solid rgba(10,10,10,1)
+        border-bottom:60em solid #{config.colourIdle}
         right:0em
         top:-60em
     .nav s2
@@ -164,8 +170,8 @@ style: """
         height:0
         display:block
         position:absolute
-        background-color: rgba(10,10,10,1)
-        border-bottom:95em solid rgba(10,10,10,1)
+        background-color: #{config.colourIdle}
+        border-bottom:95em solid #{config.colourIdle}
         right:0em
         top:-95em
     .a0, .a0 s, .a0 b
@@ -178,9 +184,9 @@ style: """
     .a4
         background:rgba(0,0,0,0)
     .nav:hover a0 s
-        border-top-color:rgba(128,128,128,1)
+        border-top-color:#{config.colourIdleHover}
     .nav:hover a0 b
-        border-top-color:rgba(128,128,128,1)
+        border-top-color:#{config.colourIdleHover}
     .a4 s, .a4 s2, .a4 b, .a4 b1, .a4 b2, .a4 b3
         border-bottom-color:rgba(10,10,10,0)
         border-top-color:rgba(10,10,10,0)
@@ -190,11 +196,11 @@ style: """
     .ax
         height:200em
     .a1:hover, .a2:hover, .a3:hover
-        background-color:rgba(128,128,128,1)
+        background-color:#{config.colourIdleHover}
     .a1:hover s, .a2:hover s, .a3:hover s
-        border-bottom-color:rgba(128,128,128,1)
+        border-bottom-color:#{config.colourIdleHover}
     .a1:hover b, .a2:hover b, .a3:hover b
-        border-top-color:rgba(128,128,128,1)
+        border-top-color:#{config.colourIdleHover}
     .output
         padding: 5em 10em
         font-size: 30em
@@ -242,7 +248,7 @@ style: """
         position:relative
         border-right:11em dotted transparent
         border-left:11em dotted transparent
-        border-top:20em solid rgba(256,256,256,1)
+        border-top:20em solid #{config.colourWhit}
         right:-40em
         top:-10em
     .iTunesNext
@@ -250,14 +256,14 @@ style: """
         position:relative
         border-right:11em dotted transparent
         border-left:11em dotted transparent
-        border-bottom:20em solid rgba(256,256,256,1)
+        border-bottom:20em solid #{config.colourWhit}
         right:-40em
         top:-260em
     .iTunesPause
         width:30em;height:8em
         position:relative
-        border-top:8em solid rgba(256,256,256,1)
-        border-bottom:8em solid rgba(256,256,256,1)
+        border-top:8em solid #{config.colourWhit}
+        border-bottom:8em solid #{config.colourWhit}
         right:-37em
         top:-100em
     .iTunesPlay
@@ -265,26 +271,26 @@ style: """
         position:relative
         border-right:17em dotted transparent
         border-left:17em dotted transparent
-        border-bottom:30em solid rgba(256,256,256,1)
+        border-bottom:30em solid #{config.colourWhit}
         right:-35em
         top:-170em
     .iTunesPlay:active
-        border-bottom-color: rgba(128,128,128,1)
+        border-bottom-color: #{config.colourIdleHover}
     .iTunesPause:active
-        border-top-color: rgba(128,128,128,1)
-        border-bottom-color: rgba(128,128,128,1)
+        border-top-color: #{config.colourIdleHover}
+        border-bottom-color: #{config.colourIdleHover}
     .iTunesNext:active
-        border-bottom-color: rgba(128,128,128,1)
+        border-bottom-color: #{config.colourIdleHover}
     .iTunesPre:active
-        border-top-color: rgba(128,128,128,1)
+        border-top-color: #{config.colourIdleHover}
     .Disk
         background-color: rgba(226,161,54,1)
         position: relative
         font-size: 10em
         left: 1em; top:0.7em
         width:5em;height:4em
-        border:0.2em solid rgba(256,256,256,1)
-        border-right: 0.5em solid rgba(256,256,256,1)
+        border:0.2em solid #{config.colourWhit}
+        border-right: 0.5em solid #{config.colourWhit}
         z-index:99999
     .DiskN
         width: 9em; height:4em
@@ -300,7 +306,7 @@ style: """
         position: fixed;
         left:410em; bottom:500em;
         width:200em; height:200em;
-        background-color: rgba(10,10,10,1);
+        background-color: #{config.colourIdle};
         z-index:99999
     .iTunesCoverMask
         color:white
@@ -826,17 +832,17 @@ update: (output, domEl) ->
                 work = (cell) -> () ->
                     $cell = $(cell)
                     if cellColour == 1
-                        colorChange($cell, "rgba(256,0,0,1)")
+                        colorChange($cell, config.colourWarn)
                         $cell.find(".Wcontent").html("<u></u><d></d>#{WarningMessage}")
                         $cell.find(".Wcontent").css("visibility","visible")
                         $cell.find(".id"      ).css("display"   ,"none"   )
                     else if cellColour == 2
-                        colorChange($cell, "rgba(256,96,0,1)")
+                        colorChange($cell, config.colourDNDS)
                         $cell.find(".Wcontent").html("NoDisturb")
                         $cell.find(".Wcontent").css("visibility","visible")
                         $cell.find(".id"      ).css("display"   ,"none"   )
                     else
-                        colorChange($cell, "rgba(10,10,10,1)")
+                        colorChange($cell, config.colourIdle)
                         $cell.find(".Wcontent").css("visibility","hidden"      )
                         $cell.find(".id"      ).css("display"   ,"inline-block")
                 setTimeout (work(element)), Math.random() * 1000
@@ -911,11 +917,11 @@ update: (output, domEl) ->
         IPaddress=ErrorMessage
         if IPFehler != 1
             IPFehler = 1
-            colorChange("#IPCell", "rgba(256,10,10,1)")
+            colorChange("#IPCell", config.colourWarn)
     else
         if IPFehler != 0
             IPFehler = 0
-            colorChange("#IPCell", "rgba(10,10,10,1)")
+            colorChange("#IPCell", config.colourIdle)
     $(domEl).find('.PubIP').text("#{IPaddress}")
 #   Deliver output
     # Disks, all five disks are hidden by default, only when such disk exists shall it be displayed
@@ -1016,15 +1022,15 @@ update: (output, domEl) ->
         if (Bwarning == 0)
             if config.Voice
                 @run voiceCommand + voiceBatteryLow
-            colorChange(".a3", "rgba(256,0,0,1)")
-            colorChange("#15", "rgba(128,0,0,1)")
+            colorChange(".a3", config.colourWarn)
+            colorChange("#15", config.colourWarnHover)
             $(domEl).find("#15").css("visibility","visible")
             Bwarning += 1
     else
         if (Bwarning == 1)
             if config.Voice
                 @run voiceCommand + voiceBatteryCharging
-            colorChange(".a3", "rgba(10,10,10,1)")
+            colorChange(".a3", config.colourIdle)
             colorChange("#15", "rgba(128,0,0,0)")
             $(domEl).find("#15").css("visibility","hidden")
             Bwarning -= 0
@@ -1033,11 +1039,11 @@ update: (output, domEl) ->
         if (Cwarning == 0)
             if config.Voice
                 @run voiceCommand + voiceCPUzuHohe
-            colorChange("#CPUCell", "rgba(256,0,0,1)")
+            colorChange("#CPUCell", config.colourWarn)
             Cwarning += 1
     else
         if (Cwarning == 1)
-            colorChange("#CPUCell", "rgba(10,10,10,1)")
+            colorChange("#CPUCell", config.colourIdle)
             Cwarning -= 1
     if Disturbvalues == '1'
         if (Mwarning == 0)
@@ -1055,43 +1061,45 @@ update: (output, domEl) ->
 #   hover effects, dealing with hovering
     $('#IPCell').hover (->
             if IPFehler == 1
-                colorChange("#IPCell", "rgba(128,0,0,1)")
+                colorChange("#IPCell", config.colourWarnHover)
             else
-                colorChange("#IPCell", "rgba(128,128,128,1)")
+                colorChange("#IPCell", config.colourIdleHover)
     ), (->
             if IPFehler == 1
-                colorChange("#IPCell", "rgba(256,0,0,1)")
+                colorChange("#IPCell", config.colourWarn)
             else
-                colorChange("#IPCell", "rgba(10,10,10,1)")
+                colorChange("#IPCell", config.colourIdle)
     )
     $('#CPUCell').hover (->
             if Cwarning == 1
-                colorChange("#CPUCell", "rgba(128,0,0,1)")
+                colorChange("#CPUCell", config.colourWarnHover)
             else
-                colorChange("#CPUCell", "rgba(128,128,128,1)")
+                colorChange("#CPUCell", config.colourIdleHover)
     ), (->
             if Cwarning == 1
-                colorChange("#CPUCell", "rgba(256,0,0,1)")
+                colorChange("#CPUCell", config.colourWarn)
             else
-                colorChange("#CPUCell", "rgba(10,10,10,1)")
+                colorChange("#CPUCell", config.colourIdle)
     )
     $('.a3').hover (->
             if Bwarning == 1
-                colorChange(".a3", "rgba(128,0,0,1)")
+                colorChange(".a3", config.colourWarnHover)
             else
-                colorChange(".a3", "rgba(128,128,128,1)")
+                colorChange(".a3", config.colourIdleHover)
     ), (->
             if Bwarning == 1
-                colorChange(".a3", "rgba(256,0,0,1)")
+                colorChange(".a3", config.colourWarn)
             else
-                colorChange(".a3", "rgba(10,10,10,1)")
+                colorChange(".a3", config.colourIdle)
     )
     $('#32').hover (
         ->
-            colorChange(".a4", "rgba(128,128,128,1)")
+            colorChange("#32", config.colourIdleHover)
+            colorChange(".a4", config.colourIdleHover)
             $(domEl).find(".a4x").css("visibility",               "visible")
     ), (
         ->
+            colorChange("#32", config.colourIdle)
             colorChange(".a4", "rgba(10,10,10,0)")
             $(domEl).find(".a4x").css("visibility",               "hidden")
     )
@@ -1113,14 +1121,14 @@ update: (output, domEl) ->
     )
 
     $('.NetCell').hover (->
-            colorChange(".NetCell", "rgba(128,128,128,1)")
+            colorChange(".NetCell", config.colourIdleHover)
     ), (->
-            colorChange(".NetCell", "rgba(10,10,10,1)")
+            colorChange(".NetCell", config.colourIdle)
     )
     $('.CoverCell').hover (->
-            colorChange(".CoverCell", "rgba(128,128,128,1)")
+            colorChange(".CoverCell", config.colourIdleHover)
     ), (->
-            colorChange(".CoverCell", "rgba(10,10,10,1)")
+            colorChange(".CoverCell", config.colourIdle)
     )
     # Outputting all the information for debug
     $(domEl).find('.OP').text("#{output}")
