@@ -41,6 +41,9 @@ Who am I kidding, the only thing you need to know is this is a widget for Übers
 
 ## Updates
 
+0.X5a
+* Fixed a minor bug with battery alert
+
 0.X4b
 * Fixed a few minor bugs with the scripts
 * Fixed a bug with desktop computers

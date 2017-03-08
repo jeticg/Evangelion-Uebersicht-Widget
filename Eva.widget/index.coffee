@@ -1,6 +1,6 @@
-Version = "0.X4b"
+Version = "0.X5a"
 config = {
-    Magnification: 1
+    Magnification: 1.0
     BatteryAlertLevel: 20
     CPUAlertLevel: 90
     Opacity: 0.5
@@ -1033,7 +1033,7 @@ update: (output, domEl) ->
             colorChange(".a3", config.colourIdle)
             colorChange("#15", "rgba(128,0,0,0)")
             $(domEl).find("#15").css("visibility","hidden")
-            Bwarning -= 0
+            Bwarning -= 1
     # Cwarning is for CPU usage. Default value is to trigger when CPU usage reaches 90%
     if CPUUsage/CPUAmount > config.CPUAlertLevel
         if (Cwarning == 0)
