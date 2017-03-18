@@ -1,4 +1,4 @@
-Version = "0.X5a"
+Version = "0.X6a"
 config = {
     Magnification: 1.0
     BatteryAlertLevel: 20
@@ -671,7 +671,7 @@ command:    "   sh Eva.widget/battery.sh &&
                 sh Eva.widget/netstat.sh &&
                 defaults read ~/Library/Preferences/ByHost/com.apple.notificationcenterui doNotDisturb &&
 
-                osascript 'Eva.widget/iTunes.scpt' &&
+                sh Eva.widget/iTunes.sh &&
                 ls -F /Volumes/ | awk -F'\t' '{ print $0}'
             "
 afterRender: (domEl) ->
@@ -882,12 +882,12 @@ update: (output, domEl) ->
     IPaddress       = AllOutputs[6]
     Disturbvalues   = AllOutputs[7]
     if (AllOutputs[8].indexOf("osascript: Eva.widget/iTunes.scp:") > -1)
-        AllOutputs[8] = "~ ~ ~ 0 ~ 0"
-    iTunesvalues    = AllOutputs[8].split('~')
+        AllOutputs[8] = "¶ ¶ ¶ 0 ¶ 0"
+    iTunesvalues    = AllOutputs[8].split('¶')
 
     Trashvalues="#{Trashvalues}".replace /,/g, ''
     Trashvalues="#{Trashvalues}".replace /\s+/g, ''
-    if (AllOutputs[8].indexOf("~ ~ ~ 0 ~ 0") > -1)
+    if (AllOutputs[8].indexOf("¶ ¶ ¶ 0 ¶ 0") > -1)
         $(domEl).find(".CoverCell").css("visibility","hidden")
         $(domEl).find("#44").css("visibility","hidden")
         $(domEl).find("#45").css("visibility","hidden")
