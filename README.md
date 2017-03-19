@@ -41,6 +41,9 @@ Who am I kidding, the only thing you need to know is this is a widget for Übers
 
 ## Updates
 
+0.X7a
+* Fixing a minor bug with iTunes cell
+
 0.X6a
 * Fixing a minor bug with iTunes cell
 

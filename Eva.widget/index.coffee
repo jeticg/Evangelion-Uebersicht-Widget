@@ -1,4 +1,4 @@
-Version = "0.X6a"
+Version = "0.X7a"
 config = {
     Magnification: 1.0
     BatteryAlertLevel: 20
@@ -671,7 +671,7 @@ command:    "   sh Eva.widget/battery.sh &&
                 sh Eva.widget/netstat.sh &&
                 defaults read ~/Library/Preferences/ByHost/com.apple.notificationcenterui doNotDisturb &&
 
-                sh Eva.widget/iTunes.sh &&
+                sh Eva.widget/iTunes.sh 2>/dev/null&&
                 ls -F /Volumes/ | awk -F'\t' '{ print $0}'
             "
 afterRender: (domEl) ->
