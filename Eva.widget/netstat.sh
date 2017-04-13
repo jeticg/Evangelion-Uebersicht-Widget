@@ -13,7 +13,7 @@ run_data(){
 run_ip() {
     if [ ! -f Eva.widget/netstat.ipworking ]; then
         touch Eva.widget/netstat.ipworking
-        IP=$(dig +short myip.opendns.com +tries=5 @resolver1.opendns.com)
+        IP=$(curl https://diagnostic.opendns.com/myip)
         if [[ $IP != *.*.*.* ]];
         then
             IP="Fehler"
