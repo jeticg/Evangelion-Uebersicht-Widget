@@ -1,5 +1,9 @@
 # Evangelion-Übersicht-Widget
 
+## Instruction
+
+For those who have trouble with clicking, please check your Übersicht settings.
+
 ## Major Update Notice!
 If you are using an earlier version of this widget (before 0.X2a), please consider installing the versions after 0.X2a. I managed to solve the performance problem, now in alert mode it will only require 10% of the earlier version's energy, and 20% of the earlier version's CPU!
 
