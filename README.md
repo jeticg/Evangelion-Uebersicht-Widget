@@ -4,6 +4,15 @@
 
 For those who have trouble with clicking, please check your Übersicht settings.
 
+The interface is MULTI-LANGUAGE! So don't worry if you don't speak German. Supported languages:
+* Deutsch
+* English
+
+## Click to update!
+Starting from 0.X8a, you can update Evangelion Übersicht Widget by clicking the update button! Not that there will be frequent updates, but it saves time. I'll try out some ways to make updating even cooler, given time that is.
+
+![alt text](https://github.com/jeticg/Evangelion-Uebersicht-Widget/raw/master/support/updateButton.png "Say hi to update button!")
+
 ## Major Update Notice!
 If you are using an earlier version of this widget (before 0.X2a), please consider installing the versions after 0.X2a. I managed to solve the performance problem, now in alert mode it will only require 10% of the earlier version's energy, and 20% of the earlier version's CPU!
 
@@ -11,10 +20,6 @@ If you are using an earlier version of this widget (before 0.X2a), please consid
 This widget is an Evangelion Übersicht Widget, displaying information through a huge amount of cells on your desktop.
 
 If you leaves nothing on your desktop except for less than six mounted volumes (system volumes, connected servers etc.), this widget can replace your desktop completely.
-
-The interface is now MULTI-LANGUAGE! Supported language:
-* Deutsch
-* English
 
 Currently with this widget you can:
 
@@ -30,6 +35,7 @@ Currently with this widget you can:
 10. Vocal notice on alerts. Default is OFF, turn it on by setting config.Voice to true
 
 Special features
+* Update button displayed when new version is out
 * Alarm system, triggers when CPU usage is too high or battery drops to below 20% without charging
 * Empty your trash bin by clicking the trash cell
 * Open up a volume by clicking it
