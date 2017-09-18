@@ -1,4 +1,4 @@
-Version = "0.X7a"
+Version = "0.X8a"
 config = {
     Magnification: 1.0
     BatteryAlertLevel: 20
@@ -618,7 +618,17 @@ render: -> """
             <div class="id">26</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
             <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
-        <div class="nav ai" target="_blank" href="#" id="27"></div><p></p>
+
+        <div class="nav ai" target="_blank" href="#" id="27" style="background:#{config.colourWarn}">
+            <s style="border-bottom-color:#{config.colourWarn}"></s>
+            <b style="border-top-color:#{config.colourWarn}"></b>
+            <o></o>
+            <o style="transform:rotate(-60deg)"></o>
+            <o style="transform:rotate(-120deg)"></o>
+            <div class="contentS" style="text-align:center;font-size:20em">
+                Update!
+            </div>
+            </div><p></p>
 
         <div class="nav a1" target="_blank" href="#" id="IPCell"><s></s><b></b>
             <div class="contentS" style="margin-left:-25em">
@@ -674,6 +684,7 @@ command:    "   sh Eva.widget/battery.sh &&
                 sh Eva.widget/iTunes.sh 2>/dev/null&&
                 ls -F /Volumes/ | awk -F'\t' '{ print $0}'
             "
+
 afterRender: (domEl) ->
 #   Get System Language
     language = navigator.language;
@@ -757,6 +768,17 @@ afterRender: (domEl) ->
     window.Mwarning=0
     window.cellColour=-1
     window.count = -1
+    $(domEl).on 'click', '#27', =>
+        $(domEl).find("#27 .contentS").text("loading")
+        @run "curl -o ../Evangelion_style_dashboard.widget.zip https://raw.githubusercontent.com/jeticg/Evangelion-Uebersicht-Widget/master/Evangelion_style_dashboard.widget.zip &&
+            cp -r Eva.widget ../Eva.widget &&
+            unzip -o ../Evangelion_style_dashboard.widget.zip -d ../ &&
+            cp -r ../Eva.widget/* ./Eva.widget/ &&
+            rm -r ../Evangelion_style_dashboard.widget.zip &&
+            rm -r ../Eva.widget &&
+            rm -r ../__MACOSX"
+
+
     $(domEl).on 'click', '.iTunesPre', => @run "osascript -e 'tell application \"iTunes\" to previous track'"
     $(domEl).on 'click', '.iTunesNext', => @run "osascript -e 'tell application \"iTunes\" to next track'"
     $(domEl).on 'click', '.iTunesPause', => @run "osascript -e 'tell application \"iTunes\" to pause'"
@@ -774,6 +796,17 @@ afterRender: (domEl) ->
     $(domEl).on 'click', '#65', => @run "ls /Volumes/ | awk -F'\t' '{ print $0}' > tmp.txt;i=1; cat tmp.txt | sed -e 's/[ ]/\\ /g ' | while read line; do if [ \"$i\" -eq 5 ]; then open /Volumes/\"${line}\"; fi; let i=i+1; done; rm tmp.txt
 "
     @run "rm Eva.widget/netstat.ipworking"
+
+    $.ajax 'https://raw.githubusercontent.com/jeticg/Evangelion-Uebersicht-Widget/master/widget.json',
+        dataType: 'json'
+        success: (data, textStatus, jqXHR) ->
+            console.log "Version(Online): #{data.version}"
+            console.log "Version(Local): #{Version}"
+            if Version != data.version
+                console.log "Yoo, you need an update"
+                $(domEl).find("#27").css("visibility", "visible")
+            else
+                console.log "You have the newest version. OK, you're cool"
 
 update: (output, domEl) ->
 #   functions

@@ -45,6 +45,9 @@ Who am I kidding, the only thing you need to know is this is a widget for Übers
 
 ## Updates
 
+0.X8a
+* Display an update button when there are new versions available
+
 0.X7a
 * Fixing a minor bug with iTunes cell
 
