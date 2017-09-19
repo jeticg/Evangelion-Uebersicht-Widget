@@ -1,4 +1,4 @@
-Version = "0.X8a"
+Version = "0.X9a"
 config = {
     Magnification: 1.0
     BatteryAlertLevel: 20
@@ -770,9 +770,11 @@ afterRender: (domEl) ->
     window.count = -1
     $(domEl).on 'click', '#27', =>
         $(domEl).find("#27 .contentS").text("loading")
-        @run "curl -o ../Evangelion_style_dashboard.widget.zip https://raw.githubusercontent.com/jeticg/Evangelion-Uebersicht-Widget/master/Evangelion_style_dashboard.widget.zip &&
+        @run "head -14 Eva.widget/index.coffee > updateConfig.tmp &&
+            curl -o ../Evangelion_style_dashboard.widget.zip https://raw.githubusercontent.com/jeticg/Evangelion-Uebersicht-Widget/master/Evangelion_style_dashboard.widget.zip &&
             cp -r Eva.widget ../Eva.widget &&
             unzip -o ../Evangelion_style_dashboard.widget.zip -d ../ &&
+            sh ../Eva.widget/updateConfig.sh &&
             cp -r ../Eva.widget/* ./Eva.widget/ &&
             rm -r ../Evangelion_style_dashboard.widget.zip &&
             rm -r ../Eva.widget &&
