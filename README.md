@@ -51,6 +51,9 @@ Who am I kidding, the only thing you need to know is this is a widget for Übers
 
 ## Updates
 
+0.X10a
+* Added option to not show the update button
+
 0.X9a
 * Update now preserves customised settings (starting from next update)
 
