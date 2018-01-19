@@ -13,6 +13,13 @@ Starting from 0.X8a, you can update Evangelion Übersicht Widget by clicking the
 
 ![alt text](https://github.com/jeticg/Evangelion-Uebersicht-Widget/raw/master/support/updateButton.png "Say hi to update button!")
 
+## Memory Usage VS Memory Pressure
+Starting from 0.X11a, memory cell will be displaying memory pressure level (NORMAL, WARN, CRITICAL). The reason behind this move is simple: memory usage percentage make little sense in OSX now.
+
+A few years ago, OSX implemented a new virtual memory technology called memory compression (OK it's actually ancient, but people stopped using it as memory got larger back in the 90s). It is this technology that renders memory percentage information less useful. Imagine you have a lot of stuff taking up memory, but you could not tell exactly how much because you do not know how many of them are compressed. Memory pressure aims at showing exactly that. When there are too much stuff compressed in memory that it is slowing down performance, the memory pressure level raises. OSX defines 3 levels: NORMAL, WARN, CRITICAL. In NORMAL, everything will be fine and there is no performance issue. When it reaches WARN, there will be noticeable drop in performance and this is when one should take action to clean up one's memory (or upgrade one's RAM). As soon as it reaches CRITICAL, the computer will likely freeze up (too busy doing memory stuff than doing actual computations) and ask you to terminate certain processes.
+
+In short, take actions when you see the memory cell turn red!
+
 ## Major Update Notice!
 If you are using an earlier version of this widget (before 0.X2a), please consider installing the versions after 0.X2a. I managed to solve the performance problem, now in alert mode it will only require 10% of the earlier version's energy, and 20% of the earlier version's CPU!
 
@@ -24,7 +31,7 @@ If you leaves nothing on your desktop except for less than six mounted volumes (
 Currently with this widget you can:
 
 1. View time
-2. Check CPU and memory usage (Memory usage here includes cache usage, so it might come over 100%)
+2. Check CPU and memory usage (Memory pressure is displayed)
 3. Check battery status
 4. Check you Trash size
 5. Check your public ip address
@@ -50,6 +57,9 @@ Feedback
 Who am I kidding, the only thing you need to know is this is a widget for Übersicht, http://tracesof.net/uebersicht/
 
 ## Updates
+
+0.X11a
+* Now monitoring memory pressure, since memory percentage does not make sense for macOS
 
 0.X10a
 * Added option to not show the update button

@@ -1,4 +1,4 @@
-Version = "0.X10a"
+Version = "0.X11a"
 config = {
     Magnification: 1.0
     BatteryAlertLevel: 20
@@ -578,8 +578,8 @@ render: -> """
             <div class="contentS" style="margin-left:-25em">
                 <span style="font-size:15em">Speicher</span>
             </div>
-            <div class="content"  style="margin-left:30em;margin-top:-70em;font-family:Futura;font-style:normal">
-                <span class="MEMU" style="font-size:30em">Fehler</span>
+            <div class="content"  style="margin-left:30em;margin-top:-55em">
+                <span class="MEMU" style="font-size:23em">Fehler</span>
             </div></div>
         <div class="nav a3" target="_blank" href="#" id="17" style="z-index:9999"><s2></s2><b></b>
             <div class="Rotate" style="margin-top:-70em;margin-left:-60em;text-align:left"><span class="Bat"></span></div>
@@ -697,6 +697,7 @@ afterRender: (domEl) ->
         window.voiceBatteryLow = "warnung, batterie fast leer"
         window.voiceBatteryCharging = "batterie laden"
         window.voiceCPUzuHohe = "warnung, cpu auslastung zu hohe"
+        window.voiceMEMzuHohe = "warnung, speicherdruck zu hohe"
         window.voiceNichtStoerenEin = "nicht stören modus eingeschaltet"
         window.voiceNichtStoerenAus = "nicht stören modus ausgeschaltet"
         window.Batterievalues  = [
@@ -729,6 +730,7 @@ afterRender: (domEl) ->
         window.voiceBatteryLow = "warning, battery level critical"
         window.voiceBatteryCharging = "battery charging"
         window.voiceCPUzuHohe = "warning, cpu overloaded"
+        window.voiceMEMzuHohe = "warning, memory pressure too high"
         window.voiceNichtStoerenEin = "no disturb mode is on"
         window.voiceNichtStoerenAus = "no disturb mode is off"
         window.Batterievalues  = [
@@ -767,6 +769,7 @@ afterRender: (domEl) ->
     window.Bwarning=0
     window.Cwarning=0
     window.IPFehler=0
+    window.Swarning=0
     window.Mwarning=0
     window.cellColour=-1
     window.count = -1
@@ -1020,7 +1023,13 @@ update: (output, domEl) ->
         $(domEl).find('.BatRe').text("#{Batterievalues[3]}")
     # Output other information
     $(domEl).find('.CPUU').text("#{Math.floor(CPUUsage/CPUAmount)}%")
-    $(domEl).find('.MEMU').text("#{Math.floor(MemUsage)}%")
+    if (MemUsage.indexOf("1") > -1)
+        $(domEl).find('.MEMU').text("NORMAL")
+    else if (MemUsage.indexOf("2") > -1)
+        $(domEl).find('.MEMU').text("WARNIN")
+    else if (MemUsage.indexOf("4") > -1)
+        $(domEl).find('.MEMU').text("CRITICAL")
+
     $(domEl).find('.sal').text("#{timeSegment}")
     $(domEl).find('#iTunesTrack').text("#{iTunesvalues[3]}")
     $(domEl).find('#iTunesArtist').text("#{iTunesvalues[1]}")
@@ -1075,6 +1084,18 @@ update: (output, domEl) ->
             colorChange("#15", "rgba(128,0,0,0)")
             $(domEl).find("#15").css("visibility","hidden")
             Bwarning -= 1
+    # Swarning is for Memory usage. Warning is triggered when reaches above
+    # NORMAL level(1)
+    if (MemUsage.indexOf("1") <= -1)
+        if (Swarning == 0)
+            if config.Voice
+                @run voiceCommand + voiceMEMzuHohe
+            colorChange("#MemCell", config.colourWarn)
+            Swarning += 1
+    else
+        if (Swarning == 1)
+            colorChange("#MemCell", config.colourIdle)
+            Swarning -= 1
     # Cwarning is for CPU usage. Default value is to trigger when CPU usage reaches 90%
     if CPUUsage/CPUAmount > config.CPUAlertLevel
         if (Cwarning == 0)
@@ -1097,7 +1118,7 @@ update: (output, domEl) ->
                 @run voiceCommand + voiceNichtStoerenAus
             Mwarning -= 1
 
-    warning_switch(Bwarning+Cwarning, Mwarning)
+    warning_switch(Bwarning+Cwarning+Swarning, Mwarning)
 
 #   hover effects, dealing with hovering
     $('#IPCell').hover (->
