@@ -1,5 +1,14 @@
 # Evangelion-Übersicht-Widget
 
+## Installation
+Who am I kidding, the only thing you need to know is this is a widget for [Übersicht](http://tracesof.net/uebersicht/). 
+
+* Quick Installation
+	* Install Übersicht
+	* Download this widget by this [link](https://raw.githubusercontent.com/jeticg/Evangelion-Uebersicht-Widget/master/Evangelion_style_dashboard.widget.zip)
+	* Put this widget into Übersicht's widget folder
+	* Enjoy it!
+
 ## Instruction
 
 For those who have trouble with clicking, please check your Übersicht settings.
@@ -53,8 +62,6 @@ Feedback
 * Please note that this widget is still under development and open for suggestions. If you have any idea on how to improve this widget or new features you would like to see, please do not hesitate to contact me.
 * If you are encountering any problem with the display, please click cell number 32 and see the original console output and contact me with the information you see in the output, otherwise it could be hard to determine what went wrong.
 
-## Installation
-Who am I kidding, the only thing you need to know is this is a widget for Übersicht, http://tracesof.net/uebersicht/
 
 ## Updates
 
