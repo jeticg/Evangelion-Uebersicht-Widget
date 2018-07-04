@@ -1,11 +1,14 @@
 run_data(){
     if [ ! -f Eva.widget/netstat.working ]; then
-        ORZ=$(netstat -w1 & sleep 1; kill $!;)
+        INT=$(route get -host resolver1.opendns.com | grep interface)
+        INT=($INT)
+        INT=${INT[1]}
+        ORZ=$(netstat -w1 -I $INT & sleep 1; kill $!;)
         ORZ=($ORZ)
         output="${ORZ[12]} ${ORZ[15]}"
         if [[ ${#output} > 1  ]];
         then
-            sed -i "" "1s/.*/${output}/" Eva.widget/netstat.output
+            sed -i "" "1s/.*/${output} $INT/" Eva.widget/netstat.output
         fi
     fi
 }

@@ -70,6 +70,9 @@ If you leaves nothing on your desktop except for less than six mounted volumes (
 
 ## Updates
 
+**0.X12a**
+* Changed the networking script to only monitor main network interface.
+
 **0.X11a**
 * Now monitoring memory pressure, since memory percentage does not make sense for macOS
 
