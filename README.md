@@ -1,7 +1,7 @@
 # Evangelion-Übersicht-Widget
 
 ## Installation
-Who am I kidding, the only thing you need to know is this is a widget for [Übersicht](http://tracesof.net/uebersicht/). 
+Who am I kidding, the only thing you need to know is this is a widget for [Übersicht](http://tracesof.net/uebersicht/).
 
 * Quick Installation
 	* Install [Übersicht](http://tracesof.net/uebersicht/)
@@ -63,12 +63,15 @@ If you leaves nothing on your desktop except for less than six mounted volumes (
 
 ### Feedback
 
-* [Contact me](jetic@me.com) through E-mail. 
+* [Contact me](jetic@me.com) through E-mail.
 * Please note that this widget is still under development and open for suggestions. If you have any idea on how to improve this widget or new features you would like to see, please do not hesitate to contact me.
 * If you are encountering any problem with the display, please click cell number 32 and see the original console output and contact me with the information you see in the output, otherwise it could be hard to determine what went wrong.
 
 
 ## Updates
+
+**0.X13a**
+* Changed the CPU script.
 
 **0.X12a**
 * Changed the networking script to only monitor main network interface.
