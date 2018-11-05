@@ -11,7 +11,7 @@ Who am I kidding, the only thing you need to know is this is a widget for [Über
 
 ## Instruction
 
-Should you run into troubles with clicking, please check the Übersicht settings.
+If you run into troubles with clicking, please check your Übersicht settings.
 
 The interface is MULTI-LANGUAGE! So don't worry if you don't speak German. Supported languages:
 
@@ -19,17 +19,17 @@ The interface is MULTI-LANGUAGE! So don't worry if you don't speak German. Suppo
 * English
 
 ## Click to update!
-Now you could update Evangelion Übersicht Widget (with version >= 0.X8a) simply by clicking the update button! Not that there will be frequent updates, but it saves time. I'll try out some ways to make updating even cooler, given time that is.
+You can update Evangelion Übersicht Widget (version >= 0.X8a) simply by clicking the update button. Not that there will be frequent updates, but it saves time. I'll try out some ways to make updating even cooler, given time that is.
 
 ![alt text](https://github.com/jeticg/Evangelion-Uebersicht-Widget/raw/master/support/updateButton.png "Say hi to update button!")
 
 ## Memory Usage VS Memory Pressure
-As of version 0.X11a, memory cell will be displaying memory pressure level (NORMAL, WARN, CRITICAL) rather than concrete number of memory use percentage. The reason behind this move is simple: **memory usage percentage make little sense in OSX now.**
+As of version 0.X11a, the memory cell will show memory pressure levels (NORMAL, WARN, CRITICAL) rather than the memory usage percentage. The reason behind this move is simple: **memory usage percentage makes little sense in OSX now.**
 
-**To explain:** A few years ago, OSX implemented a new virtual memory technology called memory compression (OK it's actually rather ancient, but people stopped using it as memory got much cheaper back in the 90s). This technology rendered memory percentage information less useful. Imagine you have a lot of stuff taking up memory, but you could not tell exactly how much because you do not know how many of them are compressed. Therefore, memory usage percentage no longer matters that much as it looks like. Instead, what matters more is the the meomory pressure level, which shows the degree to whcih the performance is slowed down by the memory usage. OSX defines 3 levels of memory usage: **NORMAL**, **WARN**, **CRITICAL**:
+**To explain:** A few years ago, OSX implemented a new virtual memory technology called memory compression (OK it's actually rather ancient, but people stopped using it as memory got much cheaper back in the 90s). Imagine you have a lot of stuff taking up memory, but you can not tell exactly how much because you do not know how many of them are compressed. Therefore, memory usage percentage no longer matters as much as it looks like. Instead, we use meomory pressure levels, which shows the degree to whcih the performance is slowed down by memory usage. OSX defines 3 levels: **NORMAL**, **WARN**, **CRITICAL**:
 
 *  **NORMAL:** Everything is fine. No performance issue!
-*  **WARN:** Noticeable drop in performance is going to happen. The user is advised to clena up the memory (or upgrade the RAM if it frequents).
+*  **WARN:** There might be noticeable drop in performance. The user is advised to clean up the memory (or upgrade the RAM).
 *  **CRITICAL:** The computer will likely freeze up, and the user should terminate some certain processes.
 
 In short, take actions when the memory cell turns red!
