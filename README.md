@@ -42,7 +42,7 @@ This widget is an Evangelion Übersicht Widget, displaying information through a
 
 If you leaves nothing on your desktop except for less than six mounted volumes (system volumes, connected servers etc.), this widget can replace your desktop completely.
 
-###Currently the widget could show:
+### Currently the widget could show:
 
 1. Time
 2. CPU and memory usage (memory pressure)
