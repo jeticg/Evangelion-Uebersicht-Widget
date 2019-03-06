@@ -1,4 +1,4 @@
-Version = "0.X14.0a"
+Version = "0.X14.1a"
 config = {
     Magnification: 1.0
     BatteryAlertLevel: 20
@@ -764,6 +764,14 @@ afterRender: (domEl) ->
     window.Mwarning=0
     window.cellColour=-1
     window.count = -1
+    window.BatteryPercentage=""
+    window.BatteryState=""
+    window.CPUUsage = ""
+    window.MemUsage = ""
+    window.CPUAmount = ""
+    window.Disturbvalues = ""
+    window.tiktok = -1
+
 
 
     $(domEl).on 'click', '.iTunesPre', => @run "osascript -e 'tell application \"iTunes\" to previous track'"
@@ -795,7 +803,7 @@ afterRender: (domEl) ->
             rm -r ../Eva.widget &&
             rm -r ../__MACOSX"
 
-    @run "rm Eva.widget/netstat.ipworking"
+    @run "rm Eva.widget/netstat.ipworking", (error, stdout, stderr) ->
     @run 'csrutil status', (error, stdout, stderr) ->
         if stdout
             console.log stdout
@@ -816,7 +824,7 @@ afterRender: (domEl) ->
                 console.log "You have the newest version. OK, you're cool"
 
 update: (output, domEl) ->
-#   functions
+# functions
     # This is for the warning animations
     animation_on = (cell, colour) -> () ->
         if colour == 1
@@ -887,43 +895,88 @@ update: (output, domEl) ->
                         $cell.find(".id"      ).css("display"   ,"inline-block")
                 setTimeout (work(element)), Math.random() * 1000
             setTimeout (animation_on(".a0", cellColour)), 1000
+
     convert2B = (input) ->
         output = input
-        if (parseInt(NetworkDl)>=1024)
-            window.NetworkDl = parseInt(NetworkDl)/1024
-            if (parseInt(NetworkDl)>=1024)
-                window.NetworkDl = parseInt(NetworkDl)/1024
-                window.NetworkDl = Math.round(NetworkDl*10)/10 + 'M'
+        if (parseInt(output)>=1024)
+            output = parseInt(output)/1024
+            if (parseInt(output)>=1024)
+                output = parseInt(output)/1024
+                output = Math.round(output*10)/10 + 'M'
             else
-                window.NetworkDl = Math.round(NetworkDl*10)/10 + 'K'
+                output = Math.round(output*10)/10 + 'K'
         return output
-#   Processing time
-    # This is for outputing the time. Nothing really
-    date = new Date()
-    hour = date.getHours()
-    minutes = date.getMinutes()
-    days = date.getDay()
-    minutes = "0"+ minutes if minutes < 10
-    timeSegment = segments[0]
-    timeSegment = segments[1] if 1 <= hour < 3
-    timeSegment = segments[2] if 3 <= hour < 5
-    timeSegment = segments[3] if 5 <= hour < 7
-    timeSegment = segments[4] if 7 <= hour < 9
-    timeSegment = segments[5] if 9 <= hour < 11
-    timeSegment = segments[6] if 11 <= hour < 13
-    timeSegment = segments[7] if 13 <= hour < 15
-    timeSegment = segments[8] if 15 <= hour < 17
-    timeSegment = segments[9] if 17 <= hour < 19
-    timeSegment = segments[10] if 19 <= hour < 21
-    timeSegment = segments[11] if 21 <= hour < 23
-    $(domEl).find('.sal').text("#{timeSegment}")
 
-#   Processing output, passing values from command line output to variables
-    #   If this is a desktop machine, the first line would be empty.
-    @run "sh Eva.widget/battery.sh", (error, stdout, stderr) ->
-        if (stdout.indexOf("InternalBattery") > -1)
-            window.Batterievalues = stdout.split(' ')
+    getTime = () ->
+        #   Processing time
+        # This is for outputing the time. Nothing really
+        date = new Date()
+        hour = date.getHours()
+        minutes = date.getMinutes()
+        days = date.getDay()
+        minutes = "0"+ minutes if minutes < 10
+        timeSegment = segments[0]
+        timeSegment = segments[1] if 1 <= hour < 3
+        timeSegment = segments[2] if 3 <= hour < 5
+        timeSegment = segments[3] if 5 <= hour < 7
+        timeSegment = segments[4] if 7 <= hour < 9
+        timeSegment = segments[5] if 9 <= hour < 11
+        timeSegment = segments[6] if 11 <= hour < 13
+        timeSegment = segments[7] if 13 <= hour < 15
+        timeSegment = segments[8] if 15 <= hour < 17
+        timeSegment = segments[9] if 17 <= hour < 19
+        timeSegment = segments[10] if 19 <= hour < 21
+        timeSegment = segments[11] if 21 <= hour < 23
+        $(domEl).find('.sal').text("#{timeSegment}")
+        $(domEl).find('.time').text("#{hour}:#{minutes}")
+        $(domEl).find('.day').text("#{daylist[days]}")
 
+
+# Execution
+    getTime()
+    window.tiktok += 1
+    if (window.tiktok == 3)
+        window.tiktok = 0
+    # Battery
+    if (window.tiktok == 0)
+        @run "sh Eva.widget/battery.sh", (error, stdout, stderr) ->
+            if (stdout.indexOf("InternalBattery") > -1)
+                window.Batterievalues = stdout.split(' ')
+            if (Batterievalues[0].indexOf("InternalBattery") > -1)
+                $(domEl).find('.Bat').text("#{BatteryType}")
+            else
+                $(domEl).find('.Bat').text("#{Batterievalues[0]}")
+            if (Batterievalues[1].indexOf("id=") > -1)
+                window.BatteryPercentage=Batterievalues[2]
+                window.BatteryState=Batterievalues[3]
+                $(domEl).find('.BatPer').text("#{Batterievalues[2]}")
+                if (Batterievalues[3].indexOf("discharging") > -1)
+                    $(domEl).find('.BatStatus').text("#{BatteryStatus[2]}")
+                else if (Batterievalues[3].indexOf("charged") > -1)
+                    $(domEl).find('.BatStatus').text("#{BatteryStatus[1]}")
+                else if (Batterievalues[3].indexOf("charging") > -1)
+                    $(domEl).find('.BatStatus').text("#{BatteryStatus[0]}")
+                else if (Batterievalues[3].indexOf("finishing") > -1)
+                    $(domEl).find('.BatStatus').text("#{BatteryStatus[3]}")
+                else
+                    $(domEl).find('.BatStatus').text("#{Batterievalues[3]}")
+                $(domEl).find('.BatRe').text("#{Batterievalues[4]}")
+            else
+                window.BatteryPercentage=Batterievalues[1]
+                window.BatteryState=Batterievalues[2]
+                $(domEl).find('.BatPer').text("#{Batterievalues[1]}")
+                if (Batterievalues[2].indexOf("discharging") > -1)
+                    $(domEl).find('.BatStatus').text("#{BatteryStatus[2]}")
+                else if (Batterievalues[2].indexOf("charged") > -1)
+                    $(domEl).find('.BatStatus').text("#{BatteryStatus[1]}")
+                else if (Batterievalues[2].indexOf("charging") > -1)
+                    $(domEl).find('.BatStatus').text("#{BatteryStatus[0]}")
+                else if (Batterievalues[2].indexOf("finishing") > -1)
+                    $(domEl).find('.BatStatus').text("#{BatteryStatus[3]}")
+                else
+                    $(domEl).find('.BatStatus').text("#{Batterievalues[2]}")
+                $(domEl).find('.BatRe').text("#{Batterievalues[3]}")
+    # CPU and Memory
     @run "sh Eva.widget/cpu_mem.sh", (error, stdout, stderr) ->
         stdout = stdout.split('\n')
         window.CPUUsage = stdout[0].split(' ')
@@ -936,32 +989,22 @@ update: (output, domEl) ->
             $(domEl).find('.MEMU').text("WARNIN")
         else if (MemUsage.indexOf("4") > -1)
             $(domEl).find('.MEMU').text("CRITICAL")
-
+    # Trash
     @run "du -ch ~/.Trash | grep total | cut -c 1-5", (error, stdout, stderr) ->
         window.Trashvalues = stdout.split(' ')
         window.Trashvalues="#{window.Trashvalues}".replace /,/g, ''
         window.Trashvalues="#{window.Trashvalues}".replace /\s+/g, ''
-
+        if (Trashvalues.indexOf("0B") > -1)
+            $(domEl).find('.TrashSize').text("#{TrashEmpty}")
+        else
+            $(domEl).find('.TrashSize').text("#{Trashvalues}")
+    # Network status
     @run "sh Eva.widget/netstat.sh", (error, stdout, stderr) ->
         stdout = stdout.split('\n')
         window.Networkvalues = stdout[0].split(' ')
         window.IPaddress     = stdout[1]
-        window.NetworkUp = Networkvalues[0]
-        window.NetworkDl = Networkvalues[1]
-        if (parseInt(NetworkUp)>=1024)
-            window.NetworkUp = parseInt(NetworkUp)/1024
-            if (parseInt(NetworkUp)>=1024)
-                window.NetworkUp = parseInt(NetworkUp)/1024
-                window.NetworkUp = Math.round(NetworkUp*10)/10 + 'M'
-            else
-                window.NetworkUp = Math.round(NetworkUp*10)/10 + 'K'
-        if (parseInt(NetworkDl)>=1024)
-            window.NetworkDl = parseInt(NetworkDl)/1024
-            if (parseInt(NetworkDl)>=1024)
-                window.NetworkDl = parseInt(NetworkDl)/1024
-                window.NetworkDl = Math.round(NetworkDl*10)/10 + 'M'
-            else
-                window.NetworkDl = Math.round(NetworkDl*10)/10 + 'K'
+        window.NetworkUp = convert2B(Networkvalues[0])
+        window.NetworkDl = convert2B(Networkvalues[1])
         # The following is for Public IP and it's warning
         if (window.IPaddress.indexOf("Fehler") > -1)
             window.IPaddress=ErrorMessage
@@ -977,10 +1020,10 @@ update: (output, domEl) ->
             $(domEl).find('.NetU').text("#{NetworkUp}")
         if (NetworkDl?)
             $(domEl).find('.NetD').text("#{NetworkDl}")
-
+    # Do Not Disturb
     @run "defaults read ~/Library/Preferences/ByHost/com.apple.notificationcenterui doNotDisturb", (error, stdout, stderr) ->
         window.Disturbvalues   = stdout
-
+    # iTunes
     @run "sh Eva.widget/iTunes.sh 2>/dev/null", (error, stdout, stderr) ->
         if (stdout.indexOf("osascript: Eva.widget/iTunes.scp:") > -1)
             stdout = "¶ ¶ ¶ 0 ¶ 0"
@@ -1021,70 +1064,27 @@ update: (output, domEl) ->
             $(domEl).find('#rate5').css("visibility","visible")
         else
             $(domEl).find('#rate5').css("visibility","hidden")
+    # Disk
+    if (window.tiktok == 0)
+        @run "ls -F /Volumes/ | awk -F'\t' '{ print $0}'", (error, stdout, stderr) ->
+            stdout = stdout.split('\n')
+            if (stdout.length > 1)
+                diskDisplay("#66", stdout[0])
+            else    $(domEl).find("#66").css("visibility","hidden")
+            if (stdout.length > 2)
+                diskDisplay("#69", stdout[1])
+            else    $(domEl).find("#69").css("visibility","hidden")
+            if (stdout.length > 3)
+                diskDisplay("#72", stdout[2])
+            else    $(domEl).find("#72").css("visibility","hidden")
+            if (stdout.length > 4)
+                diskDisplay("#62", stdout[3])
+            else    $(domEl).find("#62").css("visibility","hidden")
+            if (stdout.length > 5)
+                diskDisplay("#65", stdout[4])
+            else    $(domEl).find("#65").css("visibility","hidden")
 
-#   Deliver output
-    # Disks, all five disks are hidden by default, only when such disk exists shall it be displayed
-    # Because each volume takes a single line in the output, we have to judge by the length of output
-    @run "ls -F /Volumes/ | awk -F'\t' '{ print $0}'", (error, stdout, stderr) ->
-        stdout = stdout.split('\n')
-        if (stdout.length > 1)
-            diskDisplay("#66", stdout[0])
-        else    $(domEl).find("#66").css("visibility","hidden")
-        if (stdout.length > 2)
-            diskDisplay("#69", stdout[1])
-        else    $(domEl).find("#69").css("visibility","hidden")
-        if (stdout.length > 3)
-            diskDisplay("#72", stdout[2])
-        else    $(domEl).find("#72").css("visibility","hidden")
-        if (stdout.length > 4)
-            diskDisplay("#62", stdout[3])
-        else    $(domEl).find("#62").css("visibility","hidden")
-        if (stdout.length > 5)
-            diskDisplay("#65", stdout[4])
-        else    $(domEl).find("#65").css("visibility","hidden")
-    # Battery information
-    if (Batterievalues[0].indexOf("InternalBattery") > -1)
-        $(domEl).find('.Bat').text("#{BatteryType}")
-    else
-        $(domEl).find('.Bat').text("#{Batterievalues[0]}")
-    if (Batterievalues[1].indexOf("id=") > -1)
-        BatteryPercentage=Batterievalues[2]
-        BatteryState=Batterievalues[3]
-        $(domEl).find('.BatPer').text("#{Batterievalues[2]}")
-        if (Batterievalues[3].indexOf("discharging") > -1)
-            $(domEl).find('.BatStatus').text("#{BatteryStatus[2]}")
-        else if (Batterievalues[3].indexOf("charged") > -1)
-            $(domEl).find('.BatStatus').text("#{BatteryStatus[1]}")
-        else if (Batterievalues[3].indexOf("charging") > -1)
-            $(domEl).find('.BatStatus').text("#{BatteryStatus[0]}")
-        else if (Batterievalues[3].indexOf("finishing") > -1)
-            $(domEl).find('.BatStatus').text("#{BatteryStatus[3]}")
-        else
-            $(domEl).find('.BatStatus').text("#{Batterievalues[3]}")
-        $(domEl).find('.BatRe').text("#{Batterievalues[4]}")
-    else
-        BatteryPercentage=Batterievalues[1]
-        BatteryState=Batterievalues[2]
-        $(domEl).find('.BatPer').text("#{Batterievalues[1]}")
-        if (Batterievalues[2].indexOf("discharging") > -1)
-            $(domEl).find('.BatStatus').text("#{BatteryStatus[2]}")
-        else if (Batterievalues[2].indexOf("charged") > -1)
-            $(domEl).find('.BatStatus').text("#{BatteryStatus[1]}")
-        else if (Batterievalues[2].indexOf("charging") > -1)
-            $(domEl).find('.BatStatus').text("#{BatteryStatus[0]}")
-        else if (Batterievalues[2].indexOf("finishing") > -1)
-            $(domEl).find('.BatStatus').text("#{BatteryStatus[3]}")
-        else
-            $(domEl).find('.BatStatus').text("#{Batterievalues[2]}")
-        $(domEl).find('.BatRe').text("#{Batterievalues[3]}")
-    # Output other information
 
-    $(domEl).find('.time').text("#{hour}:#{minutes}")
-    $(domEl).find('.day').text("#{daylist[days]}")
-    if (Trashvalues.indexOf("0B") > -1)
-        $(domEl).find('.TrashSize').text("#{TrashEmpty}")
-    else
-        $(domEl).find('.TrashSize').text("#{Trashvalues}")
 #   Dealing with warnings
     # Bwarning stands for Battery warning, triggers when battery drops below 20% without charging.
     if (parseInt(BatteryPercentage) <= config.BatteryAlertLevel & BatteryState.indexOf("discharging") > -1)
@@ -1140,28 +1140,6 @@ update: (output, domEl) ->
     warning_switch(Bwarning+Cwarning+Swarning, Mwarning)
 
 #   hover effects, dealing with hovering
-    $('#IPCell').hover (->
-            if IPFehler == 1
-                colourChange("#IPCell", config.colourWarnHover)
-            else
-                colourChange("#IPCell", config.colourIdleHover)
-    ), (->
-            if IPFehler == 1
-                colourChange("#IPCell", config.colourWarn)
-            else
-                colourChange("#IPCell", config.colourIdle)
-    )
-    $('#CPUCell').hover (->
-            if Cwarning == 1
-                colourChange("#CPUCell", config.colourWarnHover)
-            else
-                colourChange("#CPUCell", config.colourIdleHover)
-    ), (->
-            if Cwarning == 1
-                colourChange("#CPUCell", config.colourWarn)
-            else
-                colourChange("#CPUCell", config.colourIdle)
-    )
     $('.a3').hover (->
             if Bwarning == 1
                 colourChange(".a3", config.colourWarnHover)
@@ -1172,17 +1150,6 @@ update: (output, domEl) ->
                 colourChange(".a3", config.colourWarn)
             else
                 colourChange(".a3", config.colourIdle)
-    )
-    $('#32').hover (
-        ->
-            colourChange("#32", config.colourIdleHover)
-            colourChange(".a4", config.colourIdleHover)
-            $(domEl).find(".a4x").css("visibility", "visible")
-    ), (
-        ->
-            colourChange("#32", config.colourIdle)
-            colourChange(".a4", "rgba(10,10,10,0)")
-            $(domEl).find(".a4x").css("visibility", "hidden")
     )
 
     $('#31').hover (
@@ -1200,16 +1167,16 @@ update: (output, domEl) ->
         ->
             $(domEl).find("#25 .id").text("25")
     )
-
-    $('.NetCell').hover (->
-            colourChange(".NetCell", config.colourIdleHover)
-    ), (->
-            colourChange(".NetCell", config.colourIdle)
-    )
-    $('.CoverCell').hover (->
-            colourChange(".CoverCell", config.colourIdleHover)
-    ), (->
-            colourChange(".CoverCell", config.colourIdle)
-    )
+    #$('#32').hover (
+    #    ->
+    #        colourChange("#32", config.colourIdleHover)
+    #        colourChange(".a4", config.colourIdleHover)
+    #        $(domEl).find(".a4x").css("visibility", "visible")
+    #), (
+    #    ->
+    #        colourChange("#32", config.colourIdle)
+    #        colourChange(".a4", "rgba(10,10,10,0)")
+    #        $(domEl).find(".a4x").css("visibility", "hidden")
+    #)
     # Outputting all the information for debug
-    $(domEl).find('.OP').text("#{output}")
+    # $(domEl).find('.OP').text("#{output}")
