@@ -1,4 +1,4 @@
-Version = "0.X13a"
+Version = "0.X14.0a"
 config = {
     Magnification: 1.0
     BatteryAlertLevel: 20
@@ -12,7 +12,7 @@ config = {
     colourIdleHover: "rgba(128,128,128,1)"
     colourWarnHover: "rgba(128,0,0,1)"
     ShowUpdates: true
-    remoteBranch: "master"
+    remoteBranch: "dev"
 }
 ## If you do not know how to write HTML/CSS, it is best for you to learn it first before
 ## attempting to customise the UI. Or you can contact me.
@@ -676,16 +676,7 @@ render: -> """
     </div>
 """
 
-command:    "   sh Eva.widget/battery.sh &&
-                sh Eva.widget/cpu_mem.sh &&
-                du -ch ~/.Trash | grep total | cut -c 1-5 &&
-
-                sh Eva.widget/netstat.sh &&
-                defaults read ~/Library/Preferences/ByHost/com.apple.notificationcenterui doNotDisturb &&
-
-                sh Eva.widget/iTunes.sh 2>/dev/null&&
-                ls -F /Volumes/ | awk -F'\t' '{ print $0}'
-            "
+command:    ""
 
 afterRender: (domEl) ->
 #   Get System Language
@@ -805,6 +796,11 @@ afterRender: (domEl) ->
             rm -r ../__MACOSX"
 
     @run "rm Eva.widget/netstat.ipworking"
+    @run 'csrutil status', (error, stdout, stderr) ->
+        if stdout
+            console.log stdout
+        if stderr
+            console.error stderr
 
     url = "https://raw.githubusercontent.com/jeticg/Evangelion-Uebersicht-Widget/#{config.remoteBranch}/widget.json"
     $.ajax url,
@@ -834,7 +830,7 @@ update: (output, domEl) ->
         $(domEl).find("#{cell} b").css("animation", "")
         $(domEl).find("#{cell}"  ).css("animation", "")
     # This function is for changing the colour of cell(s).
-    colorChange = (cell, colour) ->
+    colourChange = (cell, colour) ->
         if $.type(cell) == "object"
             $element = cell
             cell = ""
@@ -876,22 +872,31 @@ update: (output, domEl) ->
                 work = (cell) -> () ->
                     $cell = $(cell)
                     if cellColour == 1
-                        colorChange($cell, config.colourWarn)
+                        colourChange($cell, config.colourWarn)
                         $cell.find(".Wcontent").html("<u></u><d></d>#{WarningMessage}")
                         $cell.find(".Wcontent").css("visibility","visible")
                         $cell.find(".id"      ).css("display"   ,"none"   )
                     else if cellColour == 2
-                        colorChange($cell, config.colourDNDS)
+                        colourChange($cell, config.colourDNDS)
                         $cell.find(".Wcontent").html("NoDisturb")
                         $cell.find(".Wcontent").css("visibility","visible")
                         $cell.find(".id"      ).css("display"   ,"none"   )
                     else
-                        colorChange($cell, config.colourIdle)
+                        colourChange($cell, config.colourIdle)
                         $cell.find(".Wcontent").css("visibility","hidden"      )
                         $cell.find(".id"      ).css("display"   ,"inline-block")
                 setTimeout (work(element)), Math.random() * 1000
             setTimeout (animation_on(".a0", cellColour)), 1000
-
+    convert2B = (input) ->
+        output = input
+        if (parseInt(NetworkDl)>=1024)
+            window.NetworkDl = parseInt(NetworkDl)/1024
+            if (parseInt(NetworkDl)>=1024)
+                window.NetworkDl = parseInt(NetworkDl)/1024
+                window.NetworkDl = Math.round(NetworkDl*10)/10 + 'M'
+            else
+                window.NetworkDl = Math.round(NetworkDl*10)/10 + 'K'
+        return output
 #   Processing time
     # This is for outputing the time. Nothing really
     date = new Date()
@@ -911,81 +916,132 @@ update: (output, domEl) ->
     timeSegment = segments[9] if 17 <= hour < 19
     timeSegment = segments[10] if 19 <= hour < 21
     timeSegment = segments[11] if 21 <= hour < 23
+    $(domEl).find('.sal').text("#{timeSegment}")
 
 #   Processing output, passing values from command line output to variables
-    AllOutputs = output.split('\n')
     #   If this is a desktop machine, the first line would be empty.
-    if (AllOutputs[0].indexOf("InternalBattery") > -1)
-        window.Batterievalues  = AllOutputs[0].split(' ')
-    CPUUsage        = AllOutputs[1].split(' ')
-    MemUsage        = AllOutputs[2].split(' ')
-    CPUAmount       = AllOutputs[3].split(' ')
+    @run "sh Eva.widget/battery.sh", (error, stdout, stderr) ->
+        if (stdout.indexOf("InternalBattery") > -1)
+            window.Batterievalues = stdout.split(' ')
 
-    Trashvalues     = AllOutputs[4].split(' ')
-    Networkvalues   = AllOutputs[5].split(' ')
-    IPaddress       = AllOutputs[6]
-    Disturbvalues   = AllOutputs[7]
-    if (AllOutputs[8].indexOf("osascript: Eva.widget/iTunes.scp:") > -1)
-        AllOutputs[8] = "¶ ¶ ¶ 0 ¶ 0"
-    iTunesvalues    = AllOutputs[8].split('¶')
+    @run "sh Eva.widget/cpu_mem.sh", (error, stdout, stderr) ->
+        stdout = stdout.split('\n')
+        window.CPUUsage = stdout[0].split(' ')
+        window.MemUsage = stdout[1].split(' ')
+        window.CPUAmount = stdout[2].split(' ')
+        $(domEl).find('.CPUU').text("#{Math.floor(CPUUsage/CPUAmount)}%")
+        if (MemUsage.indexOf("1") > -1)
+            $(domEl).find('.MEMU').text("NORMAL")
+        else if (MemUsage.indexOf("2") > -1)
+            $(domEl).find('.MEMU').text("WARNIN")
+        else if (MemUsage.indexOf("4") > -1)
+            $(domEl).find('.MEMU').text("CRITICAL")
 
-    Trashvalues="#{Trashvalues}".replace /,/g, ''
-    Trashvalues="#{Trashvalues}".replace /\s+/g, ''
-    if (AllOutputs[8].indexOf("¶ ¶ ¶ 0 ¶ 0") > -1)
-        $(domEl).find(".CoverCell").css("visibility","hidden")
-        $(domEl).find("#44").css("visibility","hidden")
-        $(domEl).find("#45").css("visibility","hidden")
-        $(domEl).find("#48").css("visibility","hidden")
-    else
-        $(domEl).find(".CoverCell").css("visibility","visible")
-        $(domEl).find("#44").css("visibility","visible")
-        $(domEl).find("#45").css("visibility","visible")
-        $(domEl).find("#48").css("visibility","visible")
-    iTunesvalues[3] = "0"+ iTunesvalues[3] if iTunesvalues[3] < 10
-    if (parseInt(Networkvalues[0])>=1024)
-        Networkvalues[0] = parseInt(Networkvalues[0])/1024
-        if (parseInt(Networkvalues[0])>=1024)
-            Networkvalues[0] = parseInt(Networkvalues[0])/1024
-            Networkvalues[0] = Math.round(Networkvalues[0]*10)/10 + 'M'
+    @run "du -ch ~/.Trash | grep total | cut -c 1-5", (error, stdout, stderr) ->
+        window.Trashvalues = stdout.split(' ')
+        window.Trashvalues="#{window.Trashvalues}".replace /,/g, ''
+        window.Trashvalues="#{window.Trashvalues}".replace /\s+/g, ''
+
+    @run "sh Eva.widget/netstat.sh", (error, stdout, stderr) ->
+        stdout = stdout.split('\n')
+        window.Networkvalues = stdout[0].split(' ')
+        window.IPaddress     = stdout[1]
+        window.NetworkUp = Networkvalues[0]
+        window.NetworkDl = Networkvalues[1]
+        if (parseInt(NetworkUp)>=1024)
+            window.NetworkUp = parseInt(NetworkUp)/1024
+            if (parseInt(NetworkUp)>=1024)
+                window.NetworkUp = parseInt(NetworkUp)/1024
+                window.NetworkUp = Math.round(NetworkUp*10)/10 + 'M'
+            else
+                window.NetworkUp = Math.round(NetworkUp*10)/10 + 'K'
+        if (parseInt(NetworkDl)>=1024)
+            window.NetworkDl = parseInt(NetworkDl)/1024
+            if (parseInt(NetworkDl)>=1024)
+                window.NetworkDl = parseInt(NetworkDl)/1024
+                window.NetworkDl = Math.round(NetworkDl*10)/10 + 'M'
+            else
+                window.NetworkDl = Math.round(NetworkDl*10)/10 + 'K'
+        # The following is for Public IP and it's warning
+        if (window.IPaddress.indexOf("Fehler") > -1)
+            window.IPaddress=ErrorMessage
+            if IPFehler != 1
+                IPFehler = 1
+                colourChange("#IPCell", config.colourWarn)
         else
-            Networkvalues[0] = Math.round(Networkvalues[0]*10)/10 + 'K'
-    if (parseInt(Networkvalues[1])>=1024)
-        Networkvalues[1] = parseInt(Networkvalues[1])/1024
-        if (parseInt(Networkvalues[1])>=1024)
-            Networkvalues[1] = parseInt(Networkvalues[1])/1024
-            Networkvalues[1] = Math.round(Networkvalues[1]*10)/10 + 'M'
+            if IPFehler != 0
+                IPFehler = 0
+                colourChange("#IPCell", config.colourIdle)
+        $(domEl).find('.PubIP').text("#{window.IPaddress}")
+        if (NetworkUp?)
+            $(domEl).find('.NetU').text("#{NetworkUp}")
+        if (NetworkDl?)
+            $(domEl).find('.NetD').text("#{NetworkDl}")
+
+    @run "defaults read ~/Library/Preferences/ByHost/com.apple.notificationcenterui doNotDisturb", (error, stdout, stderr) ->
+        window.Disturbvalues   = stdout
+
+    @run "sh Eva.widget/iTunes.sh 2>/dev/null", (error, stdout, stderr) ->
+        if (stdout.indexOf("osascript: Eva.widget/iTunes.scp:") > -1)
+            stdout = "¶ ¶ ¶ 0 ¶ 0"
+        window.iTunesvalues = stdout.split('¶')
+
+        if (stdout.indexOf("¶ ¶ ¶ 0 ¶ 0") > -1)
+            $(domEl).find(".CoverCell").css("visibility","hidden")
+            $(domEl).find("#44").css("visibility","hidden")
+            $(domEl).find("#45").css("visibility","hidden")
+            $(domEl).find("#48").css("visibility","hidden")
         else
-            Networkvalues[1] = Math.round(Networkvalues[1]*10)/10 + 'K'
-    # The following is for Public IP and it's warning
-    if (IPaddress.indexOf("Fehler") > -1)
-        IPaddress=ErrorMessage
-        if IPFehler != 1
-            IPFehler = 1
-            colorChange("#IPCell", config.colourWarn)
-    else
-        if IPFehler != 0
-            IPFehler = 0
-            colorChange("#IPCell", config.colourIdle)
-    $(domEl).find('.PubIP').text("#{IPaddress}")
+            $(domEl).find(".CoverCell").css("visibility","visible")
+            $(domEl).find("#44").css("visibility","visible")
+            $(domEl).find("#45").css("visibility","visible")
+            $(domEl).find("#48").css("visibility","visible")
+        window.iTunesvalues[3] = "0" + window.iTunesvalues[3] if window.iTunesvalues[3] < 10
+        $(domEl).find('#iTunesTrack').text("#{iTunesvalues[3]}")
+        $(domEl).find('#iTunesArtist').text("#{iTunesvalues[1]}")
+        $(domEl).find('#iTunesTitle').text("#{iTunesvalues[0]}")
+        $(domEl).find('#iTunesCoverImg').html("<img style='width:190em;height:190em;margin-left:5em;' src='Eva.widget/album.jpg'>")
+        if (iTunesvalues[4]>0)
+            $(domEl).find('#rate1').css("visibility","visible")
+        else
+            $(domEl).find('#rate1').css("visibility","hidden")
+        if (iTunesvalues[4]>20)
+            $(domEl).find('#rate2').css("visibility","visible")
+        else
+            $(domEl).find('#rate2').css("visibility","hidden")
+        if (iTunesvalues[4]>40)
+            $(domEl).find('#rate3').css("visibility","visible")
+        else
+            $(domEl).find('#rate3').css("visibility","hidden")
+        if (iTunesvalues[4]>60)
+            $(domEl).find('#rate4').css("visibility","visible")
+        else
+            $(domEl).find('#rate4').css("visibility","hidden")
+        if (iTunesvalues[4]>80)
+            $(domEl).find('#rate5').css("visibility","visible")
+        else
+            $(domEl).find('#rate5').css("visibility","hidden")
+
 #   Deliver output
     # Disks, all five disks are hidden by default, only when such disk exists shall it be displayed
     # Because each volume takes a single line in the output, we have to judge by the length of output
-    idisk = 9
-    if (AllOutputs.length > idisk+1)
-        diskDisplay("#66", AllOutputs[idisk+0])
-    else    $(domEl).find("#66").css("visibility","hidden")
-    if (AllOutputs.length > idisk+2)
-        diskDisplay("#69", AllOutputs[idisk+1])
-    else    $(domEl).find("#69").css("visibility","hidden")
-    if (AllOutputs.length > idisk+3)
-        diskDisplay("#72", AllOutputs[idisk+2])
-    else    $(domEl).find("#72").css("visibility","hidden")
-    if (AllOutputs.length > idisk+4)
-        diskDisplay("#62", AllOutputs[idisk+3])
-    else    $(domEl).find("#62").css("visibility","hidden")
-    if (AllOutputs.length > idisk+5)
-        diskDisplay("#65", AllOutputs[idisk+4])
-    else    $(domEl).find("#65").css("visibility","hidden")
+    @run "ls -F /Volumes/ | awk -F'\t' '{ print $0}'", (error, stdout, stderr) ->
+        stdout = stdout.split('\n')
+        if (stdout.length > 1)
+            diskDisplay("#66", stdout[0])
+        else    $(domEl).find("#66").css("visibility","hidden")
+        if (stdout.length > 2)
+            diskDisplay("#69", stdout[1])
+        else    $(domEl).find("#69").css("visibility","hidden")
+        if (stdout.length > 3)
+            diskDisplay("#72", stdout[2])
+        else    $(domEl).find("#72").css("visibility","hidden")
+        if (stdout.length > 4)
+            diskDisplay("#62", stdout[3])
+        else    $(domEl).find("#62").css("visibility","hidden")
+        if (stdout.length > 5)
+            diskDisplay("#65", stdout[4])
+        else    $(domEl).find("#65").css("visibility","hidden")
     # Battery information
     if (Batterievalues[0].indexOf("InternalBattery") > -1)
         $(domEl).find('.Bat').text("#{BatteryType}")
@@ -1022,66 +1078,29 @@ update: (output, domEl) ->
             $(domEl).find('.BatStatus').text("#{Batterievalues[2]}")
         $(domEl).find('.BatRe').text("#{Batterievalues[3]}")
     # Output other information
-    $(domEl).find('.CPUU').text("#{Math.floor(CPUUsage/CPUAmount)}%")
-    if (MemUsage.indexOf("1") > -1)
-        $(domEl).find('.MEMU').text("NORMAL")
-    else if (MemUsage.indexOf("2") > -1)
-        $(domEl).find('.MEMU').text("WARNIN")
-    else if (MemUsage.indexOf("4") > -1)
-        $(domEl).find('.MEMU').text("CRITICAL")
 
-    $(domEl).find('.sal').text("#{timeSegment}")
-    $(domEl).find('#iTunesTrack').text("#{iTunesvalues[3]}")
-    $(domEl).find('#iTunesArtist').text("#{iTunesvalues[1]}")
-    $(domEl).find('#iTunesTitle').text("#{iTunesvalues[0]}")
-    if (Networkvalues[0]?)
-        $(domEl).find('.NetU').text("#{Networkvalues[0]}")
-    if (Networkvalues[1]?)
-        $(domEl).find('.NetD').text("#{Networkvalues[1]}")
     $(domEl).find('.time').text("#{hour}:#{minutes}")
     $(domEl).find('.day').text("#{daylist[days]}")
     if (Trashvalues.indexOf("0B") > -1)
         $(domEl).find('.TrashSize').text("#{TrashEmpty}")
     else
         $(domEl).find('.TrashSize').text("#{Trashvalues}")
-    $(domEl).find('#iTunesCoverImg').html("<img style='width:190em;height:190em;margin-left:5em;' src='Eva.widget/album.jpg'>")
-#   Dealing with rating
-    if (iTunesvalues[4]>0)
-        $(domEl).find('#rate1').css("visibility","visible")
-    else
-        $(domEl).find('#rate1').css("visibility","hidden")
-    if (iTunesvalues[4]>20)
-        $(domEl).find('#rate2').css("visibility","visible")
-    else
-        $(domEl).find('#rate2').css("visibility","hidden")
-    if (iTunesvalues[4]>40)
-        $(domEl).find('#rate3').css("visibility","visible")
-    else
-        $(domEl).find('#rate3').css("visibility","hidden")
-    if (iTunesvalues[4]>60)
-        $(domEl).find('#rate4').css("visibility","visible")
-    else
-        $(domEl).find('#rate4').css("visibility","hidden")
-    if (iTunesvalues[4]>80)
-        $(domEl).find('#rate5').css("visibility","visible")
-    else
-        $(domEl).find('#rate5').css("visibility","hidden")
 #   Dealing with warnings
     # Bwarning stands for Battery warning, triggers when battery drops below 20% without charging.
     if (parseInt(BatteryPercentage) <= config.BatteryAlertLevel & BatteryState.indexOf("discharging") > -1)
         if (Bwarning == 0)
             if config.Voice
                 @run voiceCommand + voiceBatteryLow
-            colorChange(".a3", config.colourWarn)
-            colorChange("#15", config.colourWarnHover)
+            colourChange(".a3", config.colourWarn)
+            colourChange("#15", config.colourWarnHover)
             $(domEl).find("#15").css("visibility","visible")
             Bwarning += 1
     else
         if (Bwarning == 1)
             if config.Voice
                 @run voiceCommand + voiceBatteryCharging
-            colorChange(".a3", config.colourIdle)
-            colorChange("#15", "rgba(128,0,0,0)")
+            colourChange(".a3", config.colourIdle)
+            colourChange("#15", "rgba(128,0,0,0)")
             $(domEl).find("#15").css("visibility","hidden")
             Bwarning -= 1
     # Swarning is for Memory usage. Warning is triggered when reaches above
@@ -1090,22 +1109,22 @@ update: (output, domEl) ->
         if (Swarning == 0)
             if config.Voice
                 @run voiceCommand + voiceMEMzuHohe
-            colorChange("#MemCell", config.colourWarn)
+            colourChange("#MemCell", config.colourWarn)
             Swarning += 1
     else
         if (Swarning == 1)
-            colorChange("#MemCell", config.colourIdle)
+            colourChange("#MemCell", config.colourIdle)
             Swarning -= 1
     # Cwarning is for CPU usage. Default value is to trigger when CPU usage reaches 90%
     if CPUUsage/CPUAmount > config.CPUAlertLevel
         if (Cwarning == 0)
             if config.Voice
                 @run voiceCommand + voiceCPUzuHohe
-            colorChange("#CPUCell", config.colourWarn)
+            colourChange("#CPUCell", config.colourWarn)
             Cwarning += 1
     else
         if (Cwarning == 1)
-            colorChange("#CPUCell", config.colourIdle)
+            colourChange("#CPUCell", config.colourIdle)
             Cwarning -= 1
     if Disturbvalues == '1'
         if (Mwarning == 0)
@@ -1123,47 +1142,47 @@ update: (output, domEl) ->
 #   hover effects, dealing with hovering
     $('#IPCell').hover (->
             if IPFehler == 1
-                colorChange("#IPCell", config.colourWarnHover)
+                colourChange("#IPCell", config.colourWarnHover)
             else
-                colorChange("#IPCell", config.colourIdleHover)
+                colourChange("#IPCell", config.colourIdleHover)
     ), (->
             if IPFehler == 1
-                colorChange("#IPCell", config.colourWarn)
+                colourChange("#IPCell", config.colourWarn)
             else
-                colorChange("#IPCell", config.colourIdle)
+                colourChange("#IPCell", config.colourIdle)
     )
     $('#CPUCell').hover (->
             if Cwarning == 1
-                colorChange("#CPUCell", config.colourWarnHover)
+                colourChange("#CPUCell", config.colourWarnHover)
             else
-                colorChange("#CPUCell", config.colourIdleHover)
+                colourChange("#CPUCell", config.colourIdleHover)
     ), (->
             if Cwarning == 1
-                colorChange("#CPUCell", config.colourWarn)
+                colourChange("#CPUCell", config.colourWarn)
             else
-                colorChange("#CPUCell", config.colourIdle)
+                colourChange("#CPUCell", config.colourIdle)
     )
     $('.a3').hover (->
             if Bwarning == 1
-                colorChange(".a3", config.colourWarnHover)
+                colourChange(".a3", config.colourWarnHover)
             else
-                colorChange(".a3", config.colourIdleHover)
+                colourChange(".a3", config.colourIdleHover)
     ), (->
             if Bwarning == 1
-                colorChange(".a3", config.colourWarn)
+                colourChange(".a3", config.colourWarn)
             else
-                colorChange(".a3", config.colourIdle)
+                colourChange(".a3", config.colourIdle)
     )
     $('#32').hover (
         ->
-            colorChange("#32", config.colourIdleHover)
-            colorChange(".a4", config.colourIdleHover)
-            $(domEl).find(".a4x").css("visibility",               "visible")
+            colourChange("#32", config.colourIdleHover)
+            colourChange(".a4", config.colourIdleHover)
+            $(domEl).find(".a4x").css("visibility", "visible")
     ), (
         ->
-            colorChange("#32", config.colourIdle)
-            colorChange(".a4", "rgba(10,10,10,0)")
-            $(domEl).find(".a4x").css("visibility",               "hidden")
+            colourChange("#32", config.colourIdle)
+            colourChange(".a4", "rgba(10,10,10,0)")
+            $(domEl).find(".a4x").css("visibility", "hidden")
     )
 
     $('#31').hover (
@@ -1183,14 +1202,14 @@ update: (output, domEl) ->
     )
 
     $('.NetCell').hover (->
-            colorChange(".NetCell", config.colourIdleHover)
+            colourChange(".NetCell", config.colourIdleHover)
     ), (->
-            colorChange(".NetCell", config.colourIdle)
+            colourChange(".NetCell", config.colourIdle)
     )
     $('.CoverCell').hover (->
-            colorChange(".CoverCell", config.colourIdleHover)
+            colourChange(".CoverCell", config.colourIdleHover)
     ), (->
-            colorChange(".CoverCell", config.colourIdle)
+            colourChange(".CoverCell", config.colourIdle)
     )
     # Outputting all the information for debug
     $(domEl).find('.OP').text("#{output}")
