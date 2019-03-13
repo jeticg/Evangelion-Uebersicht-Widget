@@ -70,6 +70,9 @@ If you leaves nothing on your desktop except for less than six mounted volumes (
 
 ## Updates
 
+**0.X14.2a**
+* Changed how all commands are executed to save energy.
+
 **0.X13a**
 * Changed the CPU script.
 

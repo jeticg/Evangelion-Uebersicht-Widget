@@ -1,4 +1,4 @@
-Version = "0.X14.1a"
+Version = "0.X14.2a"
 config = {
     Magnification: 1.0
     BatteryAlertLevel: 20
@@ -767,7 +767,7 @@ afterRender: (domEl) ->
     window.BatteryPercentage=""
     window.BatteryState=""
     window.CPUUsage = ""
-    window.MemUsage = ""
+    window.MemUsage = "1"
     window.CPUAmount = ""
     window.Disturbvalues = ""
     window.tiktok = -1
