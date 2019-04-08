@@ -26,7 +26,7 @@ You can update Evangelion Übersicht Widget (version >= 0.X8a) simply by clickin
 ## Memory Usage VS Memory Pressure
 As of version 0.X11a, the memory cell will show memory pressure levels (NORMAL, WARN, CRITICAL) rather than the memory usage percentage. The reason behind this move is simple: **memory usage percentage makes little sense in OSX now.**
 
-**To explain:** A few years ago, OSX implemented a new virtual memory technology called memory compression (OK it's actually rather ancient, but people stopped using it as memory got much cheaper back in the 90s). Imagine you have a lot of stuff taking up memory, but you can not tell exactly how much because you do not know how many of them are compressed. Therefore, memory usage percentage no longer matters as much as it looks like. Instead, we use meomory pressure levels, which shows the degree to whcih the performance is slowed down by memory usage. OSX defines 3 levels: **NORMAL**, **WARN**, **CRITICAL**:
+**To explain:** A few years ago, OSX implemented a new virtual memory technology called memory compression (OK it's actually rather ancient, but people stopped using it as memory got much cheaper back in the 90s). Imagine you have a lot of stuff taking up memory, but you cannot tell exactly how much because you do not know how many of them are compressed. Therefore, memory usage percentage no longer matters as much as it looks like. Instead, we use memory pressure levels, which shows the degree to which the performance is slowed down by memory usage. OSX defines 3 levels: **NORMAL**, **WARN**, **CRITICAL**:
 
 *  **NORMAL:** Everything is fine. No performance issue!
 *  **WARN:** There might be noticeable drop in performance. The user is advised to clean up the memory (or upgrade the RAM).
@@ -35,7 +35,7 @@ As of version 0.X11a, the memory cell will show memory pressure levels (NORMAL, 
 In short, take actions when the memory cell turns red!
 
 ## Major Update Notice!
-Please consider updating if you are still using widget ealier than 0.X2a. The newer version has greatly alleviated the performance issues. Now it uses only 10% of energy and 20% of CPU compared to the previous versions.
+Please consider updating if you are still using widget earlier than 0.X2a. The newer version has greatly alleviated the performance issues. Now it uses only 10% of energy and 20% of CPU compared to the previous versions.
 
 ## About
 This widget is an Evangelion Übersicht Widget, displaying information through a huge amount of cells on your desktop.
@@ -63,15 +63,24 @@ If you leaves nothing on your desktop except for less than six mounted volumes (
 
 ### Feedback
 
-* [Contact me](jetic@me.com) through E-mail.
+* [Contact me](jetic@me.com).
 * Please note that this widget is still under development and open for suggestions. If you have any idea on how to improve this widget or new features you would like to see, please do not hesitate to contact me.
 * If you are encountering any problem with the display, please click cell number 32 and see the original console output and contact me with the information you see in the output, otherwise it could be hard to determine what went wrong.
 
 
 ## Updates
 
+**0.X14.3a**
+* Bug fix for DoNotDisturb
+
 **0.X14.2a**
 * Changed how all commands are executed to save energy.
+
+**0.X14.1a**
+* Optimisation.
+
+**0.X14.0a**
+* Optimisation.
 
 **0.X13a**
 * Changed the CPU script.

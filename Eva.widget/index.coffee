@@ -1,4 +1,4 @@
-Version = "0.X14.2a"
+Version = "0.X14.3a"
 config = {
     Magnification: 1.0
     BatteryAlertLevel: 20
@@ -769,7 +769,7 @@ afterRender: (domEl) ->
     window.CPUUsage = ""
     window.MemUsage = "1"
     window.CPUAmount = ""
-    window.Disturbvalues = ""
+    window.Disturbvalues = "0"
     window.tiktok = -1
 
 
@@ -1022,7 +1022,7 @@ update: (output, domEl) ->
             $(domEl).find('.NetD').text("#{NetworkDl}")
     # Do Not Disturb
     @run "defaults read ~/Library/Preferences/ByHost/com.apple.notificationcenterui doNotDisturb", (error, stdout, stderr) ->
-        window.Disturbvalues   = stdout
+        window.Disturbvalues = stdout[0]
     # iTunes
     @run "sh Eva.widget/iTunes.sh 2>/dev/null", (error, stdout, stderr) ->
         if (stdout.indexOf("osascript: Eva.widget/iTunes.scp:") > -1)
