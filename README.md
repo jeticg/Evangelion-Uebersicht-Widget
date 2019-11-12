@@ -70,6 +70,9 @@ If you leaves nothing on your desktop except for less than six mounted volumes (
 
 ## Updates
 
+**0.X14.4a**
+* Attempting to fix iTunes for Catalina
+
 **0.X14.3a**
 * Bug fix for DoNotDisturb
 
