@@ -1,4 +1,4 @@
-Version = "0.X14.3a"
+Version = "0.X14.4a"
 config = {
     Magnification: 1.0
     BatteryAlertLevel: 20
